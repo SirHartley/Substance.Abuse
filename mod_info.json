@@ -1,0 +1,10 @@
+{
+    "id": "alcoholism",
+    "name": "Substance.Abuse",
+    "author": "SirHartley",
+    "version": "1.0.k",
+    "description": "Adds 10 different alcoholic beverages to the sector, which can be consumed and provide fleet wide benefits. Beware the addiction - withdrawal is no fun.",
+    "gameVersion": "0.95.1a",
+    "jars":["jars/alcoholism.jar"],
+    "modPlugin":"com.fs.starfarer.api.alcoholism.ModPlugin",
+}

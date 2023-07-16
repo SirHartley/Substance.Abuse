@@ -1,0 +1,4 @@
+id,name,cost mult,build time,income,upkeep,downgrade,upgrade,tags,data,image,plugin,desc,order
+alcohol_brewery,Brewery,50,60,,6,,,"industry, industrial",,graphics/industry/brewery.png,com.fs.starfarer.api.alcoholism.industry.Brewery,"Through bubbling vats and hissing pipes runs the life-blood of civilization since ages past - alcohol in any shape or form. The work conditions are harsh, but the perks that come with the job usually make it worth it. 
+
+Quickly accumulates stockpiles of whatever it produces.",500

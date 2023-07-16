@@ -1,0 +1,29 @@
+id,industry,planet_type,rarity_mod,type,strength,cost,synergy,synergy_max,synergy_mode,effect,effect_max,effect_mode,drawback,drawback_max,drawback_mode,withdrawal,withdrawal_max,withdrawal_mode
+alcoholism_berries,farming,,1,1,1,1,"synergy gets better the more ing you use of differnt varieties, effect gets better the more you use of similar variety",1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_berries,farming,,0.5,1,2,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_fruit,farming,,1,1,1,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_unc_fruit,farming,,0.75,1,2,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_fruit,farming,,0.6,1,3,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_trop_fruit,farming,jungle,0.5,1,3,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_trop_fruit,farming,jungle,0.3,1,4,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_grain,farming,!water,1,2,2,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_unc_grain,farming,!water,0.8,2,3,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_grain,farming,!water,0.6,2,4,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_trop_grain,farming,jungle,0.5,2,4,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_honey,farming,terran,0.2,3,1,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_waste,"heavyindustry, orbitalworks",no_planet_condition,1,4,4,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_botanics,farming,,1,5,1,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_unc_botanics,farming,,0.7,5,2,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_botanics,farming,,0.3,5,2,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_kelp,farming,water,1,3,1,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_salt,mining,rocky,0.03,3,1,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_deez,farming,"!water, terran",0.5,6,2,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_deez,farming,"!water, terran",0.2,6,3,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_roots,farming,!water,0.9,3,3,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_spice,farming,,0.3,7,1,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_unc_spice,farming,,0.2,7,2,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_spice,farming,,0.1,7,2,3,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_cane,farming,jungle,0.6,3,4,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_veg,farming,!water,0.9,8,2,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_unc_veg,farming,!water,0.75,8,2,1,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT
+alcoholism_rare_veg,farming,!water,0.5,8,3,2,,1.0,MULT,,1.0,MULT,,1.0,MULT,,1.0,MULT

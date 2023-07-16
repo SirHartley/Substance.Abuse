@@ -1,0 +1,26 @@
+{
+  "INGREDIENT_BASE_EFFECT": 0.5f,
+  "INGREDIENT_BASE_SYNERGY": 0.5f,
+  "INGREDIENT_SYNERGY_MULT": 1.5f,
+  "INGREDIENT_EFFECT_MULT": 1.5f,
+  "CUSTOM_ALCOHOL_BASE_COST": 100,
+  "CUSTOM_ALCOHOL_BASE_COST_INCREASE": 5,
+  "CREW_PER_UNIT_PER_MONTH": 10f, #how many crew one unit of alcohol can feed - more = crew will consume less alcohol per month.
+  "BASE_ADDICTION_GAIN_PER_DAY": 0.005f, #the base of how fast addiction builds. Changing this by 0.001 can have a large impact. More = faster addiction.
+  "MONTHLY_ADDICTION_GAIN_LIMIT_BEFORE_BLACKOUT": 1f, #how fast you black out. more = you can consume more alcohol simultaneusly.
+  "WATER_MULT": 0.5f, #how much water increases or decreases addiction gain/loss. will crash unless 0.01 > x <0.99.
+
+  "ADJUST_OP_WHEN_OVER_LIMIT":TRUE,
+  #your ships might be over the OP limit when using absynth and going into withdrawal - this auto-adjusts your loadouts.
+  #note that absynth will become dumb OP if you disable it and do not fix your loadouts yourself after withdrawal
+  #some people had issues with UNGP mod interactions - disabling this setting should be a last resort
+  #also if you disable this the beard gods will make your beard spotty and rough
+
+  "graphics": {
+    "alcohol":{
+      "bg":"graphics/effects/alcohol_BG_mask.png",
+      "frame":"graphics/effects/alcohol_frame.png",
+      "intel": "graphics/icons/intel/investigation.png",
+      },
+  },
+}

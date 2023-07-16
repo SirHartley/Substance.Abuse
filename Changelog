@@ -1,0 +1,78 @@
+------------------Credits------------------
+Concept, code, implementation - SirHartley
+Item Sprites - Bought and modified, https://assetstore.unity.com/publishers/13841
+Industry Image - Commission, Anton Juntunen, https://www.artstation.com/antonjuntunen
+Special thanks to: Avanitia, SilverLight
+------------------OoooooO------------------
+1.0.l - UNRELEASED
+Adjusted - Wording on darjeeling description adjusted for accuracy
+
+1.0.k
+Added - Phaged Darjeeling - incredibly balanced psychoactive tea for shields and phase
+Added - Tea Brewery on Ailmar or whatever the name is
+Adjusted - Factions can now have multiple alcohols and you can assign vanilla alcohol to modded factions
+Fixed - Rare bug that could result in player losing all skills in return for a free brewery and fullerene spool
+Fixed - 4 new crashes related to adding a new alcohol, fixed at least 3 of them
+
+1.0.j
+Added - Setting to disable auto-OP adjustments for Abysnth withdrawal
+Adjusted - Drunk Fleet intel should now be marked important by default
+Fixed - File paths for Linux (Case Sensitivity was a Mistake)
+Fixed - Crash on new game when playing with improperly made modded systems (Missing the Population industry...)
+
+1.0.i
+Adjusted - Hangover Cure demand now only applies to player colonies if there is an active brewery
+Adjusted - No longer re-sorts your inventory (Alcohol will still change position, sorry!)
+Fixed - Prom. Gift Tooltip maneuverability mult now shows correct value
+Fixed - Crash with OP stripper (thanks Wisp!)
+
+1.0.h
+Added - Version Checker support
+Added - Variable to set dynamic supply and demand (Mod integration)
+Adjusted - Blackout now retains your cargo if you only have one ship
+Adjusted - Blackout now stops all alcohol consumption to avoid instantly falling unconscious again
+Adjusted - Lost fleet now discoverable at greater distance
+Adjusted - Recipes no longer show lore text in selection menu
+Fixed - Blackout now properly gives you 3 months worth of supplies instead of filling up your cargo
+Fixed - Ludds Tears officer XP gain no longer levels up officers without being able to choose abilities
+
+1.0.g
+Added - more actually helpful tips
+Added - some settings
+Adjusted - reduced alcohol consumption per month by 25%
+Adjusted - Blackout popup window explanation should now be clearer
+Adjusted - "Drunk Fleet" intel entry should now be easier to find
+Fixed - Prometheus gift withdrawal no longer makes you unable to move
+Fixed - Absynth withdrawal effects now properly apply
+Fixed - crash when playing nex random mode
+Fixed - the minumum consumption is now 1 unit/day. this means that crews < 300 will drink more than needed
+
+1.0.e
+Added - Recipe Books (can merge recipes, install in a brewery to make all stored recipes at once)
+Adjusted - All alcohol now takes half the cargo space (2 alcohol per 1 space!)
+Adjusted - Player colonies now import alcohol types produced by an in-faction brewery
+Fixed - Alcohol hullmods now apply to modules
+Fixed - Alcohol demands now properly unapply from population and infrastructure
+Fixed - Endless loop when blacking out (now actually works)
+
+1.0.d
+Added - Initial Public Release
+Fixed - Absynth fighter bonus now properly applies
+Fixed - Hullmods now properly update every day
+Fixed - Hullmods no longer become intert after blacking out
+
+1.0.c
+Adjusted - Required amounts per day now scale off skeleton crew (instead of total)
+Adjusted - Multiple tooltips
+Fixed - Blackout intel no longer instantly vanishes
+Fixed - Calculation formula for monthly intake
+Fixed - Crash when drinking fuel and activating sustained burn
+Fixed - Fleet merge no longer eats your officers
+Fixed - Endless Loop
+Fixed - NaN crash
+
+1.0.b
+Fixed - Message Spam
+
+1.0.a
+Added - Initial Beta Release

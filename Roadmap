@@ -1,0 +1,11 @@
+Add the Phaged Domainican (Phase-aged domain rum)
+Make vanilla drugs consumable - maybe add the hyperspace ghost effect to them.
+
+Add in a drinks-mixing minigame
+    Remodel Hullmod effects to be modular based on the properties of a drink
+    Give drinks different "Properties", which, when mixed, combine their effects
+    Properties can be exclusive, mixing them gives you crap
+    Add in a GUI to mix drinks
+
+
+make fake commodities and change commodity spec on game start with relevant adjusted comm

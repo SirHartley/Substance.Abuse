@@ -1,0 +1,23 @@
+{
+	tips:[
+          "[Substance.Abuse] Lost your fleet while blackout drunk? They'll probably wait for you where you last saw them, just join back up!",
+          "[Substance.Abuse] Alcohol consumption scales with minimum crew level and effect level, up to a maximum of twice the base need.",
+          "[Substance.Abuse] Every alcohol is tracked seperately - you can't avoid Abynth withdrawal by drinking Phoenix Stout",
+          "[Substance.Abuse] You can drink more alcohol at once if you already have resistance to some.",
+          "[Substance.Abuse] The factions will not part with their recipes - you can take them from them, though.",
+          "[Substance.Abuse] Raiding a planet with a brewery is the only way to get a recipe for a drink.",
+          "[Substance.Abuse] The brewery will produce vast amounts of an alcohol if provided with a recipe. Never go dry again!",
+          "[Substance.Abuse] Drinking too much at once will make you pass out.",
+          "[Substance.Abuse] Too much at once and you might pass out. Be careful about your alcohol intake!",
+          "[Substance Abuse] Only the crew actively working on keeping ship flying gets to drink. Everyone else can only watch and hope they will be assigned to active duty.",
+          "[Substance Abuse] The crew actively working on keeping the fleet afloat gets to drink for free. Everyone else? They have to pay for their booze.",
+          "[Substance Abuse] Use a Hangover Cure to get rid of withdrawal quicker, or to slow the effect buildup - which also lowers the average consumption increase per month.",
+
+          #memes,
+          "[Substance Abuse] Drinking Tea is a great way to bankrupt yourself. Don't forget to blame the British.",
+          "[Substance.Abuse] CHUG! CHUG! CHUG! - Unnamed Hegemony captain, around 194 a.c.",
+          "[Substance.Abuse] Get hammered on tears to hit harder with hammers. Try it!",
+          "[Substance.Abuse] Drink Responsibly-ish.",
+          "[Substance.Abuse] Twice the chance to hit the target if you see it double!",
+    ],
+}

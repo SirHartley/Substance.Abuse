@@ -1,0 +1,11 @@
+{
+    "masterVersionFile":"https://raw.githubusercontent.com/SirHartley/Substance.Abuse/master/alcohol.version",
+    "modName":"Substance.Abuse",
+    "modThreadId":24378,
+    "modVersion":
+    {
+        "major":1,
+        "minor":0,
+        "patch":"j"
+    },
+}

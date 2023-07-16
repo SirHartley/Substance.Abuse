@@ -1,0 +1,48 @@
+name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
+Phoenix Stout,alcoholism_stout,no_drop,,,170,"10000
+",0.5,,graphics/items/phoenix_stout.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Absynth,alcoholism_absynth,no_drop,,,180,"10000
+",0.5,,graphics/items/absynth.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Tears of Ludd,alcoholism_tears,no_drop,,,140,"10000
+",0.5,,graphics/items/tears_of_ludd.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Prometheus Gift,alcoholism_fuel,no_drop,,,120,"10000
+",0.5,,graphics/items/prometheus_gift.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Reapers Blood,alcoholism_blood,no_drop,,,120,"10000
+",0.5,,graphics/items/reapers_blood.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Askonia Sunshine,alcoholism_sunshine,no_drop,,,160,"10000
+",0.5,,graphics/items/askonia_sunshine.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Kings Favour,alcoholism_king,no_drop,,,110,"10000
+",0.5,,graphics/items/kings_favour.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Sweet Freedom,alcoholism_freedom,no_drop,,,90,"10000
+",0.5,,graphics/items/sweet_freedom.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Hangover Cure,alcoholism_water,no_drop,,,200,"10000
+",0.5,,graphics/items/heroin_water.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+Phaged Darjeeling,alcoholism_tea,no_drop,,,175,"10000
+",0.5,,graphics/items/phaged_tea.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,60
+,,,,,,,,,,,,,,,
+Phoenix Stout Recipe,alcoholism_stout_item,no_drop,,,85000,"10000
+",1,,graphics/items/phoenix_stout_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Absynth Recipe,alcoholism_absynth_item,no_drop,,,90000,"10000
+",1,,graphics/items/absynth_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Tears of Ludd Recipe,alcoholism_tears_item,no_drop,,,70000,"10000
+",1,,graphics/items/tears_of_ludd_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Prometheus Gift Recipe,alcoholism_fuel_item,no_drop,,,60000,"10000
+",1,,graphics/items/prometheus_gift_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Reapers Blood Recipe,alcoholism_blood_item,no_drop,,,60000,"10000
+",1,,graphics/items/reapers_blood_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Askonia Sunshine Recipe,alcoholism_sunshine_item,no_drop,,,80000,"10000
+",1,,graphics/items/askonia_sunshine_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Kings Favour Recipe,alcoholism_king_item,no_drop,,,55000,"10000
+",1,,graphics/items/kings_favour_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Sweet Freedom Recipe,alcoholism_freedom_item,no_drop,,,45000,"10000
+",1,,graphics/items/sweet_freedom_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Hangover Cure Recipe,alcoholism_water_item,no_drop,,,100000,"10000
+",1,,graphics/items/heroin_water_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+Phaged Darjeeling Recipe,alcoholism_tea_item,no_drop,,,90000,"10000
+",1,,graphics/items/phaged_tea_item.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeItemPlugin,alcohol_brewery,A collection of old documents and recipes detailing the production method for a certain beverage.,138
+,,,,,,,,,,,,,,,
+Recipe Book,alcoholism_recipe_book,no_drop,,,100000,"10000
+",1,,graphics/items/recipeBook.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeBookItemPlugin,alcohol_brewery,,138
+,,,,,,,,,,,,,,,
+Custom Alcohol 1,alcoholism_custom1,no_drop,,,150,"10000
+",0.5,,graphics/items/custom/custom1.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,61

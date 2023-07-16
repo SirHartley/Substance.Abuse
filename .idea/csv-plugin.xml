@@ -1,0 +1,4405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\GraphicsLib\data\config\glib\no_self_destruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\GraphicsLib\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\GraphicsLib\data\lights\core_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\GraphicsLib\data\lights\core_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\GraphicsLib\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\sim_opponents_dev.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\characters\person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\glib\no_self_destruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\lights\ii_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\lights\ii_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Interstellar Imperium\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\prism\prism_factions_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\ruthlesssector\faction_rep_change_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\vayraBounties\player_bounty_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\vayraRaiders\raider_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\trails\trail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Kadur Remnant\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\procgen\star_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\omnifactory\restricted_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\prism\prism_factions_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\prism\prism_settings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\radar\excluded_missiles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\radar\excluded_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\factions\fighter_wings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\factions\ship_roles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\factions\weapon_categories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\lights\SCY_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\lights\SCY_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\trails\trail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SCY\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\lights\swp_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\lights\swp_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Ship and Weapon Pack\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\SpeedUp\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\lights\uw_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\lights\uw_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.07.08\Underworld\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\CombatAnalytics\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\config\exerelin\mining_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\config\exerelin\mining_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\factions\fighter_wings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\factions\ship_roles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\factions\weapon_categories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\DisassembleReassemble_v1.6.9\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Fuel Siphoning\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Fuel Siphoning\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\GraphicsLib\data\config\glib\no_self_destruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\GraphicsLib\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\GraphicsLib\data\lights\core_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\GraphicsLib\data\lights\core_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\GraphicsLib\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\sim_opponents_dev.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\characters\person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\glib\no_self_destruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\lights\ii_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\lights\ii_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Interstellar Imperium\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\prism\prism_factions_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\ruthlesssector\faction_rep_change_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\vayraBounties\player_bounty_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\vayraRaiders\raider_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\trails\trail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Kadur Remnant\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Luddic_Enhancement\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Luddic_Enhancement\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Luddic_Enhancement\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\procgen\name_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\reports.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\industryClassDefs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\industry_bonuses.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\landmarks.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\mining_resources.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\mining_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\exerelin\mining_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_blueprints_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_blueprints_values.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_factions_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\prism\prism_weapons_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\console\aliases.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\console\command_listeners.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Nexerelin\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\procgen\star_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\omnifactory\restricted_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\prism\prism_factions_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\prism\prism_settings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\radar\excluded_missiles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\radar\excluded_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\factions\fighter_wings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\factions\ship_roles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\factions\weapon_categories.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\lights\SCY_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\lights\SCY_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\trails\trail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SCY\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\lights\swp_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\lights\swp_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Ship and Weapon Pack\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SkilledUp\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\SpeedUp\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\data\console\aliases.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\sun_sl\data\hull_regen_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\sun_sl\data\loyalty_levels.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Starship Legends\sun_sl\data\traits.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\procgen\specialnamegen\tiandong_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\procgen\specialnamegen\tiandong_planet_types.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\procgen\star_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\exerelin\mining_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\exerelin\mining_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\fob\pch\blockfactions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\foundation\foundationShips.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\foundation\noRepFactions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\glib\no_self_destruct.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\gsounty\EndlessFaction.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\omnifactory\restricted_markets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\omnifactory\restricted_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\omnifactory\restricted_wings.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\prism\prism_weapons_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\radar\excluded_missile_locks.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\radar\excluded_missiles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\lights\tiandong_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\lights\tiandong_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Tiandong Heavy Industries 1.2\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\config\chatter\boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\config\omnifactory\restricted_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\config\title_screen_variants.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\lights\uw_light_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\lights\uw_texture_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\missions\mission_list.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Underworld\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\campaign\sim_opponents.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\characters\person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\ruthlesssector\faction_rep_change_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraBounties\player_bounty_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraBounties\rare_flagships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraColonies\colony_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraProcgenEntities\entities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\vayraRaiders\raider_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\Vayra's Sector\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\trailermoments\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\2019.11.07\trailermoments\data\trails\trail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\procgen\planet_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\exerelin\corvus_capitals.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\exerelin\corvus_spawnpoints.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\exerelin\mining_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\exerelin\mining_weapons.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\hulls\wing_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\shipsystems\ship_systems.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A3_Alte versionen\HMI\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution1.8.c\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.0.c\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\Industrial.Evolution2.1.b\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.1.b\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\ruins_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\starpocalypse\militaryRegulationSubmarket.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\starpocalypse\shipDamageSubmarket.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution2.2.g\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\campaign\unimplemented_special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\characters\UNUSED_person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\doritoguns_classes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\ruins_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\modFiles\magicTrail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\lights\IndEvo_lights.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.c\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\campaign\unimplemented_special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\characters\UNUSED_person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\doritoguns_classes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\ruins_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\modFiles\magicTrail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\lights\IndEvo_lights.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.d\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\abilities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\procgen\condition_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\procgen\drop_groups.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\procgen\salvage_entity_gen_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\submarkets.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\campaign\unimplemented_special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\characters\UNUSED_person_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\characters\skills\skill_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\exerelinFactionConfig\mod_factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\bureau_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\custom_order_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\doritoguns_classes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\embassy_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\printing_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\reverse_engineering_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\ruins_industry_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\indEvo\shipping_submarkets_whitelist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\modFiles\magicTrail_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\prism\prism_boss_ships.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\prism\prism_ships_blacklist.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\vayraBounties\unique_bounty_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\console\commands.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\lights\IndEvo_lights.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\weapons\weapon_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\A7_Release-Archiv IndEvo\Industrial.Evolution3.0.e\data\world\factions\factions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Commissioned Crews\data\config\CommissionBonus\TechpriestCommission.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Commissioned Crews\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Commissioned Crews\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\DisplayEventInfo\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Illustrated.Entities\data\campaign\rules.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Illustrated.Entities\data\config\image_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Illustrated.Entities\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\Illustrated.Entities\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="D:\Starsector\mods\IndEvo_WIP Hull only\data\hulls\ship_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\commodities.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\industries.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\ingredients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\market_conditions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\campaign\special_items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\config\version\version_files.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\hullmods\hull_mods.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\strings\descriptions.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
