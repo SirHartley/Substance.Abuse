@@ -68,8 +68,8 @@ public class RecipeBookItemPlugin extends GenericSpecialItemPlugin {
 
         RecipeBookSpecialItemData recipeBookSpecialItemData = getSpecialItemData();
         if(recipeBookSpecialItemData != null){
-            for (IndustrialAlcohol industrialAlcohol : recipeBookSpecialItemData.getAlcoholList()){
-                tooltip.addPara(industrialAlcohol.getName(), industrialAlcohol.getFaction().getColor(), pad);
+            for (AlcoholAPI alcohol : recipeBookSpecialItemData.getAlcoholList()){
+                tooltip.addPara(alcohol.getName(), alcohol.getFaction().getColor(), pad);
             }
         }
 
@@ -81,7 +81,7 @@ public class RecipeBookItemPlugin extends GenericSpecialItemPlugin {
     public int getPrice(MarketAPI market, SubmarketAPI submarket) {
         int amt = 0;
         RecipeBookSpecialItemData data = getSpecialItemData();
-        if(data != null) for (IndustrialAlcohol industrialAlcohol : data.getAlcoholList()) amt += Global.getSettings().getSpecialItemSpec(industrialAlcohol.getIndustryItemId()).getBasePrice();
+        if(data != null) for (AlcoholAPI alcohol : data.getAlcoholList()) amt += Global.getSettings().getSpecialItemSpec(alcohol.getIndustryItemId()).getBasePrice();
         return amt;
     }
 }

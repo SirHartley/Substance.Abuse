@@ -109,15 +109,15 @@ public class BlackoutScript implements EveryFrameScript {
         cargo.addSupplies(Math.min((suppliesPerMonth * 3) + fleet.getLogistics().getTotalRepairAndRecoverySupplyCost(), maxCargo - 5f));
 
         MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
-        List<IndustrialAlcohol> alcoholList = new ArrayList<>(AlcoholRepo.getIndustrialAlcoholList());
-        WeightedRandomPicker<IndustrialAlcohol> picker = new WeightedRandomPicker<IndustrialAlcohol>(true);
+        List<AlcoholAPI> alcoholList = new ArrayList<>(AlcoholRepo.getNonCustomAlcoholList());
+        WeightedRandomPicker<AlcoholAPI> picker = new WeightedRandomPicker<>(true);
         picker.addAll(alcoholList);
 
         Random random = new Random();
 
         if(!mem.getBoolean(ITEM_DROP_KEY)){
-            IndustrialAlcohol industrialAlcohol = picker.pick();
-            cargo.addSpecial(new SpecialItemData(industrialAlcohol.getIndustryItemId(),null), 1);
+            AlcoholAPI alcohol = picker.pick();
+            cargo.addSpecial(new SpecialItemData(alcohol.getIndustryItemId(),null), 1);
             mem.set(ITEM_DROP_KEY, true);
         }
 

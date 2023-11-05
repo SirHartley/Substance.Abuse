@@ -7,6 +7,11 @@ import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * No longer in use, what alcohol a faction uses now depends on what faction is specified in the alcohol itself.
+ */
+
+@Deprecated
 public class FactionAlcoholHandler {
     //alcohol bound to faction, not faction to alcohol
     //need to specify import/export profiles in the alcohol repo

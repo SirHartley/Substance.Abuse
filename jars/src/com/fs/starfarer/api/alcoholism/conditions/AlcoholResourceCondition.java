@@ -107,13 +107,11 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     }
 
     private void applyAllNPCAlcohol() {
-        for (AlcoholAPI alcohol : getNonCustomAlcoholForMarket()) {
-            applyNPCAlcohol(alcohol);
-        }
+        for (AlcoholAPI alcohol : getNonCustomAlcoholForMarket()) applyNPCAlcohol(alcohol);
 
-        //todo replace with genericised method for multiple alcohols per faction
-        if (market.getFactionId().equals(Factions.INDEPENDENT))
-            applyNPCAlcohol(AlcoholRepo.get(AlcoholRepo.WATER)); //everyone loves heroin
+/*        if (market.getFactionId().equals(Factions.INDEPENDENT))
+            applyNPCAlcohol(AlcoholRepo.get(AlcoholRepo.WATER)); //everyone loves heroin*/
+
         if (market.getSize() > 5)
             applyDemand(Industries.POPULATION, AlcoholRepo.get(AlcoholRepo.TEA).getPopulationImportMod(), AlcoholRepo.get(AlcoholRepo.TEA).getCommodityId()); //tea demand to large worlds
     }
@@ -196,7 +194,14 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
 
     private List<AlcoholAPI> getNonCustomAlcoholForMarket() {
         String factionID = market.getFaction().getId();
-        return FactionAlcoholHandler.getFactionStaticAlcoholTypes(factionID);
+
+        List<AlcoholAPI> alcoholList = new ArrayList<>();
+
+        for (AlcoholAPI alcohol : AlcoholRepo.getNonCustomAlcoholList()){
+            if (alcohol.getFaction().getId().equals(factionID)) alcoholList.add(alcohol);
+        }
+
+        return alcoholList;
     }
 
     @Override

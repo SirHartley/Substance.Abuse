@@ -39,7 +39,7 @@ public class ModPlugin extends BaseModPlugin {
         ExcessOPStripper.register();
 
         //economy
-        FactionAlcoholHandler.assignFactionAlcohols();
+        //FactionAlcoholHandler.assignFactionAlcohols(); deprecated
         ResourceConditionApplicator.register();
         ResourceConditionApplicator.applyIngredientConditions();
         BreweryPlacer.placeBreweries();
