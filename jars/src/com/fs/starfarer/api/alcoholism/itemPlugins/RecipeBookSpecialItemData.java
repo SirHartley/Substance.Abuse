@@ -2,7 +2,6 @@ package com.fs.starfarer.api.alcoholism.itemPlugins;
 
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
-import com.fs.starfarer.api.alcoholism.memory.IndustrialAlcohol;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 
 import java.util.ArrayList;

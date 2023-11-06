@@ -1,6 +1,7 @@
 package com.fs.starfarer.api.alcoholism.hullmods;
 
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
+import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.alcoholism.memory.BaseAlcohol;
 import com.fs.starfarer.api.campaign.CampaignUIAPI;
@@ -30,16 +31,16 @@ public abstract class BaseAlcoholHullmodEffect extends SelfRepairingBuiltInHullm
         return getAlcohol().getAddictionStatus().isWithdrawal() ? Color.RED : Color.GREEN;
     }
 
-    public BaseAlcohol getAlcohol(){
-        return (BaseAlcohol) AlcoholRepo.get(spec.getId());
+    public AlcoholAPI getAlcohol(){
+        return AlcoholRepo.get(spec.getId());
     }
 
     @Override
     public void applyEffectsBeforeShipCreation(ShipAPI.HullSize hullSize, MutableShipStatsAPI stats, String id) {
         super.applyEffectsBeforeShipCreation(hullSize, stats, id);
 
-        BaseAlcohol baseAlcohol = getAlcohol();
-        AddictionStatus status = baseAlcohol.getAddictionStatus();
+        AlcoholAPI alcohol = getAlcohol();
+        AddictionStatus status = alcohol.getAddictionStatus();
         float effectMult = status.getAddictionValue();
 
         if(status.isWithdrawal()) applyWithdrawal(stats, effectMult, id);

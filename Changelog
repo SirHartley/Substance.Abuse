@@ -4,8 +4,11 @@ Item Sprites - Bought and modified, https://assetstore.unity.com/publishers/1384
 Industry Image - Commission, Anton Juntunen, https://www.artstation.com/antonjuntunen
 Special thanks to: Avanitia, SilverLight
 ------------------OoooooO------------------
-1.0.l - UNRELEASED
+2.0.a - UNRELEASED
+Added - Support for multiple alcohol types per faction
 Adjusted - Wording on darjeeling description adjusted for accuracy
+Adjusted - Deprecated the faction handler, it's now set via alcohol faction
+Fixed - Alcohol hullmods now apply properly to starting fleet ships
 
 1.0.k
 Added - Phaged Darjeeling - incredibly balanced psychoactive tea for shields and phase

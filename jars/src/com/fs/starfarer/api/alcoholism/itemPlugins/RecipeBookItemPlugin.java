@@ -2,7 +2,6 @@ package com.fs.starfarer.api.alcoholism.itemPlugins;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
-import com.fs.starfarer.api.alcoholism.memory.IndustrialAlcohol;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.CargoTransferHandlerAPI;
 import com.fs.starfarer.api.campaign.SpecialItemData;

@@ -62,7 +62,7 @@ public class AlcoholItemPlugin extends BaseSpecialItemPlugin {
         tooltip.addPara( Misc.ucFirst(faction.getPersonNamePrefixAOrAn()) + " " + Misc.ucFirst(faction.getDisplayName()) + " original", Misc.getGrayColor(), pad);
 
         tooltip.addPara(Global.getSettings().getDescription(alcohol.getCommodityId(), Description.Type.RESOURCE).getText1(), 10f);
-        alcohol.addStatusTooltip(tooltip);
+        alcohol.addStatusTooltip(tooltip, false);
         alcohol.addEffectTooltip(tooltip, false);
 
         addCostLabel(tooltip, opad, transferHandler, stackSource);

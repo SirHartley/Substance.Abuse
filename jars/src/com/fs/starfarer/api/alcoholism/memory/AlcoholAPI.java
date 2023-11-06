@@ -13,7 +13,7 @@ public interface AlcoholAPI {
     float incrementAddiction(float days);
     AddictionStatus getAddictionStatus();
     void addEffectTooltip(TooltipMakerAPI tt, boolean forHullmod);
-    void addStatusTooltip(TooltipMakerAPI tt);
+    void addStatusTooltip(TooltipMakerAPI tt, boolean forHullmod);
     String getIndustryItemId();
     String[] getDemandsForProduction();
     int getLightIndustryMod();

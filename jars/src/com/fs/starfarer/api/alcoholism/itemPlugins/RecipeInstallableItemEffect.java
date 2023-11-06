@@ -4,7 +4,6 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.conditions.AlcoholResourceCondition;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
-import com.fs.starfarer.api.alcoholism.memory.IndustrialAlcohol;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.InstallableIndustryItemPlugin;
@@ -17,7 +16,7 @@ public class RecipeInstallableItemEffect extends BaseInstallableItemEffect {
     private final String alcoholId;
 
     public RecipeInstallableItemEffect(String alcoholId) {
-        super(((IndustrialAlcohol) AlcoholRepo.get(alcoholId)).getIndustryItemId());
+        super((AlcoholRepo.get(alcoholId)).getIndustryItemId());
         this.alcoholId = alcoholId;
     }
 
@@ -29,35 +28,34 @@ public class RecipeInstallableItemEffect extends BaseInstallableItemEffect {
             if (industry.isFunctional()) {
                 AlcoholAPI alcohol = AlcoholRepo.get(alcoholId);
 
-                if (alcohol instanceof IndustrialAlcohol) {
-                    applyDemand(b, 0, ((IndustrialAlcohol) alcohol).getDemandsForProduction());
-                    applySupply(b, 0, ((IndustrialAlcohol) alcohol).getCommodityId());
-                }
+                applyDemand(b, 0, ((alcohol).getDemandsForProduction()));
+                applySupply(b, 0, ((alcohol).getCommodityId()));
+                
             }
         }
     }
 
     @Override
     public void unapply(Industry industry) {
-        IndustrialAlcohol industrialAlcohol = (IndustrialAlcohol) AlcoholRepo.get(alcoholId);
+        AlcoholAPI alcohol = AlcoholRepo.get(alcoholId);
         BaseIndustry ind = (BaseIndustry) industry;
 
-        ind.supply(industrialAlcohol.getCommodityId(), 0);
+        ind.supply(alcohol.getCommodityId(), 0);
 
-        for (String s : industrialAlcohol.getDemandsForProduction()) {
+        for (String s : alcohol.getDemandsForProduction()) {
             ind.demand(s, 0);
         }
     }
 
     protected void addItemDescriptionImpl(Industry industry, TooltipMakerAPI text, SpecialItemData data,
                                           InstallableIndustryItemPlugin.InstallableItemDescriptionMode mode, String pre, float pad) {
-        IndustrialAlcohol industrialAlcohol = (IndustrialAlcohol) AlcoholRepo.get(alcoholId);
+        AlcoholAPI alcohol = AlcoholRepo.get(alcoholId);
 
         text.addPara(pre + "Allows a Brewery to produce %s",
-                pad, industrialAlcohol.getFaction().getColor(),
-                industrialAlcohol.getName());
+                pad, alcohol.getFaction().getColor(),
+                alcohol.getName());
         if (mode == InstallableIndustryItemPlugin.InstallableItemDescriptionMode.CARGO_TOOLTIP || mode == InstallableIndustryItemPlugin.InstallableItemDescriptionMode.INDUSTRY_TOOLTIP) {
-            text.addPara(Global.getSettings().getDescription(industrialAlcohol.getCommodityId(), Description.Type.RESOURCE).getText1(), 10f);
+            text.addPara(Global.getSettings().getDescription(alcohol.getCommodityId(), Description.Type.RESOURCE).getText1(), 10f);
         }
     }
 

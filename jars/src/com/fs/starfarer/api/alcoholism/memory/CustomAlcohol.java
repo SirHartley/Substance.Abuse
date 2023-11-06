@@ -5,7 +5,9 @@ import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.campaign.SpecialItemSpecAPI;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.loading.Description;
+import exerelin.campaign.intel.groundbattle.GroundBattleLog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,19 +22,33 @@ public class CustomAlcohol extends BaseAlcohol{
     public float cost;
     public String name;
     public String desc;
+    public String iconName;
+    public String shortDesc;
 
     public static final float BASE_INGREDIENT_STRENGTH = 0.05f;
 
-    public CustomAlcohol(String id, String name, String desc, String factionIdForColours,
+    public CustomAlcohol(String id, String name, String desc, String iconName, String factionIdForColours,
                              String... ingredients) {
         this.id = id;
         this.commodityId = id + "_c";
         this.factionId = factionIdForColours;
+        this.iconName = iconName;
 
         this.name = name;
         this.desc = desc;
 
+        loadIcon();
+        generateShortDesc();
         calculateEffects(ingredients);
+    }
+
+    public void loadIcon() {
+        try {
+            Global.getSettings().loadTexture(iconName);
+        } catch (IOException e){
+            ModPlugin.log("FAILED TO LOAD ALCOHOL TEXTURE, DEFAULTING");
+            iconName = "graphics/items/phoenix_stout.png";
+        }
     }
 
     public void register(){
@@ -72,26 +88,43 @@ public class CustomAlcohol extends BaseAlcohol{
         this.cost = cost;
 
         ModPlugin.log("new custom alcohol "+ id + " " + name + " " + factionId + " " + " | mult " + mult + " cost " + cost);
+    }
 
+    public void generateShortDesc(){
+        //todo adjust to reflect effects once they are in
+        //todo add adjectives "Fresh Herbs, Zesty Malt..."
+
+        StringBuilder ingredientString = new StringBuilder();
+
+        int i = 0;
+        for (Effect effect : ingredients){
+            if (i > 0) ingredientString.append(", ");
+            ingredientString.append(Global.getSettings().getCommoditySpec(effect.ingredientId).getName());
+            i++;
+        }
+
+        if (ingredientString.length() <= 0) ingredientString.append("Ingredient list malformed, re-check import validity");
+
+        this.shortDesc = "Test custom alcohol made from " + ingredientString.toString();
     }
 
     public void overwriteSpec(){
-        /*//specialItemSpec for the commodity first cause it's getting stored by commodity spec
-        SpecialItemSpecAPI specialItemCommoditySpec = Global.getSettings().getSpecialItemSpec(getCommodityId());
-        specialItemCommoditySpec.setDesc(desc);
-        ((X) specialItemCommoditySpec).setName(name);*/
-
         //then we do commodity spec
         CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(getCommodityId());
+        spec.setName(name);
         spec.setBasePrice(cost);
-
-        Global.getSettings().getDescription(id, Description.Type.RESOURCE).setText1("THIS IS A TEST");
+        spec.setIconName(iconName);
 
         //then we do the actual special item
         SpecialItemSpecAPI specialItemSpec = Global.getSettings().getSpecialItemSpec(getId());
-        specialItemSpec.setDesc(desc);
-        //((X) specialItemSpec).setName(name);
-        //((X) specialItemSpec).setBasePrice(cost);
+        //specialItemSpec.setDesc(desc);
+        specialItemSpec.setName(name);
+        specialItemSpec.setBasePrice(cost);
+        specialItemSpec.setIconName(iconName);
+
+        Description description = Global.getSettings().getDescription(commodityId, Description.Type.RESOURCE);
+        description.setText1(desc);
+        description.setText2(shortDesc);
     }
 
     @Override

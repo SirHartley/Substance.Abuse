@@ -6,7 +6,6 @@ import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.intel.DrunkFleetIntel;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
-import com.fs.starfarer.api.alcoholism.memory.IndustrialAlcohol;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;

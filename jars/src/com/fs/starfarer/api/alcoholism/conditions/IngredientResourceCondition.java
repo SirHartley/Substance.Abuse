@@ -7,6 +7,7 @@ import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.impl.campaign.econ.BaseHazardCondition;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
 import com.fs.starfarer.api.impl.campaign.ids.Conditions;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
@@ -29,6 +30,7 @@ public class IngredientResourceCondition extends BaseHazardCondition {
     @Override
     public void apply(String id) {
         super.apply(id);
+        if (market.isPlanetConditionMarketOnly() || market.getFaction() == null || Factions.NEUTRAL.equals(market.getFactionId())) return;
 
         Ingredient ingredient = AlcoholRepo.INGREDIENT_MAP.get(condition.getId());
 

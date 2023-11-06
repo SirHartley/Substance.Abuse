@@ -9,6 +9,7 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.loading.VariantSource;
 import com.fs.starfarer.api.util.Misc;
 
 import java.util.ArrayList;
@@ -223,12 +224,26 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
             String hullmodID = alcohol.getEffectHullmodId();
 
             for (FleetMemberAPI m : fleet.getFleetData().getMembersListCopy()) {
+                if (m.getVariant().getSource() != VariantSource.REFIT){
+                    cycleToCustomVariant(m);
+                }
+
                 if (!m.getVariant().hasHullMod(hullmodID)) {
                     m.getVariant().addPermaMod(hullmodID);
                     m.updateStats();
                 }
             }
         }
+    }
+
+    public static void cycleToCustomVariant(FleetMemberAPI member) {
+        ShipVariantAPI variant = member.getVariant();
+
+        variant = variant.clone();
+        variant.setOriginalVariant(null);
+        variant.setHullVariantId(Misc.genUID());
+        variant.setSource(VariantSource.REFIT);
+        member.setVariant(variant, false, true);
     }
 
     @Override

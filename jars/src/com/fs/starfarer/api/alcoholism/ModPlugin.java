@@ -53,7 +53,7 @@ public class ModPlugin extends BaseModPlugin {
     }
 
     public static void devAddCustomAlcohol(){
-        CustomAlcohol alcohol = new CustomAlcohol("alcoholism_custom1", "Test Alcohol", "alcoholism_stout_c", "player",
+        CustomAlcohol alcohol = new CustomAlcohol("alcoholism_custom1", "Black Whole Wheat", "This is a test description entry override for a custom alcohol", "graphics/items/custom/custom1.png","player",
                 "alcoholism_trop_fruit", "alcoholism_fruit", "alcoholism_rare_botanics", "alcoholism_salt");
 
         alcohol.register();
@@ -61,12 +61,16 @@ public class ModPlugin extends BaseModPlugin {
 
     public static void devActions(){
         CargoAPI c = Global.getSector().getPlayerFleet().getCargo();
-        /*for (BaseAlcohol baseAlcohol : AlcoholRepo.ALCOHOL_MAP.values()){
+        for (AlcoholAPI baseAlcohol : AlcoholRepo.ALCOHOL_MAP.values()){
             c.addCommodity(baseAlcohol.getCommodityId(), 100);
-        }*/
+        }
 
         for (AlcoholAPI a : AlcoholRepo.ALCOHOL_MAP.values()){
             log("ALCOHOL_DEV " + a.getCommodityId() + " has addiction entry: " + AddictionMemory.getInstanceOrRegister().contains(a) + AddictionMemory.getInstanceOrRegister().getStatusForId(a.getId()));
+        }
+
+        for (Ingredient ingredient : AlcoholRepo.INGREDIENT_MAP.values()){
+            log("ALCOHOL_DEV " + ingredient.id + " - " + Global.getSettings().getCommoditySpec(ingredient.id).getName());
         }
     }
 }

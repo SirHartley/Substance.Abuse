@@ -39,4 +39,4 @@ alcoholism_veg,RESOURCE,"Various vegetables, often fermented to serve as the alc
 alcoholism_unc_veg,RESOURCE,"Exotic vegetables, used to make unique and flavorful spirits. They are more difficult to farm and process, but can result in more interesting concoctions.",,,
 alcoholism_rare_veg,RESOURCE,"Rare vegetables, sought after by connoisseurs for their unique and complex flavors. They are expensive and difficult to obtain, often only by gathering in the wild, but the resulting taste profiles usually more than make up for the problems in cultivation.",,,
 ,,,,,
-alcoholism_custom1_c,RESOURCE,test1,text2,,
+alcoholism_custom1_c,RESOURCE,,,,
