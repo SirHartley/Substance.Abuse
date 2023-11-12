@@ -13,6 +13,10 @@ import java.util.List;
 
 public class AlcoholStackReplacer implements CargoTabListener {
 
+
+    //todo implement check if this alcohol was overridden with another version, and become "spoiled" if it is
+
+
     //transient
     public static void register() {
         ListenerManagerAPI manager = Global.getSector().getListenerManager();

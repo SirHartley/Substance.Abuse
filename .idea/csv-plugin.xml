@@ -4399,6 +4399,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\strings\custom_alcohol_names.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\strings\descriptions.csv">
           <value>
             <Attribute>

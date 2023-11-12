@@ -2,14 +2,23 @@ package com.fs.starfarer.api.alcoholism.memory;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
+import com.fs.starfarer.api.alcoholism.loading.Importer;
 import com.fs.starfarer.api.campaign.SpecialItemSpecAPI;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
+import com.fs.starfarer.api.impl.campaign.econ.impl.Mining;
 import com.fs.starfarer.api.loading.Description;
-import exerelin.campaign.intel.groundbattle.GroundBattleLog;
+import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.api.util.WeightedRandomPicker;
+import org.lazywizard.lazylib.MathUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * id = custom item ID this uses, goes up to 100
+ * uid = actual alcohol ID used to track what this is
+ */
 
 public class CustomAlcohol extends BaseAlcohol{
     //4 slots for ingredients
@@ -25,21 +34,37 @@ public class CustomAlcohol extends BaseAlcohol{
     public String iconName;
     public String shortDesc;
 
+    public String uid;
+    public boolean spoiled = false; //if the id set was used for another alcohol, this one becomes spoiled.
+
     public static final float BASE_INGREDIENT_STRENGTH = 0.05f;
 
     public CustomAlcohol(String id, String name, String desc, String iconName, String factionIdForColours,
                              String... ingredients) {
+
+        this.uid = Misc.genUID();
+
         this.id = id;
         this.commodityId = id + "_c";
         this.factionId = factionIdForColours;
         this.iconName = iconName;
 
-        this.name = name;
+        this.name = name == null ? AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size()-1)) : name;
         this.desc = desc;
 
         loadIcon();
         generateShortDesc();
         calculateEffects(ingredients);
+    }
+
+    public void init(){
+        AlcoholRepo.ALCOHOL_MAP.put(id, this);
+        AddictionMemory.getInstanceOrRegister().addIfNeeded(this);
+        overwriteSpec();
+    }
+
+    public void register(){
+        CustomAlcoholMemory.getInstanceOrRegister().add(this);
     }
 
     public void loadIcon() {
@@ -49,13 +74,6 @@ public class CustomAlcohol extends BaseAlcohol{
             ModPlugin.log("FAILED TO LOAD ALCOHOL TEXTURE, DEFAULTING");
             iconName = "graphics/items/phoenix_stout.png";
         }
-    }
-
-    public void register(){
-        overwriteSpec();
-        AlcoholRepo.ALCOHOL_MAP.put(id, this);
-        CustomAlcoholMemory.getInstanceOrRegister().add(this);
-        AddictionMemory.getInstanceOrRegister().addIfNeeded(this);
     }
 
     public void calculateEffects(String[] ingredients){
@@ -103,7 +121,7 @@ public class CustomAlcohol extends BaseAlcohol{
             i++;
         }
 
-        if (ingredientString.length() <= 0) ingredientString.append("Ingredient list malformed, re-check import validity");
+        if (ingredientString.length() <= 0) ingredientString.append("[Ingredient list malformed, re-check import validity]");
 
         this.shortDesc = "Test custom alcohol made from " + ingredientString.toString();
     }

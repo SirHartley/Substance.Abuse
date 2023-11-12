@@ -42,6 +42,7 @@ public class AlcoholRepo {
     }};
 
     public static Map<String, Ingredient> INGREDIENT_MAP = new HashMap<>();
+    public static List<String> CUSTOM_ALCOHOL_NAME_LIST = Importer.loadCustomAlcoholNames();
 
     public static List<AlcoholAPI> getNonCustomAlcoholList(){
         List<AlcoholAPI> menu = new ArrayList<>();
@@ -85,9 +86,5 @@ public class AlcoholRepo {
 
     public static void loadIngredients(){
         AlcoholRepo.INGREDIENT_MAP = Importer.loadIngredientData();
-    }
-
-    public static void overwriteCustomAlcoholSpecs(){
-        for (CustomAlcohol alcohol : AlcoholRepo.getCustomAlcoholList()) alcohol.overwriteSpec();
     }
 }

@@ -39,4 +39,6 @@ Common Vegetables,alcoholism_veg,alcoholism_veg,35,200,1,1,,"ingredient, meta",1
 Uncommon Vegetables,alcoholism_unc_veg,alcoholism_unc_veg,35,200,1,1,,"ingredient, meta",10000,1,graphics/items/ingredients/veg_uncommon.png,ui_cargo_food,ui_cargo_food_drop,14,1,500,2000,,40000,1,,
 Rare Vegetables,alcoholism_rare_veg,alcoholism_rare_veg,70,400,1,1,,"ingredient, meta",10000,1,graphics/items/ingredients/veg_rare.png,ui_cargo_food,ui_cargo_food_drop,14,1,500,2000,,40000,1,,
 ,,,,,,,,,,,,,,,,,,,,,,
-Custom Alcohol 1,alcoholism_custom1_c,alcoholism_custom1_c,150,1500,2,1,,"expensive, alcohol",10000,0.5,graphics/items/custom/custom1.png,ui_cargo_goods,ui_cargo_goods_drop,6,2,200,500,,,1,,
+Spoiled Alcohol,alcoholism_spoiled_c,alcoholism_spoiled_c,1,1,1,1,,alcohol,10000,1,graphics/items/phaged_tea.png,ui_cargo_goods,ui_cargo_goods_drop,6,1,1,10000,,1,1,,Spoiled alcohol. Whatever used to be in this bottle has become inedible and worthless.
+,,,,,,,,,,,,,,,,,,,,,,
+Custom Alcohol 1,alcoholism_custom_01_c,alcoholism_custom_01_c,150,1500,2,1,,"expensive, alcohol",10000,0.5,graphics/items/custom/custom1.png,ui_cargo_goods,ui_cargo_goods_drop,6,2,200,500,,,1,,

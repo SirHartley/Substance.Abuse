@@ -16,7 +16,6 @@ import com.fs.starfarer.api.util.Misc;
 
 import java.awt.*;
 
-
 public class RecipeItemPlugin extends GenericSpecialItemPlugin {
 
     @Override

@@ -14,7 +14,25 @@ import java.util.Map;
 
 public class Importer {
 
-    public static Map<String, Ingredient> loadIngredientData(){
+    public static List<String> loadCustomAlcoholNames() {
+        List<String> nameList = new ArrayList<>();
+        try {
+            JSONArray config = Global.getSettings().getMergedSpreadsheetDataForMod("name", "data/strings/custom_alcohol_names.csv", "alcoholism");
+            for (int i = 0; i < config.length(); i++) {
+                JSONObject row = config.getJSONObject(i);
+
+                String name = row.getString("name");
+                nameList.add(name);
+            }
+
+        } catch (IOException | JSONException ex) {
+            Global.getLogger(Importer.class).error("Could not find Substance.Abuse custom_alcohol_names.csv, or something is wrong with the data format.", ex);
+        }
+
+        return nameList;
+    }
+
+    public static Map<String, Ingredient> loadIngredientData() {
         Map<String, Ingredient> ingredientMap = new HashMap<>();
 
         try {
@@ -25,14 +43,14 @@ public class Importer {
                 String id = row.getString("id");
                 List<String> industry = new ArrayList<>();
 
-                for (String s : row.getString("industry").replaceAll("\\s", "").split(",")){
+                for (String s : row.getString("industry").replaceAll("\\s", "").split(",")) {
                     industry.add(s.substring(1));
                 }
 
                 List<String> requiredPlanetType = new ArrayList<>();
                 List<String> forbiddenPlanetTypes = new ArrayList<>();
 
-                for (String s : row.getString("planet_type").replaceAll("\\s", "").split(",")){
+                for (String s : row.getString("planet_type").replaceAll("\\s", "").split(",")) {
                     if (s.startsWith("!")) forbiddenPlanetTypes.add(s.substring(1));
                     else requiredPlanetType.add(s);
                 }
@@ -48,7 +66,7 @@ public class Importer {
                 Ingredient.EffectData withdrawal = new Ingredient.EffectData(row.getString("withdrawal"), (float) row.getDouble("withdrawal_max"), Ingredient.EffectData.toData(row.getString("withdrawal_mode")));
 
                 Ingredient ingredient = new Ingredient(id, industry, requiredPlanetType, forbiddenPlanetTypes,
-                        rarity, type,strength,cost,synergy,effect,drawback,withdrawal);
+                        rarity, type, strength, cost, synergy, effect, drawback, withdrawal);
 
                 ingredientMap.put(id, ingredient);
             }
@@ -56,6 +74,6 @@ public class Importer {
             Global.getLogger(Importer.class).error("Could not find Substance.Abuse ingredients.csv, or something is wrong with the data format.", ex);
         }
 
-       return ingredientMap;
+        return ingredientMap;
     }
 }

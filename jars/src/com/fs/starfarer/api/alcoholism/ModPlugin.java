@@ -11,6 +11,7 @@ import com.fs.starfarer.api.alcoholism.memory.*;
 import com.fs.starfarer.api.alcoholism.scripts.CargoUIOpenChecker;
 import com.fs.starfarer.api.alcoholism.scripts.NewDayTracker;
 import com.fs.starfarer.api.alcoholism.scripts.RefitUIOpenChecker;
+import com.fs.starfarer.api.alcoholism.ui.BreweryOptionProvider;
 import com.fs.starfarer.api.campaign.CargoAPI;
 
 public class ModPlugin extends BaseModPlugin {
@@ -29,13 +30,13 @@ public class ModPlugin extends BaseModPlugin {
         CargoUIOpenChecker.register();
         RefitUIOpenChecker.register();
         AlcoholStackReplacer.register();
+        BreweryOptionProvider.register();
 
         //alcohol functionality
         AlcoholRepo.loadIngredients();
-        CustomAlcoholMemory.getInstanceOrRegister().setup();
+        CustomAlcoholMemory.getInstanceOrRegister().initAll();
         AddictionMemory.getInstanceOrRegister().refresh();
         AlcoholConsumptionManager.getInstanceOrRegister();
-        AlcoholRepo.overwriteCustomAlcoholSpecs();
         ExcessOPStripper.register();
 
         //economy
@@ -53,10 +54,11 @@ public class ModPlugin extends BaseModPlugin {
     }
 
     public static void devAddCustomAlcohol(){
-        CustomAlcohol alcohol = new CustomAlcohol("alcoholism_custom1", "Black Whole Wheat", "This is a test description entry override for a custom alcohol", "graphics/items/custom/custom1.png","player",
+        CustomAlcohol alcohol = new CustomAlcohol("alcoholism_custom_01", null, "This is a test description entry override for a custom alcohol", "graphics/items/custom/custom1.png","player",
                 "alcoholism_trop_fruit", "alcoholism_fruit", "alcoholism_rare_botanics", "alcoholism_salt");
 
         alcohol.register();
+        alcohol.init();
     }
 
     public static void devActions(){

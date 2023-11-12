@@ -4,8 +4,15 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+/**
+ * this remembers custom alcohol configs
+ * its purpose is to gen and play CA into the repo at game start, everything else goes from there
+ */
 
 public class CustomAlcoholMemory {
     public static final String CUSTOM_ALCOHOL_MEMORY_KEY = "$customAlcoholMemory";
@@ -39,11 +46,15 @@ public class CustomAlcoholMemory {
         alcoholMap.put(alcohol.id, alcohol);
     }
 
-    public void setup(){
-        for (CustomAlcohol alcohol : alcoholMap.values()){
-            AlcoholRepo.ALCOHOL_MAP.put(alcohol.id, alcohol);
-            AddictionMemory.getInstanceOrRegister().addIfNeeded(alcohol);
-            alcohol.overwriteSpec();
-        }
+    public void remove(CustomAlcohol alcohol){
+        alcoholMap.remove(alcohol.id);
+    }
+
+    public List<CustomAlcohol> getAll() {
+        return new ArrayList<>(alcoholMap.values());
+    }
+
+    public void initAll(){
+        for (CustomAlcohol alcohol : alcoholMap.values()) alcohol.init();
     }
 }

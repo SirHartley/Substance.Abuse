@@ -44,5 +44,5 @@ Phaged Darjeeling Recipe,alcoholism_tea_item,no_drop,,,90000,"10000
 Recipe Book,alcoholism_recipe_book,no_drop,,,100000,"10000
 ",1,,graphics/items/recipeBook.png,ui_cargo_luxury,ui_cargo_luxury_drop,com.fs.starfarer.api.alcoholism.itemPlugins.RecipeBookItemPlugin,alcohol_brewery,,138
 ,,,,,,,,,,,,,,,
-Custom Alcohol 1,alcoholism_custom1,no_drop,,,150,"10000
+Custom Alcohol 1,alcoholism_custom_01,no_drop,,,150,"10000
 ",0.5,,graphics/items/custom/custom1.png,ui_cargo_goods,ui_cargo_goods_drop,com.fs.starfarer.api.alcoholism.itemPlugins.AlcoholItemPlugin,,,61
