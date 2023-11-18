@@ -29,11 +29,14 @@ public class BreweryDialoguePlugin implements InteractionDialogPlugin {
         dialog.getOptionPanel().clearOptions();
 
         VisualCustomPanel.createPanel(dialog, true);
+        dialog.setXOffset(0f);
+        dialog.setYOffset(0f);
+
         refreshCustomPanel();
     }
 
     public void refreshCustomPanel(){
-        new CustomAlcoholPanel().showPanel(dialog);
+        new CustomAlcoholPanel(industry).showPanel(dialog);
     }
 
     @Override

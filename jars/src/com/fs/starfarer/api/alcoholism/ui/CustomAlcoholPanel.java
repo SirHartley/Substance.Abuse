@@ -1,10 +1,16 @@
 package com.fs.starfarer.api.alcoholism.ui;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.memory.Ingredient;
+import com.fs.starfarer.api.alcoholism.ui.basepanel.InteractionDialogCustomPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.VisualCustomPanel;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
+import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.ui.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class CustomAlcoholPanel {
     protected static final float PANEL_WIDTH_1 = 240;
@@ -14,36 +20,50 @@ public class CustomAlcoholPanel {
     protected static final float SELECT_BUTTON_WIDTH = 95f;
     protected static final float TEXT_FIELD_WIDTH = 80f;
 
-    //create one slot for each research project .json
-    //Header with project title
-    //Button "Donate Artifacts" - Grey out if none available, or display the available gun amt
-    //button should spawn cargoPicker
-    //button "Required Items"
-    //shows a list with the required items
-    //Progress Tracker to the left of it
-    //short blurb what the project is about with weap. size ("Researching a reality warping large weapons platform based on some exotic samples...")
-    //on completion, add button "Redeem Rewards" - giving you 3/2/1 weapons of the category and the blueprint.
+    protected static final float PANEL_MAX_HEIGHT = 700f;
+    protected static final float PANEL_MAX_WIDTH = 1180f;
 
+    private Industry industry;
+    private List<Ingredient> ingredients = new LinkedList<>();
+
+    public CustomAlcoholPanel(Industry industry){
+        this.industry = industry;
+    }
 
     public void showPanel(InteractionDialogAPI dialogue) {
         VisualCustomPanel.createPanel(dialogue, true);
         showCustomPanel(dialogue);
     }
-//check Nex_NGCStartFleetOptionsV2
+
+    private void fixBasePanelOffsets(){
+        //this sets the base panel to 0,0
+        //don't question it
+
+        CustomPanelAPI basePanel = VisualCustomPanel.getPanel();
+        PositionAPI pos = basePanel.getPosition();
+        pos.setSize(Global.getSettings().getScreenWidth(), Global.getSettings().getScreenHeight());
+        pos.setYAlignOffset(pos.getY() <= 0 ? -pos.getY() : pos.getY());
+        pos.setXAlignOffset(pos.getX() >= 0 ? -pos.getX() + 10 : pos.getX() - 10);
+    }
 
     private void showCustomPanel(InteractionDialogAPI dialogue) {
         float opad = 10f;
         float spad = 3f;
 
-        final CustomPanelAPI panel = VisualCustomPanel.getPanel();
-        TooltipMakerAPI panelTooltip = VisualCustomPanel.getTooltip();
-        CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
+        fixBasePanelOffsets();
+
+        CustomPanelAPI visualCustomPanel = VisualCustomPanel.getPanel();
+        CustomPanelAPI basePanel = visualCustomPanel.createCustomPanel(PANEL_MAX_WIDTH, PANEL_MAX_HEIGHT, new InteractionDialogCustomPanelPlugin(false));
+
+        /*//add header
+        TooltipMakerAPI basePanelTooltip = basePanel.createUIElement(PANEL_MAX_WIDTH, PANEL_MAX_HEIGHT, false);
+        basePanelTooltip.addSectionHeading("Brewery", Alignment.MID, 0f);
+        basePanel.addUIElement(basePanelTooltip).inTL(0,0);*/
+
 
         TooltipMakerAPI lastUsedVariableButtonAnchor;
 
-        //todo render your own panel in TL and go from there, vanilla has weird alignment
 
-        panelTooltip.addSectionHeading("ttWidthSoFar " + panelTooltip.getWidthSoFar() + " screen: " + Global.getSettings().getScreenWidth() + " pad " + dialogue.getXOffset() + " textWidth " + dialogue.getTextWidth(), Alignment.MID, opad);
 /*
         for (Map.Entry<String, ResearchProject> projectEntry : ResearchProjectTemplateRepo.RESEARCH_PROJECTS.entrySet()) {
 
@@ -178,6 +198,7 @@ public class CustomAlcoholPanel {
             panelTooltip.addPara(project.getShortDesc(), Misc.getGrayColor(), opad);
         }*/
 
+        visualCustomPanel.addComponent(basePanel).inMid();
         VisualCustomPanel.addTooltipToPanel();
     }
 }

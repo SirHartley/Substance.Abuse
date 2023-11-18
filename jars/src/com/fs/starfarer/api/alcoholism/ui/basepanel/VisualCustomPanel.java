@@ -41,8 +41,8 @@ public class VisualCustomPanel {
     }
 
     public static void createPanel(InteractionDialogAPI dialog, boolean replace) {
-        //createPanel(dialog, replace, PANEL_WIDTH, PANEL_HEIGHT);
-        createPanel(dialog, replace, Global.getSettings().getScreenWidth(), Global.getSettings().getScreenHeight());
+        createPanel(dialog, replace, PANEL_WIDTH, PANEL_HEIGHT);
+        //createPanel(dialog, replace, Global.getSettings().getScreenWidth(), Global.getSettings().getScreenHeight());
     }
 
     public static void createPanel(InteractionDialogAPI dialog, boolean replace, float width, float height) {
@@ -50,7 +50,8 @@ public class VisualCustomPanel {
             return;
 
         VisualPanelAPI vp = dialog.getVisualPanel();
-        plugin = new InteractionDialogCustomPanelPlugin();
+
+        plugin = new InteractionDialogCustomPanelPlugin(false);
         panel = vp.showCustomPanel(width, height, plugin);
         tooltip = panel.createUIElement(width, height, true);
     }
@@ -63,6 +64,7 @@ public class VisualCustomPanel {
      */
     public static void readdTooltip(InteractionDialogAPI dialog) {
         VisualPanelAPI vp = dialog.getVisualPanel();
+
         panel = vp.showCustomPanel(PANEL_WIDTH, PANEL_HEIGHT, plugin);
         addTooltipToPanel();
     }

@@ -14,9 +14,16 @@ import java.util.List;
 public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin {
 
     protected List<ButtonEntry> buttons = new LinkedList<>();
+    protected boolean showBorder;
 
-    public InteractionDialogCustomPanelPlugin() {
-        super(0.25f, Global.getSector().getPlayerFaction().getBaseUIColor(), false);
+    public InteractionDialogCustomPanelPlugin(boolean withBorder) {
+        super(1f, Global.getSector().getPlayerFaction().getBaseUIColor(), false);
+        this.showBorder = withBorder;
+    }
+
+    @Override
+    public void render(float alphaMult) {
+        if (showBorder) super.render(alphaMult);
     }
 
     public void addButton(ButtonEntry entry) {
@@ -99,10 +106,5 @@ public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin 
         public void onToggleImpl() {
 
         }
-    }
-
-    @Override
-    public void render(float alphaMult) {
-        //this is to remove the border
     }
 }
