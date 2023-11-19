@@ -4,19 +4,17 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.ui.ButtonAPI;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author Histidine
  */
-public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin {
+public class FramedInteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin {
 
     protected List<ButtonEntry> buttons = new LinkedList<>();
     protected boolean showBorder;
 
-    public InteractionDialogCustomPanelPlugin(boolean withBorder) {
+    public FramedInteractionDialogCustomPanelPlugin(boolean withBorder) {
         super(1f, Global.getSector().getPlayerFaction().getBaseUIColor(), false);
         this.showBorder = withBorder;
     }
@@ -31,9 +29,8 @@ public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin 
     }
 
     public void checkButtons() {
-        Iterator<ButtonEntry> iter = buttons.iterator();
-        while (iter.hasNext()) {
-            iter.next().checkButton();
+        for (ButtonEntry button : buttons) {
+            button.checkButton();
         }
     }
 
@@ -44,14 +41,6 @@ public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin 
 
     @Override
     public void processInput(List<InputEventAPI> input) {
-		/*
-		for (InputEventAPI event : input) {
-			if (event.isMouseEvent()) {
-				checkButtons();				
-				break;
-			}
-		}
-		*/
     }
 
     public static abstract class ButtonEntry {
@@ -78,7 +67,6 @@ public class InteractionDialogCustomPanelPlugin extends FramedCustomPanelPlugin 
                 state = button.isChecked();
                 onToggle();
             }
-            //Global.getLogger(this.getClass()).info("Button " + id + ": " + button.isChecked());
         }
 
         public abstract void onToggle();

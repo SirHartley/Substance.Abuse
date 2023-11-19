@@ -1,6 +1,5 @@
 package com.fs.starfarer.api.alcoholism.ui.basepanel;
 
-import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.VisualPanelAPI;
 import com.fs.starfarer.api.ui.CustomPanelAPI;
@@ -17,13 +16,13 @@ public class VisualCustomPanel {
 
     protected static CustomPanelAPI panel;
     protected static TooltipMakerAPI tooltip;
-    protected static InteractionDialogCustomPanelPlugin plugin;
+    protected static FramedInteractionDialogCustomPanelPlugin plugin;
 
     public static TooltipMakerAPI getTooltip() {
         return tooltip;
     }
 
-    public static InteractionDialogCustomPanelPlugin getPlugin() {
+    public static FramedInteractionDialogCustomPanelPlugin getPlugin() {
         return plugin;
     }
 
@@ -51,7 +50,7 @@ public class VisualCustomPanel {
 
         VisualPanelAPI vp = dialog.getVisualPanel();
 
-        plugin = new InteractionDialogCustomPanelPlugin(false);
+        plugin = new FramedInteractionDialogCustomPanelPlugin(false);
         panel = vp.showCustomPanel(width, height, plugin);
         tooltip = panel.createUIElement(width, height, true);
     }
