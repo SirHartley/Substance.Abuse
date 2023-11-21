@@ -5,16 +5,15 @@ import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcohol;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcoholMemory;
 import com.fs.starfarer.api.alcoholism.memory.Ingredient;
-import com.fs.starfarer.api.alcoholism.ui.basepanel.FramedCustomPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.FramedInteractionDialogCustomPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.MiddleCircleCustomPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.VisualCustomPanel;
-import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.BaseCustomDialogDelegate;
+import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.ui.*;
 import com.fs.starfarer.api.util.Misc;
 
-import javax.tools.Tool;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,20 +34,23 @@ public class CustomAlcoholPanel {
     protected static final float RECIPE_SELECTION_PANEL_WIDTH = 250f;
     protected static final float RECIPE_SELECTION_PANEL_HEIGHT = 70f;
     protected static final float RECIPE_SELECTION_ENTRY_HEIGHT = 85f;
-
     protected static final float EFFECT_DISPLAY_PANEL_WIDTH = 250f;
+    protected static final float INNER_SELECTOR_SQUARE_SIZE = 80f;
+    protected static final float OUTER_SELECTOR_SQUARE_SIZE = 89f;
+    protected static final float SELECTOR_SQUARE_PAD_INCREMENT = 2f;
 
     private Industry industry;
     private List<Ingredient> ingredients = new LinkedList<>();
     private AlcoholListFilter currentFilter = AlcoholListFilter.ACTIVE;
-    Map<AlcoholListFilter, ScrollPanelAPI> filterScrollPanels = new HashMap<>();
+    private Map<AlcoholListFilter, ScrollPanelAPI> filterScrollPanels = new HashMap<>();
+    private String name = "...";
 
-    public enum AlcoholListFilter{
+    public enum AlcoholListFilter {
         ACTIVE,
         ARCHIVE
     }
 
-    public CustomAlcoholPanel(Industry industry){
+    public CustomAlcoholPanel(Industry industry) {
         this.industry = industry;
     }
 
@@ -57,7 +59,7 @@ public class CustomAlcoholPanel {
         showCustomPanel(dialogue);
     }
 
-    private void fixBasePanelOffsets(){
+    private void fixBasePanelOffsets() {
         //this sets the base panel to 0,0
         //don't question it
 
@@ -68,8 +70,13 @@ public class CustomAlcoholPanel {
         pos.setXAlignOffset(pos.getX() >= 0 ? -pos.getX() + 10 : pos.getX() - 10);
     }
 
-    public void display(CustomAlcohol custom){
-        if (custom == null) //clear panel
+    public void display(CustomAlcohol custom) {
+        if (custom == null) {
+            ingredients.clear();
+            name = "...";
+
+            //clear panel
+        }
 
         //todo make this
 
@@ -102,7 +109,6 @@ public class CustomAlcoholPanel {
         prerequisiteForActive = CustomAlcoholMemory.getInstanceOrRegister().getAll().size() <= 100;
         baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
         bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
-        textColor = prerequisiteForActive ? Misc.getTextColor() : Color.WHITE;
 
         variableButtonAnchor = createNewAlcoholButtonPanel.createUIElement(RECIPE_SELECTION_PANEL_WIDTH, BUTTON_HEIGHT, false);
         ButtonAPI currentButton = variableButtonAnchor.addButton("+ New Recipe", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.ALL, RECIPE_SELECTION_PANEL_WIDTH - opad, BUTTON_HEIGHT, 0);
@@ -110,23 +116,23 @@ public class CustomAlcoholPanel {
         FramedInteractionDialogCustomPanelPlugin.ButtonEntry entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
             @Override
             public void onToggle() {
-               dialogue.showCustomDialog(400f, 100f, new BaseCustomDialogDelegate() {
-                   public void createCustomDialog(CustomPanelAPI panel, CustomDialogCallback callback) {
-                       TooltipMakerAPI info = panel.createUIElement(400f, 100f, false);
-                       info.addSectionHeading("Confirm or return", Alignment.MID, opad);
-                       info.addPara("Are you sure? Your current changes will not be saved.", opad);
-                       panel.addUIElement(info).inMid();
-                   }
+                dialogue.showCustomDialog(400f, 100f, new BaseCustomDialogDelegate() {
+                    public void createCustomDialog(CustomPanelAPI panel, CustomDialogCallback callback) {
+                        TooltipMakerAPI info = panel.createUIElement(400f, 100f, false);
+                        info.addSectionHeading("Confirm or return", Alignment.MID, opad);
+                        info.addPara("Are you sure? Your current changes will not be saved.", opad);
+                        panel.addUIElement(info).inMid();
+                    }
 
-                   public boolean hasCancelButton() {
-                       return true;
-                   }
+                    public boolean hasCancelButton() {
+                        return true;
+                    }
 
-                   public void customDialogConfirm() {
-                       display(null);
-                       showPanel(dialogue);
-                   }
-               });
+                    public void customDialogConfirm() {
+                        display(null);
+                        showPanel(dialogue);
+                    }
+                });
             }
         };
 
@@ -138,7 +144,6 @@ public class CustomAlcoholPanel {
         prerequisiteForActive = currentFilter == AlcoholListFilter.ACTIVE;
         baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
         bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
-        textColor = prerequisiteForActive ? Misc.getTextColor() : Color.WHITE;
 
         variableButtonAnchor = createNewAlcoholButtonPanel.createUIElement(RECIPE_SELECTION_PANEL_WIDTH / 2, BUTTON_HEIGHT, false);
         currentButton = variableButtonAnchor.addButton("Active", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.TOP, RECIPE_SELECTION_PANEL_WIDTH / 2 - opad, BUTTON_HEIGHT - 1, 0);
@@ -158,10 +163,9 @@ public class CustomAlcoholPanel {
         prerequisiteForActive = currentFilter == AlcoholListFilter.ARCHIVE;
         baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
         bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
-        textColor = prerequisiteForActive ? Misc.getTextColor() : Color.WHITE;
 
         variableButtonAnchor = createNewAlcoholButtonPanel.createUIElement(RECIPE_SELECTION_PANEL_WIDTH / 2, BUTTON_HEIGHT, false);
-        currentButton = variableButtonAnchor.addButton("Archived", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.TOP, RECIPE_SELECTION_PANEL_WIDTH  / 2 - opad, BUTTON_HEIGHT - 1, 0);
+        currentButton = variableButtonAnchor.addButton("Archived", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.TOP, RECIPE_SELECTION_PANEL_WIDTH / 2 - opad, BUTTON_HEIGHT - 1, 0);
         entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
             @Override
             public void onToggle() {
@@ -174,13 +178,13 @@ public class CustomAlcoholPanel {
         createNewAlcoholButtonPanel.addUIElement(variableButtonAnchor).belowRight(lastUsedVariableButtonAnchor, spad);
         lastUsedVariableButtonAnchor = variableButtonAnchor;
 
-        basePanel.addComponent(createNewAlcoholButtonPanel).inTL(0f,0f);
+        basePanel.addComponent(createNewAlcoholButtonPanel).inTL(0f, 0f);
 
         //"Select Existing" List
         CustomPanelAPI selectExistingAlcoholListBasePanel = visualCustomPanel.createCustomPanel(RECIPE_SELECTION_PANEL_WIDTH, BASE_PANEL_MAX_HEIGHT - RECIPE_SELECTION_PANEL_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(true));
         TooltipMakerAPI selectExistingAlcoholListTooltip = selectExistingAlcoholListBasePanel.createUIElement(RECIPE_SELECTION_PANEL_WIDTH, BASE_PANEL_MAX_HEIGHT - RECIPE_SELECTION_PANEL_HEIGHT, true);
 
-        for (final CustomAlcohol alcohol : CustomAlcoholMemory.getInstanceOrRegister().getAll()){
+        for (final CustomAlcohol alcohol : CustomAlcoholMemory.getInstanceOrRegister().getAll()) {
             if (currentFilter == AlcoholListFilter.ACTIVE && alcohol.hidden) continue;
             if (currentFilter == AlcoholListFilter.ARCHIVE && !alcohol.hidden) continue;
 
@@ -206,7 +210,6 @@ public class CustomAlcoholPanel {
             prerequisiteForActive = currentFilter == AlcoholListFilter.ARCHIVE;
             baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
             bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
-            textColor = prerequisiteForActive ? Misc.getTextColor() : Color.WHITE;
 
             variableButtonAnchor = alcoholEntry.createUIElement(entryButtonWidth, entryButtonHeight, false);
             currentButton = variableButtonAnchor.addButton((alcohol.hidden ? "Unarchive" : "Archive"), buttonId, baseColor, bgColour, Alignment.MID, CutStyle.ALL, entryButtonWidth, entryButtonHeight, 0);
@@ -224,10 +227,8 @@ public class CustomAlcoholPanel {
             lastUsedVariableButtonAnchor = variableButtonAnchor;
 
             buttonId = "edit_entry_" + alcohol.uid;
-            prerequisiteForActive = true;
-            baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
-            bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
-            textColor = prerequisiteForActive ? Misc.getTextColor() : Color.WHITE;
+            baseColor = Misc.getButtonTextColor();
+            bgColour = Misc.getDarkPlayerColor();
             entryButtonWidth = 70f;
 
             variableButtonAnchor = alcoholEntry.createUIElement(entryButtonWidth, entryButtonHeight, false);
@@ -258,12 +259,76 @@ public class CustomAlcoholPanel {
 
         float width = BASE_PANEL_MAX_WIDTH - EFFECT_DISPLAY_PANEL_WIDTH - RECIPE_SELECTION_PANEL_WIDTH;
         CustomPanelAPI alcoholCreatorBasePanel = visualCustomPanel.createCustomPanel(width, BASE_PANEL_MAX_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(true));
-        CustomPanelAPI centerCirclePanel = visualCustomPanel.createCustomPanel(width, BASE_PANEL_MAX_HEIGHT, new MiddleCircleCustomPanelPlugin(Color.MAGENTA, (width - 100f) / 2, 0.5f)); //make the background circle
+        CustomPanelAPI centerCirclePanel = visualCustomPanel.createCustomPanel(width - 100, width - 100, new MiddleCircleCustomPanelPlugin(Color.MAGENTA, (width - 100f) / 2, 0.5f)); //make the background circle
+
+        int squareAmt = 4;
+        float padBetweenSquares = (width - 100 - INNER_SELECTOR_SQUARE_SIZE * squareAmt) / (squareAmt - 1);
+        CustomPanelAPI lastSiblingSquare = null;
+
+        //add the squares
+        for (int i = 0; i < squareAmt; i++) {
+
+            CustomPanelAPI innerSquare = centerCirclePanel.createCustomPanel(INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(false));
+
+            //create inner button for ingredient
+            buttonId = "ingredient_" + i;
+            baseColor = Misc.getButtonTextColor();
+            bgColour = Misc.getDarkPlayerColor();
+            textColor = Misc.getTextColor();
+
+            variableButtonAnchor = innerSquare.createUIElement(INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, false);
+            currentButton = variableButtonAnchor.addAreaCheckbox("", buttonId, baseColor, bgColour, textColor, INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, 0f, false);
+
+            final ButtonAPI finalCurrentButton = currentButton;
+            entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(finalCurrentButton, buttonId) {
+                @Override
+                public void onToggle() {
+                    dialogue.showCustomDialog(400f, 100f, new BaseCustomDialogDelegate() {
+                        public void createCustomDialog(CustomPanelAPI panel, CustomDialogCallback callback) {
+                            TooltipMakerAPI info = panel.createUIElement(400f, 100f, false);
+                            info.addSectionHeading("Confirm or return", Alignment.MID, opad);
+                            info.addPara("Are you sure? Your current changes will not be saved.", opad);
+                            panel.addUIElement(info).inMid();
+                        }
+
+                        public boolean hasCancelButton() {
+                            return true;
+                        }
+
+                        public void customDialogConfirm() {
+                            display(null);
+                            showPanel(dialogue);
+                        }
+                    });
+
+                    finalCurrentButton.setChecked(false);
+                }
+            };
+
+            VisualCustomPanel.getPlugin().addButton(entry);
+            innerSquare.addUIElement(variableButtonAnchor).inTL(-4f, -1f);
+
+            //create outer square and add on top
+            CustomPanelAPI outerSquare = innerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE, OUTER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(true));
+            innerSquare.addComponent(outerSquare).inMid();
+
+            //text label
+            CustomPanelAPI textLabel = innerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
+            TooltipMakerAPI label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT,false);
+            label.addSectionHeading("Ingredient " + (i+1), Alignment.MID, 0f);
+            textLabel.addUIElement(label).inMid();
+            innerSquare.addComponent(textLabel).inTMid(-BUTTON_HEIGHT - spad);
+
+            if (i == 0) centerCirclePanel.addComponent(innerSquare).inTL(0f, INNER_SELECTOR_SQUARE_SIZE / 2);
+            else centerCirclePanel.addComponent(innerSquare).rightOfMid(lastSiblingSquare, padBetweenSquares);
+            lastSiblingSquare = innerSquare;
+        }
+
         alcoholCreatorBasePanel.addComponent(centerCirclePanel).inMid(); //add the background circle
 
-        variableButtonAnchor = alcoholCreatorBasePanel.createUIElement(BASE_PANEL_MAX_WIDTH - EFFECT_DISPLAY_PANEL_WIDTH - RECIPE_SELECTION_PANEL_WIDTH, BUTTON_HEIGHT, false);
-        variableButtonAnchor.addSectionHeading("Alcohol Creator Panel", Alignment.MID, 0f);
-        alcoholCreatorBasePanel.addUIElement(variableButtonAnchor).inBMid(0f);
+        /*variableButtonAnchor = alcoholCreatorBasePanel.createUIElement(BASE_PANEL_MAX_WIDTH - EFFECT_DISPLAY_PANEL_WIDTH - RECIPE_SELECTION_PANEL_WIDTH, opad + 1, false);
+        variableButtonAnchor.addSectionHeading("Alcohol Creator", Alignment.MID, 0f);
+        alcoholCreatorBasePanel.addUIElement(variableButtonAnchor).inTMid(0f);*/
 
         basePanel.addComponent(alcoholCreatorBasePanel).rightOfTop(createNewAlcoholButtonPanel, 0f);
 
