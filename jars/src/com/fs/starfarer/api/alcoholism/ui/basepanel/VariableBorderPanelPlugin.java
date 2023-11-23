@@ -8,20 +8,20 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.List;
 
-/**
- * @Author Histidine
- */
-public class FramedCustomPanelPlugin implements CustomUIPanelPlugin {
+public class VariableBorderPanelPlugin implements CustomUIPanelPlugin {
 
     protected PositionAPI pos;
-    public float sideRatio = 0.5f;
     public Color color;
-    public boolean square = false;
+    public boolean[] lines;
 
-    public FramedCustomPanelPlugin(float sideRatio, Color color, boolean square) {
-        this.sideRatio = sideRatio;
+    public VariableBorderPanelPlugin(Color color, boolean left, boolean top, boolean right, boolean bottom) {
         this.color = color;
-        this.square = square;
+        this.lines = new boolean[]{
+                left,
+                top,
+                right,
+                bottom
+        };
     }
 
     @Override
@@ -30,36 +30,6 @@ public class FramedCustomPanelPlugin implements CustomUIPanelPlugin {
     }
 
     public void renderBox(float x, float y, float w, float h, float alphaMult) {
-        float lh = h * sideRatio;
-        float lw = w * sideRatio;
-
-        if (square) {
-            if (lh > lw) lh = lw;
-            else lw = lh;
-        }
-
-        float[] points = new float[]{
-                // upper left
-                0, h - lh,
-                0, h,
-                0 + lw, h,
-
-                // upper right
-                w - lw, h,
-                w, h,
-                w, h - lh,
-
-                // lower right
-                w, lh,
-                w, 0,
-                w - lw, 0,
-
-                // lower left
-                lw, 0,
-                0, 0,
-                0, lh
-        };
-
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
@@ -67,17 +37,29 @@ public class FramedCustomPanelPlugin implements CustomUIPanelPlugin {
 
         GL11.glColor4f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, 0.3f * alphaMult);
 
+        float[] points = new float[]{
+                0, 0, //bottom left
+                0, h, //top left
+                w, h, //top right
+                w, 0, //bot right
+                0, 0 //bottom left
+        };
+
         for (int i = 0; i < 4; i++) {
             GL11.glBegin(GL11.GL_LINES);
-            {
-                int index = i * 6;
+
+            if (lines[i]) {
+                //left line 0, 1 | 2, 3
+                //top line 2, 3 | 4, 5
+                //right line 4, 5 | 6, 7
+                //bot line  6, 7 | 8, 9
+
+                int index = i * 2;
 
                 GL11.glVertex2f(points[index] + x, points[index + 1] + y);
                 GL11.glVertex2f(points[index + 2] + x, points[index + 3] + y);
-
-                GL11.glVertex2f(points[index + 2] + x, points[index + 3] + y);
-                GL11.glVertex2f(points[index + 4] + x, points[index + 5] + y);
             }
+
             GL11.glEnd();
         }
 

@@ -2,17 +2,20 @@ package com.fs.starfarer.api.alcoholism.ui;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
+import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcohol;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcoholMemory;
 import com.fs.starfarer.api.alcoholism.memory.Ingredient;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.FramedInteractionDialogCustomPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.MiddleCircleCustomPanelPlugin;
+import com.fs.starfarer.api.alcoholism.ui.basepanel.VariableBorderPanelPlugin;
 import com.fs.starfarer.api.alcoholism.ui.basepanel.VisualCustomPanel;
 import com.fs.starfarer.api.campaign.BaseCustomDialogDelegate;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.ui.*;
 import com.fs.starfarer.api.util.Misc;
+import org.lazywizard.lazylib.MathUtils;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -265,7 +268,19 @@ public class CustomAlcoholPanel {
         float padBetweenSquares = (width - 100 - INNER_SELECTOR_SQUARE_SIZE * squareAmt) / (squareAmt - 1);
         CustomPanelAPI lastSiblingSquare = null;
 
-        //add the squares
+        //add the center heat gauge
+        float heatGaugeWidth = width - 200;
+        float heatGaugeHeight = BUTTON_HEIGHT + opad + 1;
+        CustomPanelAPI heatGaugePanel = centerCirclePanel.createCustomPanel(heatGaugeWidth, heatGaugeHeight, new FramedInteractionDialogCustomPanelPlugin(true));
+        centerCirclePanel.addComponent(heatGaugePanel).inTMid(INNER_SELECTOR_SQUARE_SIZE * 2 + BUTTON_HEIGHT);
+
+        CustomPanelAPI textLabel = heatGaugePanel.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
+        TooltipMakerAPI label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, false);
+        label.addSectionHeading("Heat", Alignment.MID, 0f);
+        textLabel.addUIElement(label).inMid();
+        heatGaugePanel.addComponent(textLabel).inTMid(-BUTTON_HEIGHT);
+
+        //add the ingredient squares
         for (int i = 0; i < squareAmt; i++) {
 
             CustomPanelAPI innerSquare = centerCirclePanel.createCustomPanel(INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(false));
@@ -313,16 +328,211 @@ public class CustomAlcoholPanel {
             innerSquare.addComponent(outerSquare).inMid();
 
             //text label
-            CustomPanelAPI textLabel = innerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
-            TooltipMakerAPI label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT,false);
-            label.addSectionHeading("Ingredient " + (i+1), Alignment.MID, 0f);
+            textLabel = innerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
+            label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, false);
+            label.addSectionHeading("Ingredient " + (i + 1), Alignment.MID, 0f);
             textLabel.addUIElement(label).inMid();
             innerSquare.addComponent(textLabel).inTMid(-BUTTON_HEIGHT - spad);
+
+            //add line to heat gauge
 
             if (i == 0) centerCirclePanel.addComponent(innerSquare).inTL(0f, INNER_SELECTOR_SQUARE_SIZE / 2);
             else centerCirclePanel.addComponent(innerSquare).rightOfMid(lastSiblingSquare, padBetweenSquares);
             lastSiblingSquare = innerSquare;
+
+            float squareCenterX = outerSquare.getPosition().getCenterX();
+            float gaugeCenterX = heatGaugePanel.getPosition().getCenterX();
+
+            float lineHeight;
+            float lineWidth;
+
+            if (squareCenterX < gaugeCenterX) {
+                //pos is further to the left, |_
+
+                boolean outsideGaugeBorder = squareCenterX < gaugeCenterX - heatGaugeWidth / 2;
+
+                float squareBottomCenterX = squareCenterX - opad;
+                float squareBottomCenterY = outerSquare.getPosition().getCenterY() - (OUTER_SELECTOR_SQUARE_SIZE - 1) / 2;
+
+                float gaugeLeftBorderCenterX = gaugeCenterX - (heatGaugeWidth / 2);
+                float gaugeCenterY = heatGaugePanel.getPosition().getCenterY();
+
+                if (!outsideGaugeBorder) gaugeCenterY += heatGaugeHeight / 2;
+
+                lineHeight = squareBottomCenterY - gaugeCenterY;
+                lineWidth = outsideGaugeBorder ? gaugeLeftBorderCenterX - squareBottomCenterX : 1;
+
+                CustomPanelAPI connectorLinePanel = innerSquare.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, outsideGaugeBorder));
+                innerSquare.addComponent(connectorLinePanel).belowMid(outerSquare, 0f);
+
+            } else if (squareCenterX >= gaugeCenterX) {
+                //pos is further to the right, _|
+
+                boolean outsideGaugeBorder = squareCenterX > gaugeCenterX + heatGaugeWidth / 2;
+
+                float squareBottomCenterX = squareCenterX + opad;
+                float squareBottomCenterY = outerSquare.getPosition().getCenterY() - (OUTER_SELECTOR_SQUARE_SIZE - 1) / 2;
+
+                float gaugeRightBorderCenterX = gaugeCenterX + (heatGaugeWidth / 2);
+                float gaugeCenterY = heatGaugePanel.getPosition().getCenterY();
+
+                if (!outsideGaugeBorder) gaugeCenterY += heatGaugeHeight / 2;
+
+                lineHeight = squareBottomCenterY - gaugeCenterY;
+                lineWidth = outsideGaugeBorder ? gaugeRightBorderCenterX - squareBottomCenterX : 1;
+
+                CustomPanelAPI connectorLinePanel = innerSquare.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, outsideGaugeBorder));
+                innerSquare.addComponent(connectorLinePanel).belowMid(outerSquare, 0f);
+            }
         }
+
+        //add the image selector
+        CustomPanelAPI visualChangerPanelInnerSquare = centerCirclePanel.createCustomPanel(INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(false));
+
+        //create inner button for ingredient
+        buttonId = "image_selection";
+        baseColor = Misc.getButtonTextColor();
+        bgColour = Misc.getDarkPlayerColor();
+        textColor = Misc.getTextColor();
+
+        variableButtonAnchor = visualChangerPanelInnerSquare.createUIElement(INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, false);
+        currentButton = variableButtonAnchor.addAreaCheckbox("", buttonId, baseColor, bgColour, textColor, INNER_SELECTOR_SQUARE_SIZE, INNER_SELECTOR_SQUARE_SIZE, 0f, false);
+
+        final ButtonAPI finalCurrentButton = currentButton;
+        entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(finalCurrentButton, buttonId) {
+            @Override
+            public void onToggle() {
+                dialogue.showCustomDialog(400f, 100f, new BaseCustomDialogDelegate() {
+                    public void createCustomDialog(CustomPanelAPI panel, CustomDialogCallback callback) {
+                        TooltipMakerAPI info = panel.createUIElement(400f, 100f, false);
+                        info.addSectionHeading("Confirm or return", Alignment.MID, opad);
+                        info.addPara("Are you sure? Your current changes will not be saved.", opad);
+                        panel.addUIElement(info).inMid();
+                    }
+
+                    public boolean hasCancelButton() {
+                        return true;
+                    }
+
+                    public void customDialogConfirm() {
+                        display(null);
+                        showPanel(dialogue);
+                    }
+                });
+
+                finalCurrentButton.setChecked(false);
+            }
+        };
+
+        VisualCustomPanel.getPlugin().addButton(entry);
+        visualChangerPanelInnerSquare.addUIElement(variableButtonAnchor).inTL(-4f, -1f);
+
+        //create outer square and add on top
+        CustomPanelAPI outerSquare = visualChangerPanelInnerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE, OUTER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(true));
+        visualChangerPanelInnerSquare.addComponent(outerSquare).inMid();
+
+        //text label
+        textLabel = visualChangerPanelInnerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
+        label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, false);
+        label.addSectionHeading("Visuals", Alignment.MID, 0f);
+        textLabel.addUIElement(label).inMid();
+        visualChangerPanelInnerSquare.addComponent(textLabel).inTMid(-BUTTON_HEIGHT - spad);
+
+        //add line to heat gauge
+
+        centerCirclePanel.addComponent(visualChangerPanelInnerSquare).belowMid(heatGaugePanel, INNER_SELECTOR_SQUARE_SIZE);
+
+        // todo add lines
+
+        /*float squareCenterX = outerSquare.getPosition().getCenterX();
+        float gaugeCenterX = heatGaugePanel.getPosition().getCenterX();
+
+        float lineHeight;
+        float lineWidth;
+
+        //|_
+
+        float gaugeLeftCenterX = gaugeCenterX - OUTER_SELECTOR_SQUARE_SIZE;
+        float gaugeBottomY = heatGaugePanel.getPosition().getCenterY() - heatGaugeHeight / 2;
+
+        float squareLeftCenterX = squareCenterX - (OUTER_SELECTOR_SQUARE_SIZE + 1) / 2 - opad;
+        float squareCenterY = outerSquare.getPosition().getCenterY();
+
+        lineHeight = gaugeBottomY - squareCenterY;
+        lineWidth = gaugeLeftCenterX - squareLeftCenterX;
+
+        CustomPanelAPI connectorLinePanel = centerCirclePanel.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, true));
+        innerSquare.addComponent(connectorLinePanel).leftOfMid(outerSquare, -OUTER_SELECTOR_SQUARE_SIZE / 2);
+
+        //_|
+
+        float gaugeRightCenterX = gaugeCenterX + OUTER_SELECTOR_SQUARE_SIZE;
+        float squareRightCenterX = squareCenterX + (OUTER_SELECTOR_SQUARE_SIZE + 1) / 2;
+
+        lineHeight = gaugeBottomY - squareCenterY;
+        lineWidth = gaugeRightCenterX - squareRightCenterX;
+
+        connectorLinePanel = innerSquare.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, true));
+        innerSquare.addComponent(connectorLinePanel).rightOfMid(outerSquare, OUTER_SELECTOR_SQUARE_SIZE / 2);*/
+
+        //add name panel
+
+        float namePanelWidth = width - 300;
+        float namePanelHeight = BUTTON_HEIGHT + opad + 1;
+        CustomPanelAPI namePanelPanel = centerCirclePanel.createCustomPanel(namePanelWidth, namePanelHeight, new FramedInteractionDialogCustomPanelPlugin(false));
+        TooltipMakerAPI namePanelTextfieldHolder = namePanelPanel.createUIElement(namePanelWidth, namePanelHeight, false);
+
+        TextFieldAPI namePanelTextfield = namePanelTextfieldHolder.addTextField(namePanelWidth, namePanelHeight, Fonts.ORBITRON_16, 0f); //todo save and read!
+        namePanelTextfield.setMidAlignment();
+        namePanelTextfield.setBgColor(Misc.getDarkPlayerColor().darker());
+        namePanelTextfield.setText(AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size() - 1))); //todo this is temp, replace with actual name algo
+
+        //todo add randomization buttons for name and visuals
+
+        namePanelPanel.addUIElement(namePanelTextfieldHolder);
+        centerCirclePanel.addComponent(namePanelPanel).belowMid(visualChangerPanelInnerSquare, 50f);
+
+        //BREW ! button
+
+        CustomPanelAPI brewButtonPanel = centerCirclePanel.createCustomPanel(SELECT_BUTTON_WIDTH, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
+
+        buttonId = "brew_button";
+        prerequisiteForActive = true; //todo: All fields Filled
+        baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
+        bgColour = prerequisiteForActive ? new Color(50, 130, 0, 255) : Misc.getGrayColor();
+
+        variableButtonAnchor = brewButtonPanel.createUIElement(SELECT_BUTTON_WIDTH, BUTTON_HEIGHT, false);
+        currentButton = variableButtonAnchor.addButton("BREW!", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.ALL, SELECT_BUTTON_WIDTH, BUTTON_HEIGHT, 0);
+        currentButton.setEnabled(prerequisiteForActive);
+        entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
+            @Override
+            public void onToggle() {
+                dialogue.showCustomDialog(400f, 100f, new BaseCustomDialogDelegate() {
+                    public void createCustomDialog(CustomPanelAPI panel, CustomDialogCallback callback) {
+                        TooltipMakerAPI info = panel.createUIElement(400f, 100f, false);
+                        info.addSectionHeading("Confirm or return", Alignment.MID, opad);
+                        info.addPara("Are you sure? Your current changes will not be saved.", opad);
+                        panel.addUIElement(info).inMid();
+                    }
+
+                    public boolean hasCancelButton() {
+                        return true;
+                    }
+
+                    public void customDialogConfirm() {
+                        display(null);
+                        showPanel(dialogue);
+                    }
+                });
+            }
+        };
+
+        VisualCustomPanel.getPlugin().addButton(entry);
+        brewButtonPanel.addUIElement(variableButtonAnchor).inMid();
+
+        centerCirclePanel.addComponent(brewButtonPanel).belowMid(namePanelPanel, 50f);
+
+        //add the center circle panel
 
         alcoholCreatorBasePanel.addComponent(centerCirclePanel).inMid(); //add the background circle
 
