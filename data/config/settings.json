@@ -21,6 +21,7 @@
       "bg":"graphics/effects/alcohol_BG_mask.png",
       "frame":"graphics/effects/alcohol_frame.png",
       "intel": "graphics/icons/intel/investigation.png",
+      "shuffle": "graphics/ui/shuffle.png",
       },
   },
 }

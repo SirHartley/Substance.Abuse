@@ -1,18 +1,18 @@
 package com.fs.starfarer.api.alcoholism.loading;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.memory.Ingredient;
+import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Importer {
+    public static final int NUM_ALCOHOL_IMAGES = 105;
 
     public static List<String> loadCustomAlcoholNames() {
         List<String> nameList = new ArrayList<>();
@@ -30,6 +30,26 @@ public class Importer {
         }
 
         return nameList;
+    }
+
+    public static List<String> getCustomAlcoholImageNames(){
+        Map<String, Object> mem = Global.getSector().getPersistentData();
+
+        if (mem.containsKey("$customAlcoholImageList")) return (List<String>) mem.get("$customAlcoholImageList");
+
+        List<String> imageList = new LinkedList<>();
+        for (int i = 1; i <= NUM_ALCOHOL_IMAGES; i++){
+            try {
+                Global.getSettings().loadTexture("graphics/items/custom/custom" + i + ".png");
+                imageList.add("graphics/items/custom/custom" + i + ".png");
+            } catch (IOException e){
+                ModPlugin.log("could not load texture for custom alcohol " + i + " at " + "graphics/items/custom/custom" + i + ".png");
+            }
+        }
+
+        mem.put("$customAlcoholImageList", imageList);
+
+        return imageList;
     }
 
     public static Map<String, Ingredient> loadIngredientData() {

@@ -2,14 +2,12 @@ package com.fs.starfarer.api.alcoholism.ui;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
+import com.fs.starfarer.api.alcoholism.loading.Importer;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcohol;
 import com.fs.starfarer.api.alcoholism.memory.CustomAlcoholMemory;
 import com.fs.starfarer.api.alcoholism.memory.Ingredient;
-import com.fs.starfarer.api.alcoholism.ui.basepanel.FramedInteractionDialogCustomPanelPlugin;
-import com.fs.starfarer.api.alcoholism.ui.basepanel.MiddleCircleCustomPanelPlugin;
-import com.fs.starfarer.api.alcoholism.ui.basepanel.VariableBorderPanelPlugin;
-import com.fs.starfarer.api.alcoholism.ui.basepanel.VisualCustomPanel;
+import com.fs.starfarer.api.alcoholism.ui.basepanel.*;
 import com.fs.starfarer.api.campaign.BaseCustomDialogDelegate;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
@@ -24,29 +22,24 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomAlcoholPanel {
-    protected static final float PANEL_WIDTH_1 = 240;
-    protected static final float PANEL_WIDTH_2 = VisualCustomPanel.PANEL_WIDTH - PANEL_WIDTH_1 - 8;
-    protected static final float SHIP_ICON_WIDTH = 48;
-    protected static final float ARROW_BUTTON_WIDTH = 20, BUTTON_HEIGHT = 30;
-    protected static final float SELECT_BUTTON_WIDTH = 95f;
-    protected static final float TEXT_FIELD_WIDTH = 80f;
-
-    protected static final float BASE_PANEL_MAX_HEIGHT = 700f;
-    protected static final float BASE_PANEL_MAX_WIDTH = 1180f;
+    protected static final float SHUFFLE_BUTTON_DIMS = 25f, BUTTON_HEIGHT = 30, SELECT_BUTTON_WIDTH = 95f;
+    protected static final float BASE_PANEL_MAX_HEIGHT = 700f, BASE_PANEL_MAX_WIDTH = 1180f;
 
     protected static final float RECIPE_SELECTION_PANEL_WIDTH = 250f;
     protected static final float RECIPE_SELECTION_PANEL_HEIGHT = 70f;
     protected static final float RECIPE_SELECTION_ENTRY_HEIGHT = 85f;
+
     protected static final float EFFECT_DISPLAY_PANEL_WIDTH = 250f;
     protected static final float INNER_SELECTOR_SQUARE_SIZE = 80f;
     protected static final float OUTER_SELECTOR_SQUARE_SIZE = 89f;
-    protected static final float SELECTOR_SQUARE_PAD_INCREMENT = 2f;
 
     private Industry industry;
     private List<Ingredient> ingredients = new LinkedList<>();
     private AlcoholListFilter currentFilter = AlcoholListFilter.ACTIVE;
     private Map<AlcoholListFilter, ScrollPanelAPI> filterScrollPanels = new HashMap<>();
-    private String name = "...";
+    private String name = null;
+    private String imageName = null;
+    private int heat = 1;
 
     public enum AlcoholListFilter {
         ACTIVE,
@@ -88,6 +81,7 @@ public class CustomAlcoholPanel {
 
     private void showCustomPanel(final InteractionDialogAPI dialogue) {
         final float opad = 10f;
+        float apad = 4f;
         float spad = 5f;
 
         fixBasePanelOffsets();
@@ -272,6 +266,43 @@ public class CustomAlcoholPanel {
         float heatGaugeWidth = width - 200;
         float heatGaugeHeight = BUTTON_HEIGHT + opad + 1;
         CustomPanelAPI heatGaugePanel = centerCirclePanel.createCustomPanel(heatGaugeWidth, heatGaugeHeight, new FramedInteractionDialogCustomPanelPlugin(true));
+
+        //add the heat buttons
+        int amt = 10;
+
+        float heatChangerButtonWidth = (heatGaugeWidth - spad * (amt + 1)) / amt;
+        float heatChangerButtonHeight = heatGaugeHeight - spad;
+        CustomPanelAPI heatChangerButtonPanel = heatGaugePanel.createCustomPanel(heatGaugeWidth - spad * 2, heatGaugeHeight, new NoFrameCustomPanelPlugin()); //create a panel for all heat buttons
+
+        for (int i = 1; i <= amt; i++){
+            buttonId = "heat_" + i;
+            baseColor = getColorByNumber(i);
+            bgColour = getColorByNumber(i).darker().darker();
+            textColor = Misc.getTextColor();
+
+            variableButtonAnchor = heatChangerButtonPanel.createUIElement(heatChangerButtonWidth, heatChangerButtonHeight, false);
+            currentButton = variableButtonAnchor.addAreaCheckbox(i + "", buttonId, baseColor, bgColour, textColor, heatChangerButtonWidth, heatChangerButtonHeight, 0f, false);
+            currentButton.setChecked(heat == i);
+
+            final int finalI = i;
+
+            entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
+                @Override
+                public void onToggle() {
+                    heat = finalI;
+                    showPanel(dialogue);
+                }
+            };
+
+            VisualCustomPanel.getPlugin().addButton(entry);
+
+            if (i == 1) heatChangerButtonPanel.addUIElement(variableButtonAnchor).inLMid(-spad/2);
+            else heatChangerButtonPanel.addUIElement(variableButtonAnchor).rightOfMid(lastUsedVariableButtonAnchor, spad);
+
+            lastUsedVariableButtonAnchor = variableButtonAnchor;
+        }
+
+        heatGaugePanel.addComponent(heatChangerButtonPanel).inLMid(0f); //add button panel to gauge
         centerCirclePanel.addComponent(heatGaugePanel).inTMid(INNER_SELECTOR_SQUARE_SIZE * 2 + BUTTON_HEIGHT);
 
         CustomPanelAPI textLabel = heatGaugePanel.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
@@ -431,6 +462,31 @@ public class CustomAlcoholPanel {
         CustomPanelAPI outerSquare = visualChangerPanelInnerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE, OUTER_SELECTOR_SQUARE_SIZE, new FramedInteractionDialogCustomPanelPlugin(true));
         visualChangerPanelInnerSquare.addComponent(outerSquare).inMid();
 
+        //add image
+        if (imageName == null) imageName = Importer.getCustomAlcoholImageNames().get(MathUtils.getRandomNumberInRange(0, Importer.NUM_ALCOHOL_IMAGES - 1));
+        variableButtonAnchor = visualChangerPanelInnerSquare.createUIElement(INNER_SELECTOR_SQUARE_SIZE - opad, INNER_SELECTOR_SQUARE_SIZE - opad, false);
+        variableButtonAnchor.addImage(imageName, INNER_SELECTOR_SQUARE_SIZE - opad, 0f);
+        visualChangerPanelInnerSquare.addUIElement(variableButtonAnchor).inLMid(0f);
+
+        //add component so it has a position
+
+        centerCirclePanel.addComponent(visualChangerPanelInnerSquare).belowMid(heatGaugePanel, INNER_SELECTOR_SQUARE_SIZE);
+        Global.getSettings().getAllSpecs()
+
+        // add line to heat gauge (requires position)
+
+        float lineHeight;
+        float lineWidth;
+
+        float gaugeBottomY = heatGaugePanel.getPosition().getCenterY() - heatGaugeHeight / 2;
+        float squareTopY = outerSquare.getPosition().getCenterY() + OUTER_SELECTOR_SQUARE_SIZE / 2;
+
+        lineHeight = gaugeBottomY - squareTopY;
+        lineWidth = 1f;
+
+        CustomPanelAPI connectorLinePanel = visualChangerPanelInnerSquare.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, false));
+        visualChangerPanelInnerSquare.addComponent(connectorLinePanel).aboveMid(outerSquare, 0f);
+
         //text label
         textLabel = visualChangerPanelInnerSquare.createCustomPanel(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, new FramedInteractionDialogCustomPanelPlugin(false));
         label = textLabel.createUIElement(OUTER_SELECTOR_SQUARE_SIZE + opad, BUTTON_HEIGHT, false);
@@ -438,59 +494,87 @@ public class CustomAlcoholPanel {
         textLabel.addUIElement(label).inMid();
         visualChangerPanelInnerSquare.addComponent(textLabel).inTMid(-BUTTON_HEIGHT - spad);
 
-        //add line to heat gauge
+        //add shuffle image button
 
-        centerCirclePanel.addComponent(visualChangerPanelInnerSquare).belowMid(heatGaugePanel, INNER_SELECTOR_SQUARE_SIZE);
+        float shuffleButtonDims = SHUFFLE_BUTTON_DIMS;
+        CustomPanelAPI shuffleImageButton = centerCirclePanel.createCustomPanel(shuffleButtonDims, shuffleButtonDims, new NoFrameCustomPanelPlugin());
 
-        // todo add lines
+        buttonId = "shuffle_image";
+        baseColor = Misc.getButtonTextColor();
+        bgColour = Misc.getDarkPlayerColor().darker();
 
-        /*float squareCenterX = outerSquare.getPosition().getCenterX();
-        float gaugeCenterX = heatGaugePanel.getPosition().getCenterX();
+        variableButtonAnchor = shuffleImageButton.createUIElement(shuffleButtonDims, shuffleButtonDims, false);
+        currentButton = variableButtonAnchor.addButton("", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.ALL, shuffleButtonDims, shuffleButtonDims, 0);
+        entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
+            @Override
+            public void onToggle() {
+                imageName = Importer.getCustomAlcoholImageNames().get(MathUtils.getRandomNumberInRange(0, Importer.NUM_ALCOHOL_IMAGES - 1));
+                showPanel(dialogue);
+            }
+        };
 
-        float lineHeight;
-        float lineWidth;
+        VisualCustomPanel.getPlugin().addButton(entry);
+        shuffleImageButton.addUIElement(variableButtonAnchor).inMid();
+        lastUsedVariableButtonAnchor = variableButtonAnchor;
 
-        //|_
+        variableButtonAnchor = shuffleImageButton.createUIElement(shuffleButtonDims-opad, shuffleButtonDims-opad, false);
+        variableButtonAnchor.addImage("graphics/ui/shuffle.png", shuffleButtonDims-opad, 0f);
+        shuffleImageButton.addUIElement(variableButtonAnchor).inMid();
 
-        float gaugeLeftCenterX = gaugeCenterX - OUTER_SELECTOR_SQUARE_SIZE;
-        float gaugeBottomY = heatGaugePanel.getPosition().getCenterY() - heatGaugeHeight / 2;
-
-        float squareLeftCenterX = squareCenterX - (OUTER_SELECTOR_SQUARE_SIZE + 1) / 2 - opad;
-        float squareCenterY = outerSquare.getPosition().getCenterY();
-
-        lineHeight = gaugeBottomY - squareCenterY;
-        lineWidth = gaugeLeftCenterX - squareLeftCenterX;
-
-        CustomPanelAPI connectorLinePanel = centerCirclePanel.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, true));
-        innerSquare.addComponent(connectorLinePanel).leftOfMid(outerSquare, -OUTER_SELECTOR_SQUARE_SIZE / 2);
-
-        //_|
-
-        float gaugeRightCenterX = gaugeCenterX + OUTER_SELECTOR_SQUARE_SIZE;
-        float squareRightCenterX = squareCenterX + (OUTER_SELECTOR_SQUARE_SIZE + 1) / 2;
-
-        lineHeight = gaugeBottomY - squareCenterY;
-        lineWidth = gaugeRightCenterX - squareRightCenterX;
-
-        connectorLinePanel = innerSquare.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, true));
-        innerSquare.addComponent(connectorLinePanel).rightOfMid(outerSquare, OUTER_SELECTOR_SQUARE_SIZE / 2);*/
+        centerCirclePanel.addComponent(shuffleImageButton).rightOfMid(visualChangerPanelInnerSquare, opad);
 
         //add name panel
 
         float namePanelWidth = width - 300;
         float namePanelHeight = BUTTON_HEIGHT + opad + 1;
-        CustomPanelAPI namePanelPanel = centerCirclePanel.createCustomPanel(namePanelWidth, namePanelHeight, new FramedInteractionDialogCustomPanelPlugin(false));
+        final CustomPanelAPI namePanelPanel = centerCirclePanel.createCustomPanel(namePanelWidth, namePanelHeight, new NoFrameCustomPanelPlugin());
         TooltipMakerAPI namePanelTextfieldHolder = namePanelPanel.createUIElement(namePanelWidth, namePanelHeight, false);
 
-        TextFieldAPI namePanelTextfield = namePanelTextfieldHolder.addTextField(namePanelWidth, namePanelHeight, Fonts.ORBITRON_16, 0f); //todo save and read!
+        final TextFieldAPI namePanelTextfield = namePanelTextfieldHolder.addTextField(namePanelWidth, namePanelHeight, Fonts.ORBITRON_16, 0f); //todo save and read!
         namePanelTextfield.setMidAlignment();
         namePanelTextfield.setBgColor(Misc.getDarkPlayerColor().darker());
-        namePanelTextfield.setText(AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size() - 1))); //todo this is temp, replace with actual name algo
 
-        //todo add randomization buttons for name and visuals
+        if (name == null) name = AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size() - 1));
+        namePanelTextfield.setText(name);
 
         namePanelPanel.addUIElement(namePanelTextfieldHolder);
         centerCirclePanel.addComponent(namePanelPanel).belowMid(visualChangerPanelInnerSquare, 50f);
+
+        CustomPanelAPI shuffleNameButtonPanel = centerCirclePanel.createCustomPanel(shuffleButtonDims, shuffleButtonDims, new NoFrameCustomPanelPlugin());
+
+        buttonId = "shuffle_name";
+        baseColor = Misc.getButtonTextColor();
+        bgColour = Misc.getDarkPlayerColor().darker();
+
+        variableButtonAnchor = shuffleNameButtonPanel.createUIElement(shuffleButtonDims, shuffleButtonDims, false);
+        currentButton = variableButtonAnchor.addButton("", buttonId, baseColor, bgColour, Alignment.MID, CutStyle.ALL, shuffleButtonDims, shuffleButtonDims, 0);
+        entry = new FramedInteractionDialogCustomPanelPlugin.ButtonEntry(currentButton, buttonId) {
+            @Override
+            public void onToggle() {
+                name = AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size() - 1));
+                showPanel(dialogue);
+            }
+        };
+
+        VisualCustomPanel.getPlugin().addButton(entry);
+        shuffleNameButtonPanel.addUIElement(variableButtonAnchor).inMid();
+        lastUsedVariableButtonAnchor = variableButtonAnchor;
+
+        variableButtonAnchor = shuffleNameButtonPanel.createUIElement(shuffleButtonDims-opad, shuffleButtonDims-opad, false);
+        variableButtonAnchor.addImage("graphics/ui/shuffle.png", shuffleButtonDims-opad, 0f);
+        shuffleNameButtonPanel.addUIElement(variableButtonAnchor).inMid();
+
+        centerCirclePanel.addComponent(shuffleNameButtonPanel).rightOfMid(namePanelPanel, opad);
+
+        // add line to image changer (requires position)
+
+        float squareBotY = outerSquare.getPosition().getCenterY() - OUTER_SELECTOR_SQUARE_SIZE / 2;
+        float textfieldTopY = namePanelPanel.getPosition().getCenterY() + namePanelHeight / 2;
+
+        lineHeight = squareBotY - textfieldTopY;
+
+        connectorLinePanel = centerCirclePanel.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, false));
+        centerCirclePanel.addComponent(connectorLinePanel).aboveMid(namePanelPanel, 0f);
 
         //BREW ! button
 
@@ -532,6 +616,16 @@ public class CustomAlcoholPanel {
 
         centerCirclePanel.addComponent(brewButtonPanel).belowMid(namePanelPanel, 50f);
 
+        // add line to image changer (requires position)
+
+        float textfieldBotY = namePanelPanel.getPosition().getCenterY() - namePanelHeight / 2;
+        float brewButtonTopY = brewButtonPanel.getPosition().getCenterY() + brewButtonPanel.getPosition().getHeight() / 2;
+
+        lineHeight = textfieldBotY - brewButtonTopY;
+
+        connectorLinePanel = centerCirclePanel.createCustomPanel(lineWidth, lineHeight, new VariableBorderPanelPlugin(Misc.getButtonTextColor(), true, false, false, false));
+        centerCirclePanel.addComponent(connectorLinePanel).aboveMid(brewButtonPanel, 0f);
+
         //add the center circle panel
 
         alcoholCreatorBasePanel.addComponent(centerCirclePanel).inMid(); //add the background circle
@@ -555,5 +649,17 @@ public class CustomAlcoholPanel {
 
         visualCustomPanel.addComponent(basePanel).inMid();
         VisualCustomPanel.addTooltipToPanel();
+    }
+
+    public static Color getColorByNumber(int number) {
+        if (number < 1 || number > 10) {
+            throw new IllegalArgumentException("Number should be between 1 and 10");
+        }
+
+        // Calculate the transition between blue and red based on the number
+        int blue = 255 - (number * 25); // Gradually decrease blue component
+        int red = (number * 25); // Gradually increase red component
+
+        return new Color(red, 0, blue);
     }
 }
