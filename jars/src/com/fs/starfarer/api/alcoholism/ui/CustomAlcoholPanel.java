@@ -471,7 +471,6 @@ public class CustomAlcoholPanel {
         //add component so it has a position
 
         centerCirclePanel.addComponent(visualChangerPanelInnerSquare).belowMid(heatGaugePanel, INNER_SELECTOR_SQUARE_SIZE);
-        Global.getSettings().getAllSpecs()
 
         // add line to heat gauge (requires position)
 

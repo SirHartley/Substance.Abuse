@@ -35,6 +35,9 @@ public class IngredientResourceCondition extends BaseHazardCondition {
         Ingredient ingredient = AlcoholRepo.INGREDIENT_MAP.get(condition.getId());
 
         //this is pretty bad, but I am on coffee withdrawal and literally can't do any better
+
+        if(true) return; //todo the next line will crash on save load so this is a workaround for now
+
         for (String industryId : ingredient.industry){
             if (market.hasIndustry(industryId)){
 

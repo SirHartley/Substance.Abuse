@@ -84,6 +84,7 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
         if (!exports.isEmpty())
             applyDemand(Industries.POPULATION, -4, AlcoholRepo.get(AlcoholRepo.WATER).getCommodityId());
 
+        if(true) return; //todo the next line will crash on save load so this is a workaround for now
         for (String industry : AlcoholRepo.INGREDIENT_MAP.get("alcoholism_waste").industry){
             if (market.hasIndustry(industry)){
                 applyDemand(industry, -2, "alcoholism_waste");
