@@ -44,7 +44,7 @@ public class RecipeItemPlugin extends GenericSpecialItemPlugin {
     }
 
     public String getAlcoholId(){
-        for (AlcoholAPI alcohol : AlcoholRepo.getNonCustomAlcoholList()){
+        for (AlcoholAPI alcohol : AlcoholRepo.getIndustrialAlcoholList()){
            if(alcohol.getIndustryItemId().equals(getId())) return alcohol.getId();
         }
 

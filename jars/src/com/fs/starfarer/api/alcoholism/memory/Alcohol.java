@@ -76,6 +76,16 @@ public class Alcohol implements AlcoholAPI {
         return populationImportMod;
     }
 
+    @Override
+    public String getDesc() {
+        return Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText1();
+    }
+
+    @Override
+    public String getShortDesc() {
+        return Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText2();
+    }
+
     public void addStatusTooltip(TooltipMakerAPI tt) {
         addStatusTooltip(tt, false);
     }
@@ -103,7 +113,7 @@ public class Alcohol implements AlcoholAPI {
         else lastsFor = amtWillLastDays + " " + TooltipHelper.getDayOrDays(amtWillLastDays);
 
         tt.addPara("Effect buildup speed: %s", opad, addictivity.two, addictivity.one.toUpperCase());
-        if (getAddictionStatus().isAddicted())
+        if (getAddictionStatus().isConsuming() || getAddictionStatus().isAddicted())
             tt.addPara("Current effect level: %s", spad, Misc.getHighlightColor(), TooltipHelper.getCurrentEffectPercentString(id));
         else tt.addPara("Consume for effect!", spad);
         if (!forHullmod)
@@ -159,7 +169,7 @@ public class Alcohol implements AlcoholAPI {
     }
 
     public void addShortEffectText(TooltipMakerAPI tooltip) {
-        tooltip.addPara(Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText2(), 10f);
+        tooltip.addPara(getShortDesc(), 10f);
     }
 
     public void addCurrentHullmodEffectSection(TooltipMakerAPI tooltip) {

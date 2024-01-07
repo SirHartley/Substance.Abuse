@@ -3,15 +3,12 @@ package com.fs.starfarer.api.alcoholism.conditions;
 import com.fs.starfarer.api.alcoholism.industry.Brewery;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
-import com.fs.starfarer.api.alcoholism.memory.FactionAlcoholHandler;
-import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MutableCommodityQuantity;
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
-import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Pair;
@@ -46,7 +43,7 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
 
         Industry ind = market.getIndustry(Industries.POPULATION);
 
-        for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+        for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()) {
             ((BaseIndustry) ind).demand(getModId(), alcohol.getCommodityId(), 0, "");
         }
     }
@@ -57,7 +54,7 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
         Industry popInfra = market.getIndustry(Industries.POPULATION);
         Industry lightIndustry = market.getIndustry(Industries.LIGHTINDUSTRY);
 
-        if (market.hasIndustry(Industries.POPULATION)) for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+        if (market.hasIndustry(Industries.POPULATION)) for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()) {
             ((BaseIndustry) popInfra).demand(getModId(), alcohol.getCommodityId(), 0, "");
         }
 
@@ -198,7 +195,7 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
 
         List<AlcoholAPI> alcoholList = new ArrayList<>();
 
-        for (AlcoholAPI alcohol : AlcoholRepo.getNonCustomAlcoholList()){
+        for (AlcoholAPI alcohol : AlcoholRepo.getIndustrialAlcoholList()){
             if (alcohol.getFaction().getId().equals(factionID)) alcoholList.add(alcohol);
         }
 

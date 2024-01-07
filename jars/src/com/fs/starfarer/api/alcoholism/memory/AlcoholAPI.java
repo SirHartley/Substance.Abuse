@@ -19,4 +19,7 @@ public interface AlcoholAPI {
     int getLightIndustryMod();
     int getPopulationImportMod();
 
+    String getDesc();
+    String getShortDesc();
+
 }

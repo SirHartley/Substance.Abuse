@@ -61,7 +61,7 @@ public class BreweryPlacer {
 
             ModPlugin.log("Placing Breweries, Nex Random mode");
 
-            for (AlcoholAPI alcohol : AlcoholRepo.getNonCustomAlcoholList()) {
+            for (AlcoholAPI alcohol : AlcoholRepo.getIndustrialAlcoholList()) {
                 FactionAPI faction = alcohol.getFaction();
                 List<MarketAPI> marketList = Misc.getFactionMarkets(faction);
                 if (marketList.size() < 1) continue;

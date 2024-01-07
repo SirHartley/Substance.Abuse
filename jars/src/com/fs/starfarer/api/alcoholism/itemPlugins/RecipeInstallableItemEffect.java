@@ -1,6 +1,7 @@
 package com.fs.starfarer.api.alcoholism.itemPlugins;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.conditions.AlcoholResourceCondition;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
@@ -55,7 +56,7 @@ public class RecipeInstallableItemEffect extends BaseInstallableItemEffect {
                 pad, alcohol.getFaction().getColor(),
                 alcohol.getName());
         if (mode == InstallableIndustryItemPlugin.InstallableItemDescriptionMode.CARGO_TOOLTIP || mode == InstallableIndustryItemPlugin.InstallableItemDescriptionMode.INDUSTRY_TOOLTIP) {
-            text.addPara(Global.getSettings().getDescription(alcohol.getCommodityId(), Description.Type.RESOURCE).getText1(), 10f);
+            text.addPara(alcohol.getDesc(), 10f);
         }
     }
 

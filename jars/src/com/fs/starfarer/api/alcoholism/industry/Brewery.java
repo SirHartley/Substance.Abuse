@@ -19,6 +19,7 @@ public class Brewery extends BaseIndustry {
     public void apply() {
         super.apply(true);
 
+        //recipes
         if(getSpecialItem() != null){
             int size = market.getSize();
 
@@ -52,7 +53,7 @@ public class Brewery extends BaseIndustry {
             if (sub instanceof LocalResourcesSubmarketPlugin) {
                 LocalResourcesSubmarketPlugin lr = (LocalResourcesSubmarketPlugin) sub;
 
-                for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()){
+                for (AlcoholAPI alcohol : AlcoholRepo.getIndustrialAlcoholList()){
                     lr.getStockpilingBonus(alcohol.getCommodityId()).unmodify();
                 }
             }

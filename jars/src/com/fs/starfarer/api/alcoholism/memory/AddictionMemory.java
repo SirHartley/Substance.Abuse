@@ -19,15 +19,15 @@ public class AddictionMemory {
 
     //permanent
     public static AddictionMemory getInstanceOrRegister() {
-        MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
+        Map<String, Object> mem = Global.getSector().getPersistentData();
 
-        if (mem.contains(ADDICTION_MEMORY_KEY)) return (AddictionMemory) mem.get(ADDICTION_MEMORY_KEY);
+        if (mem.containsKey(ADDICTION_MEMORY_KEY)) return (AddictionMemory) mem.get(ADDICTION_MEMORY_KEY);
         else {
 
             ModPlugin.log("creating new AddictionMemory");
 
             AddictionMemory addictionMemory = new AddictionMemory();
-            mem.set(ADDICTION_MEMORY_KEY, addictionMemory);
+            mem.put(ADDICTION_MEMORY_KEY, addictionMemory);
 
             return addictionMemory;
         }
@@ -36,8 +36,8 @@ public class AddictionMemory {
     public AddictionMemory() {
         this.statusList = new HashMap<>();
 
-        for (String s : AlcoholRepo.ALCOHOL_MAP.keySet()) {
-            statusList.put(s, new AddictionStatus());
+        for (AlcoholAPI s : AlcoholRepo.getAllAlcohol()) {
+            statusList.put(s.getId(), new AddictionStatus());
         }
     }
 
@@ -50,7 +50,7 @@ public class AddictionMemory {
     }
 
     public void refresh(){
-        for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+        for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()) {
             addIfNeeded(alcohol);
         }
     }

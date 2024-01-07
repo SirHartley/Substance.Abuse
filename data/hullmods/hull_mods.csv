@@ -22,5 +22,7 @@ Phaged Darjeeling,alcoholism_tea,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoh
 200,alcoholism_bonus_200a,,,,,,,,TRUE,TRUE,-200,-200,-200,-200,com.fs.starfarer.api.alcoholism.hullmods.SelfRepairingBuiltInHullmod,,,graphics/conditions/placeholder.png
 200,alcoholism_bonus_200b,,,,,,,,TRUE,TRUE,-200,-200,-200,-200,com.fs.starfarer.api.alcoholism.hullmods.SelfRepairingBuiltInHullmod,,,graphics/conditions/placeholder.png
 ,,,,,,,,,,,,,,,,,,
-Custom1,alcoholism_custom1,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Custom_HullmodEffect,custom1,,graphics/items/custom/custom1.png
-,,,,,,,,,,,,,,,,,,
+Custom Alcohol Hullmod 1,alcoholism_custom_1,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Custom_HullmodEffect,custom1,,graphics/conditions/placeholder.png
+Custom Alcohol Hullmod 2,alcoholism_custom_2,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Custom_HullmodEffect,custom2,,graphics/conditions/placeholder.png
+Custom Alcohol Hullmod 3,alcoholism_custom_3,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Custom_HullmodEffect,custom3,,graphics/conditions/placeholder.png
+Custom Alcohol Hullmod Overflow,alcoholism_custom_default,,,,,,,,TRUE,,0,0,0,0,com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Custom_HullmodEffect,alcoholism_custom_over,,graphics/conditions/placeholder.png

@@ -1,5 +1,6 @@
 package com.fs.starfarer.api.alcoholism.hullmods;
 
+import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholAPI;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
@@ -32,7 +33,16 @@ public abstract class BaseAlcoholHullmodEffect extends SelfRepairingBuiltInHullm
     }
 
     public AlcoholAPI getAlcohol(){
-        return AlcoholRepo.get(spec.getId());
+        AlcoholAPI validAlcohol = null;
+
+        for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()) {
+            if (alcohol.getEffectHullmodId().equals(spec.getId())) {
+                validAlcohol = alcohol;
+                break;
+            }
+        }
+
+        return validAlcohol;
     }
 
     @Override
@@ -40,13 +50,15 @@ public abstract class BaseAlcoholHullmodEffect extends SelfRepairingBuiltInHullm
         super.applyEffectsBeforeShipCreation(hullSize, stats, id);
 
         AlcoholAPI alcohol = getAlcohol();
+        String alcoholID = alcohol.getId();
+
         AddictionStatus status = alcohol.getAddictionStatus();
         float effectMult = status.getAddictionValue();
 
-        if(status.isWithdrawal()) applyWithdrawal(stats, effectMult, id);
-        else applyPositives(stats, effectMult, id);
+        if(status.isWithdrawal()) applyWithdrawal(stats, effectMult, alcoholID);
+        else applyPositives(stats, effectMult, alcoholID);
 
-        applyNegatives(stats, effectMult,id);
+        applyNegatives(stats, effectMult,alcoholID);
     }
 
     @Override

@@ -5,17 +5,16 @@ import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.campaign.SpecialItemSpecAPI;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.loading.Description;
+import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.util.Misc;
+import org.codehaus.janino.Mod;
 import org.lazywizard.lazylib.MathUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-
-/**
- * id = custom item ID this uses, goes up to 100
- * uid = actual alcohol ID used to track what this is
- */
 
 public class CustomAlcohol extends BaseAlcohol {
     //4 slots for ingredients
@@ -24,28 +23,28 @@ public class CustomAlcohol extends BaseAlcohol {
     //if multiple of same type are used, increase by x1.5 for each similar type, stacking (4 same ingredients is x1,5^3)
     //if multiple of not same type, increase synergy effect by 1.25 for each type
 
+    public static final String CUSTOM_ALCOHOL_ITEM_ID = "alcoholism_custom";
+    public static final String DEFAULT_EFFECT_HULLMOD = "alcoholism_custom_default";
+
     public List<Effect> ingredients = new ArrayList<>();
     public float cost;
     public String name;
     public String desc;
     public String iconName;
     public String shortDesc;
+    public String effectHullmodId = DEFAULT_EFFECT_HULLMOD;
 
-    public String uid;
     public boolean hidden = false;
-    public boolean spoiled = false; //if the id set was used for another alcohol, this one becomes spoiled.
 
     public static final float BASE_INGREDIENT_STRENGTH = 0.05f;
 
-    public CustomAlcohol(String id, String name, String desc, String iconName, String factionIdForColours,
+    public CustomAlcohol(String name, String desc, String iconName, String factionIdForColours,
                          String... ingredients) {
 
-        this.uid = Misc.genUID();
-
-        this.id = id;
-        this.commodityId = id + "_c";
+        this.id = Misc.genUID();
         this.factionId = factionIdForColours;
         this.iconName = iconName;
+        this.commodityId = CUSTOM_ALCOHOL_ITEM_ID;
 
         this.name = name == null ? AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.get(MathUtils.getRandomNumberInRange(0, AlcoholRepo.CUSTOM_ALCOHOL_NAME_LIST.size() - 1)) : name;
         this.desc = desc;
@@ -58,13 +57,10 @@ public class CustomAlcohol extends BaseAlcohol {
     public void init() {
         loadIcon();
         generateShortDesc();
-        AlcoholRepo.ALCOHOL_MAP.put(id, this);
+        AlcoholRepo.add(this);
         AddictionMemory.getInstanceOrRegister().addIfNeeded(this);
-        overwriteSpec();
-    }
 
-    public void register() {
-        CustomAlcoholMemory.getInstanceOrRegister().add(this);
+        ModPlugin.log("Initializing custom Alcohol " + getId() + ", confirming presence in repo: " + (AlcoholRepo.get(id) != null));
     }
 
     public void loadIcon() {
@@ -113,6 +109,11 @@ public class CustomAlcohol extends BaseAlcohol {
         ModPlugin.log("new custom alcohol " + id + " " + name + " " + factionId + " " + " | mult " + mult + " cost " + cost);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
     public void generateShortDesc() {
         //todo adjust to reflect effects once they are in
         //todo add adjectives "Fresh Herbs, Zesty Malt..."
@@ -130,25 +131,6 @@ public class CustomAlcohol extends BaseAlcohol {
             ingredientString.append("[Ingredient list malformed, re-check import validity]");
 
         this.shortDesc = "Test custom alcohol made from " + ingredientString.toString();
-    }
-
-    public void overwriteSpec() {
-        //then we do commodity spec
-        CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(getCommodityId());
-        spec.setName(name);
-        spec.setBasePrice(cost);
-        spec.setIconName(iconName);
-
-        //then we do the actual special item
-        SpecialItemSpecAPI specialItemSpec = Global.getSettings().getSpecialItemSpec(getId());
-        //specialItemSpec.setDesc(desc);
-        specialItemSpec.setName(name);
-        specialItemSpec.setBasePrice(cost);
-        specialItemSpec.setIconName(iconName);
-
-        Description description = Global.getSettings().getDescription(commodityId, Description.Type.RESOURCE);
-        description.setText1(desc);
-        description.setText2(shortDesc);
     }
 
     @Override
@@ -181,5 +163,37 @@ public class CustomAlcohol extends BaseAlcohol {
             this.synergyStrength = synergyStrength;
             this.effectStrength = effectStrength;
         }
+    }
+
+    @Override
+    public String getEffectHullmodId() {
+        if (AlcoholRepo.getActiveCustomAlcoholList().contains(this) && effectHullmodId.equals(DEFAULT_EFFECT_HULLMOD)) {
+            effectHullmodId = getNextFreeHullmodId();
+        } else if (!AlcoholRepo.getActiveCustomAlcoholList().contains(this) && !effectHullmodId.equals(DEFAULT_EFFECT_HULLMOD)) effectHullmodId = DEFAULT_EFFECT_HULLMOD;
+
+        return effectHullmodId;
+    }
+
+    public String getNextFreeHullmodId(){
+        List<String> takenIds = new ArrayList<>();
+        List<String> available = new ArrayList<>(Arrays.asList("alcoholism_custom_1", "alcoholism_custom_2", "alcoholism_custom_3"));
+
+        for (AlcoholAPI alcohol : AlcoholRepo.getActiveCustomAlcoholList()) if (!((CustomAlcohol) alcohol).effectHullmodId.equals(DEFAULT_EFFECT_HULLMOD)) takenIds.add(((CustomAlcohol) alcohol).effectHullmodId);
+
+        String hullmodId = DEFAULT_EFFECT_HULLMOD;
+        available.removeAll(takenIds);
+        if (!available.isEmpty()) hullmodId = available.get(0);
+
+        return hullmodId;
+    }
+
+    @Override
+    public String getDesc() {
+        return desc;
+    }
+
+    @Override
+    public String getShortDesc() {
+        return shortDesc;
     }
 }

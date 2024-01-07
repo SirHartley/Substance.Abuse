@@ -203,7 +203,7 @@ public class CustomAlcoholPanel {
 
             //entry buttons
 
-            buttonId = "filter_entry_" + alcohol.uid;
+            buttonId = "filter_entry_" + alcohol.getId();
             prerequisiteForActive = currentFilter == AlcoholListFilter.ARCHIVE;
             baseColor = prerequisiteForActive ? Misc.getButtonTextColor() : Misc.getTextColor();
             bgColour = prerequisiteForActive ? Misc.getDarkPlayerColor() : Misc.getGrayColor();
@@ -223,7 +223,7 @@ public class CustomAlcoholPanel {
             alcoholEntry.addUIElement(variableButtonAnchor).inBR(opad, opad);
             lastUsedVariableButtonAnchor = variableButtonAnchor;
 
-            buttonId = "edit_entry_" + alcohol.uid;
+            buttonId = "edit_entry_" + alcohol.getId();
             baseColor = Misc.getButtonTextColor();
             bgColour = Misc.getDarkPlayerColor();
             entryButtonWidth = 70f;

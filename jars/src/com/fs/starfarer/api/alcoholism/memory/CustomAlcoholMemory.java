@@ -20,15 +20,15 @@ public class CustomAlcoholMemory {
 
     //permanent
     public static CustomAlcoholMemory getInstanceOrRegister() {
-        MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
+        Map<String, Object> mem = Global.getSector().getPersistentData();
 
-        if (mem.contains(CUSTOM_ALCOHOL_MEMORY_KEY)) return (CustomAlcoholMemory) mem.get(CUSTOM_ALCOHOL_MEMORY_KEY);
+        if (mem.containsKey(CUSTOM_ALCOHOL_MEMORY_KEY)) return (CustomAlcoholMemory) mem.get(CUSTOM_ALCOHOL_MEMORY_KEY);
         else {
 
             ModPlugin.log("creating new Custom Alcohol Memory");
 
             CustomAlcoholMemory memory = new CustomAlcoholMemory();
-            mem.set(CUSTOM_ALCOHOL_MEMORY_KEY, memory);
+            mem.put(CUSTOM_ALCOHOL_MEMORY_KEY, memory);
 
             return memory;
         }
@@ -43,7 +43,7 @@ public class CustomAlcoholMemory {
     }
 
     public void add(CustomAlcohol alcohol){
-        alcoholMap.put(alcohol.id, alcohol);
+        alcoholMap.put(alcohol.getId(), alcohol);
     }
 
     public void remove(CustomAlcohol alcohol){

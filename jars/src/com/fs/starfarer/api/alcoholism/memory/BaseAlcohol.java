@@ -114,7 +114,7 @@ public abstract class BaseAlcohol implements AlcoholAPI {
     }
 
     public void addShortEffectText(TooltipMakerAPI tooltip){
-        tooltip.addPara(Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText2(), 10f);
+        tooltip.addPara(getShortDesc(), 10f);
     }
 
     public void addCurrentHullmodEffectSection(TooltipMakerAPI tooltip){
@@ -132,5 +132,15 @@ public abstract class BaseAlcohol implements AlcoholAPI {
 
     public float getMult() {
         return mult;
+    }
+
+    @Override
+    public String getDesc() {
+        return Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText1();
+    }
+
+    @Override
+    public String getShortDesc() {
+        return Global.getSettings().getDescription(getCommodityId(), Description.Type.RESOURCE).getText2();
     }
 }

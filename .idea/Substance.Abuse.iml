@@ -14,5 +14,6 @@
     <orderEntry type="library" name="starsector-core" level="application" />
     <orderEntry type="library" name="commons-compiler-jdk" level="application" />
     <orderEntry type="library" name="LazyLib" level="application" />
+    <orderEntry type="library" name="LunaLib" level="application" />
   </component>
 </module>

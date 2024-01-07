@@ -87,7 +87,7 @@ public class BlackoutScript implements EveryFrameScript {
     }
 
     private void stopAllConsumption(){
-        for (AlcoholAPI baseAlcohol : AlcoholRepo.ALCOHOL_MAP.values()){
+        for (AlcoholAPI baseAlcohol : AlcoholRepo.getAllAlcohol()){
             baseAlcohol.getAddictionStatus().setConsuming(false);
         }
     }
@@ -108,7 +108,7 @@ public class BlackoutScript implements EveryFrameScript {
         cargo.addSupplies(Math.min((suppliesPerMonth * 3) + fleet.getLogistics().getTotalRepairAndRecoverySupplyCost(), maxCargo - 5f));
 
         MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
-        List<AlcoholAPI> alcoholList = new ArrayList<>(AlcoholRepo.getNonCustomAlcoholList());
+        List<AlcoholAPI> alcoholList = new ArrayList<>(AlcoholRepo.getIndustrialAlcoholList());
         WeightedRandomPicker<AlcoholAPI> picker = new WeightedRandomPicker<>(true);
         picker.addAll(alcoholList);
 

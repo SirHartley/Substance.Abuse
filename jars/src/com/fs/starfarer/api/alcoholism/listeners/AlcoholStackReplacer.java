@@ -13,10 +13,6 @@ import java.util.List;
 
 public class AlcoholStackReplacer implements CargoTabListener {
 
-
-    //todo implement check if this alcohol was overridden with another version, and become "spoiled" if it is
-
-
     //transient
     public static void register() {
         ListenerManagerAPI manager = Global.getSector().getListenerManager();
@@ -43,7 +39,8 @@ public class AlcoholStackReplacer implements CargoTabListener {
             if(s.isSpecialStack()){
                 String id = s.getSpecialDataIfSpecial().getId();
 
-                if(AlcoholRepo.isAlcohol(id)){
+                //exclude custom alcohol from stack replacing
+                if(AlcoholRepo.isIndustrialAlcohol(id)){
                    stacksToSwitch.add(s);
                 }
             }
@@ -62,10 +59,10 @@ public class AlcoholStackReplacer implements CargoTabListener {
         List<CargoStackAPI> stacksToSwitch = new ArrayList<>();
 
         for (CargoStackAPI s : cargo.getStacksCopy()){
-            if(s.isCommodityStack()){
+            if(s.isCommodityStack() && Global.getSettings().getCommoditySpec(s.getCommodityId()).hasTag("alcohol")){
                 String id = s.getCommodityId();
 
-                if(AlcoholRepo.isAlcohol(id)){
+                if(AlcoholRepo.isIndustrialAlcohol(AlcoholRepo.convertID(id))){
                     stacksToSwitch.add(s);
                 }
             }

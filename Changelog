@@ -4,6 +4,17 @@ Item Sprites - Bought and modified, https://assetstore.unity.com/publishers/1384
 Industry Image - Commission, Anton Juntunen, https://www.artstation.com/antonjuntunen
 Special thanks to: Avanitia, SilverLight
 ------------------OoooooO------------------
+
+todo
+change current impl for custom alcohol to run off single customItemPlugin
+feed alcohol profile to stack as customItemData and run the rest of the imp off it
+will result in there being only one active custom alcohol at a time but that's fine
+
+- implement special item
+- implement special item handling through framework
+- implement a hullmod by manually adding the spec to the repo
+
+
 2.0.a - UNRELEASED
 Added - Support for multiple alcohol types per faction
 Adjusted - Wording on darjeeling description adjusted for accuracy

@@ -7,6 +7,7 @@ import com.fs.starfarer.api.alcoholism.memory.*;
 import com.fs.starfarer.api.alcoholism.scripts.BlackoutScript;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.CargoAPI;
+import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.loading.VariantSource;
@@ -44,7 +45,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
     private void devActions(){
         AddictionMemory memory = AddictionMemory.getInstanceOrRegister();
-        for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()){
+        for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()){
             ModPlugin.log(alcohol.getName() + " is consuming " + memory.getStatusForId(alcohol.getId()).isConsuming() + " value " + memory.getStatusForId(alcohol.getId()).getAddictionValue());
         }
 
@@ -68,8 +69,8 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         float days = isDevmode ? 10f: 1f;
         float totalAddictionGain = 0f;
 
-        for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()){
-
+        //normal alcohol
+        for (AlcoholAPI alcohol : AlcoholRepo.getIndustrialAlcoholList()){
             AddictionStatus addictionStatus = alcohol.getAddictionStatus();
             String id = alcohol.getId();
             String commodityID = alcohol.getCommodityId();
@@ -115,6 +116,51 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
             }
         }
 
+        //custom alcohol
+        for (AlcoholAPI alcohol : AlcoholRepo.getCustomAlcoholList()){
+            AddictionStatus addictionStatus = alcohol.getAddictionStatus();
+            String id = alcohol.getId();
+            SpecialItemData data = new SpecialItemData(CustomAlcohol.CUSTOM_ALCOHOL_ITEM_ID, id);
+            float mult = 1f;
+
+            if(addictionStatus.isConsuming()){
+                float toConsume = Math.max(1f, getCurrentRequiredUnitsPerDay(alcohol));
+
+                unitsConsumed += toConsume;
+                ModPlugin.log(alcohol.getName() + " - consuming " + toConsume + " | total: " + unitsConsumed + " in " + AddictionBrain.getDaysAddicted(alcohol.getMult(), addictionStatus.getAddictionValue()) + " days");
+
+                if(cargo.getQuantity(CargoAPI.CargoItemType.SPECIAL, data) >= toConsume){
+                    if(isConsumingWater()) mult -= getWaterMult();
+
+                    cargo.removeItems(CargoAPI.CargoItemType.SPECIAL, data, toConsume);
+                    totalAddictionGain += alcohol.incrementAddiction(days * mult); //this increments the addiction
+
+                    if(!warningMap.containsKey(id) && cargo.getQuantity(CargoAPI.CargoItemType.SPECIAL, data) < TooltipHelper.getPredictedAmountRequiredForOneMonth(id)){
+                        Global.getSector().getCampaignUI().addMessage("You will run out of %s within the next %s",
+                                Misc.getTextColor(),
+                                alcohol.getName(),
+                                TooltipHelper.getAmountWillLastDays(alcohol, cargo.getQuantity(CargoAPI.CargoItemType.SPECIAL, data)) + " days.",
+                                alcohol.getFaction().getColor(),
+                                Misc.getNegativeHighlightColor());
+
+                        warningMap.put(id, 14);
+                    }
+
+                } else {
+                    ModPlugin.log("no alcohol in cargo: " + alcohol.getId());
+
+                    addictionStatus.setConsuming(false);
+                    Global.getSector().getCampaignUI().addMessage("You have run out of %s and are now %s", Misc.getTextColor(), alcohol.getName(), "in withdrawal.", alcohol.getFaction().getColor(), Misc.getNegativeHighlightColor());
+                }
+
+            } else if (addictionStatus.isWithdrawal()){
+                if(isConsumingWater()) mult += getWaterMult();
+                alcohol.incrementAddiction(-days * mult);
+
+                if(!addictionStatus.isAddicted()) Global.getSector().getCampaignUI().addMessage("You are no longer addicted to %s.", Misc.getTextColor(), alcohol.getName(), null, alcohol.getFaction().getColor(), null);
+            }
+        }
+
         memory.addTotalDailyAddictionGainToMemory(totalAddictionGain);
         reapply();
 
@@ -126,7 +172,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     public void reapply(){
-        List<AlcoholAPI> alcoholList = new ArrayList<>(AlcoholRepo.ALCOHOL_MAP.values());
+        List<AlcoholAPI> alcoholList = new ArrayList<>(AlcoholRepo.getAllAlcohol());
         for(FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
             ShipVariantAPI variant = m.getVariant();
 
@@ -181,10 +227,10 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         return Math.min(minCrew, crew);
     }
 
-    public void applHullmodToFleet(String id) {
+    public void applHullmodToFleet(String alcoholId) {
         for (FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
             ShipVariantAPI variant = m.getVariant();
-            String hullmodID = AlcoholRepo.get(id).getEffectHullmodId();
+            String hullmodID = AlcoholRepo.get(alcoholId).getEffectHullmodId();
 
             m.getVariant().addPermaMod(hullmodID);
 
@@ -195,9 +241,9 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         }
     }
 
-    public void unapplyHullmodFromFleet(String id) {
+    public void unapplyHullmodFromFleet(String alcoholId) {
         for (FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
-            String hullmodID = AlcoholRepo.get(id).getEffectHullmodId();
+            String hullmodID = AlcoholRepo.get(alcoholId).getEffectHullmodId();
             ShipVariantAPI variant = m.getVariant();
 
             if(!variant.getHullMods().contains(hullmodID)) continue;
@@ -218,7 +264,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     public void applyActiveAlcoholHullmods(CampaignFleetAPI fleet){
-        for (AlcoholAPI alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+        for (AlcoholAPI alcohol : AlcoholRepo.getAllAlcohol()) {
             if(!alcohol.getAddictionStatus().isAddicted()) continue;
 
             String hullmodID = alcohol.getEffectHullmodId();
