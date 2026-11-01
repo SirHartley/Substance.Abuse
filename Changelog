@@ -5,7 +5,7 @@ Industry Image - Commission, Anton Juntunen, https://www.artstation.com/antonjun
 Special thanks to: Avanitia, SilverLight
 ------------------OoooooO------------------
 
-1.1.e - UNRELEASED
+1.1.e
 Fixed - Stutter at the start of every day with large fleets, worst alongside mods whose skills or hullmods check cargo
 Fixed - Absynth OP adjustment stripped ships that were never refit on Absynth, including fleets that never drank it
 Fixed - Crash when opening a drink or drink hullmod in the Codex from the main menu

@@ -1,6 +1,6 @@
 # Architecture
 
-Technical routing for the current implementation on `master` (1.1.d line). Code paths below are relative to `jars/src/com/fs/starfarer/api/alcoholism/`; data paths are repository-relative. Search the named owner before adding another implementation.
+Technical routing for the current implementation on `master` (1.1.e line). Code paths below are relative to `jars/src/com/fs/starfarer/api/alcoholism/`; data paths are repository-relative. Search the named owner before adding another implementation.
 
 The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-line). This file does not describe it.
 

@@ -21,11 +21,11 @@ A version appears in four places. `ReleaseBuild package` stamps the first two in
 
 `alcohol.version` is the Version Checker file, registered in `data/config/version/version_files.csv`. Version Checker reads `masterVersionFile` from the installed copy and fetches that URL; `directDownloadURL` and `changelogURL` are taken from the fetched file. The file allows `#` comments and trailing commas.
 
-The committed URLs point at `SirHartley/Substance.Abuse.Legacy` until the first release from this repository. `package` stamps `masterVersionFile` and `changelogURL` to this repository's `master` and `directDownloadURL` to this repository's release, so the first release does the URL part of the hand-over in [BRANCHES.md](BRANCHES.md#version-file-hand-over). Do not edit the URLs by hand.
+`package` stamps `masterVersionFile` and `changelogURL` to this repository's `master` and `directDownloadURL` to the release, and the workflow commits that file back. 1.1.e was the first release to do this, which moved the URLs off `SirHartley/Substance.Abuse.Legacy` ([BRANCHES.md](BRANCHES.md#version-file-hand-over)). Do not edit the URLs by hand.
 
 ## Release jar
 
-`jars/release/alcoholism.jar` is committed and ships as `jars/alcoholism.jar` (`mod_info.json` `jars`). It holds Java 17 runtime classes only, without the `tools` package, and a `Source-SHA256` manifest entry over `jars/src` and the `lib/` jars. The current file is the 1.1.d jar, built by IntelliJ, without that entry, so it counts as stale.
+`jars/release/alcoholism.jar` is committed and ships as `jars/alcoholism.jar` (`mod_info.json` `jars`). It holds Java 17 runtime classes only, without the `tools` package, and a `Source-SHA256` manifest entry over `jars/src` and the `lib/` jars.
 
 ```text
 java jars/src/com/fs/starfarer/api/alcoholism/tools/ReleaseBuild.java build

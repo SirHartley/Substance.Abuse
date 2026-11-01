@@ -4,7 +4,7 @@
 
 A [Starsector](https://fractalsoftworks.com/) mod that adds 10 alcoholic beverages to the sector. Keep your crew supplied and your whole fleet gets bonuses. Let the supply run dry and they go into withdrawal. Drink too much at once and you black out.
 
-**Game version:** 0.98a | **Mod version:** 1.1.d | **Forum thread:** [fractalsoftworks.com/forum/index.php?topic=24378](https://fractalsoftworks.com/forum/index.php?topic=24378)
+**Game version:** 0.98a | **Mod version:** 1.1.e | **Forum thread:** [fractalsoftworks.com/forum/index.php?topic=24378](https://fractalsoftworks.com/forum/index.php?topic=24378)
 
 ## Features
 
@@ -44,7 +44,7 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 ## Installation
 
 1. Install [LunaLib](https://fractalsoftworks.com/forum/index.php?topic=25658) (required).
-2. Download the latest release from the [Releases page](https://github.com/SirHartley/Substance.Abuse.Legacy/releases).
+2. Download the latest release from the [Releases page](https://github.com/SirHartley/Substance.Abuse/releases).
 3. Extract the zip into your `Starsector/mods` folder.
 4. Enable **Substance.Abuse** and **LunaLib** in the launcher.
 
