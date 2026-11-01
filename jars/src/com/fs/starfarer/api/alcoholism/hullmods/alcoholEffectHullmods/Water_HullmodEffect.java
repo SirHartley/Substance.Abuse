@@ -39,8 +39,8 @@ public class Water_HullmodEffect extends BaseAlcoholHullmodEffect {
         tooltip.addPara("Increases withdrawal decay by %s  [Max.: %s]",
                 opad,
                 positive,
-                Math.round(1 + (Setting.WATER_MULT.value() * effectMult)) + "x",
-                Math.round(1 + Setting.WATER_MULT.value()) + "x");
+                Misc.getRoundedValueMaxOneAfterDecimal(1 + (Setting.WATER_MULT.value() * effectMult)) + "x",
+                Misc.getRoundedValueMaxOneAfterDecimal(1 + Setting.WATER_MULT.value()) + "x");
     }
 
     @Override
@@ -58,8 +58,8 @@ public class Water_HullmodEffect extends BaseAlcoholHullmodEffect {
         tooltip.addPara("Decreases effect buildup by %s  [Max.: %s]",
                 opad,
                 negative,
-                (int) Math.round(1 + (waterMult * effectMult)) + "x",
-                (int) Math.round(1 + waterMult) + "x");
+                Misc.getRoundedValueMaxOneAfterDecimal(1 + (waterMult * effectMult)) + "x",
+                Misc.getRoundedValueMaxOneAfterDecimal(1 + waterMult) + "x");
     }
 
     @Override
