@@ -6,7 +6,7 @@ Where the code lives, which line is released, what is left of the move into one 
 
 | Repository / branch | Content |
 |---|---|
-| `SirHartley/Substance.Abuse` `master` | Released line: 1.1.d, game `0.98a`, LunaLib, Java 17. Default branch; releases are cut from here. |
+| `SirHartley/Substance.Abuse` `master` | Released line: 1.1.e, game `0.98a`, LunaLib, Java 17. Default branch; releases are cut from here. |
 | `SirHartley/Substance.Abuse` `dev` | Unfinished 2.0.a rework (custom alcohol, ingredients, brewery UI): game `0.96a`, no LunaLib. The old `master` (`1717edd`) plus a pointer `CLAUDE.md`. |
 | `SirHartley/Substance.Abuse.Legacy` | Former home of the released line. Hosts the 1.1.d release and the version file 1.1.d installs poll. Kept until the hand-over below, then archived. |
 
@@ -27,7 +27,7 @@ Installed copies poll the URL in their local `alcohol.version` (`masterVersionFi
 - 1.1.d installs poll `SirHartley/Substance.Abuse.Legacy` `master`.
 - Installs whose file points at `SirHartley/Substance.Abuse` `master` (the 1.0.j file on `dev` does) now get the 1.1.d file and are told to update.
 
-The first release from this repository changes `masterVersionFile`, `changelogURL` and `directDownloadURL` in `alcohol.version` to `SirHartley/Substance.Abuse`; the release workflow does this ([RELEASE.md](RELEASE.md#version-file)). After it, update Legacy's `alcohol.version` by hand to the same version and download URL so 1.1.d installs find it, and point the README releases link at this repository.
+The first release from this repository changes `masterVersionFile`, `changelogURL` and `directDownloadURL` in `alcohol.version` to `SirHartley/Substance.Abuse`; the release workflow does this ([RELEASE.md](RELEASE.md#version-file)). After it, update Legacy's `alcohol.version` by hand to the same version and download URL so 1.1.d installs find it.
 
 ## The dev line
 

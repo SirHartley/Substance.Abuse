@@ -1,6 +1,6 @@
 # Substance.Abuse
 
-Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.d for game 0.98a, LunaLib required.
+Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.e for game 0.98a, LunaLib required.
 
 ## Required workflow
 
