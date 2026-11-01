@@ -27,7 +27,7 @@ Installed copies poll the URL in their local `alcohol.version` (`masterVersionFi
 - 1.1.d installs poll `SirHartley/Substance.Abuse.Legacy` `master`.
 - Installs whose file points at `SirHartley/Substance.Abuse` `master` (the 1.0.j file on `dev` does) now get the 1.1.d file and are told to update.
 
-For the first release from this repository, change `masterVersionFile`, `changelogURL` and `directDownloadURL` in `alcohol.version` to `SirHartley/Substance.Abuse`, and update Legacy's `alcohol.version` to the same version and download URL so 1.1.d installs find it.
+The first release from this repository changes `masterVersionFile`, `changelogURL` and `directDownloadURL` in `alcohol.version` to `SirHartley/Substance.Abuse`; the release workflow does this ([RELEASE.md](RELEASE.md#version-file)). After it, update Legacy's `alcohol.version` by hand to the same version and download URL so 1.1.d installs find it, and point the README releases link at this repository.
 
 ## The dev line
 

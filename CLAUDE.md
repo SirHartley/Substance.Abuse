@@ -40,7 +40,7 @@ After reading this file, use the task to choose the next document. Read the rele
 - Commit messages are as short as possible: all lowercase, at most 8 words, programmer speak (`fix sweet freedom tariff sign`). One line only. No body, no conventional-commit prefix, no testing notes, agent or model names, co-author trailers, session metadata, links or trailing full stop.
 - Update the affected documentation in the same commit, following [Documentation upkeep](#documentation-upkeep). Do this without a separate user request.
 - Update `Changelog` in the same commit, using [CHANGELOG.md](docs/CHANGELOG.md).
-- Rebuild and commit `jars/alcoholism.jar`, bump versions, tag, and publish a release only when the user explicitly asks; follow [RELEASE.md](docs/RELEASE.md).
+- Rebuild and commit `jars/release/alcoholism.jar`, bump versions, run the release workflow, tag, and publish a release only when the user explicitly asks; follow [RELEASE.md](docs/RELEASE.md).
 - Work only in the current task checkout. Live installations and unrelated checkouts are read-only unless the user explicitly asks you to change them.
 - Do not deploy or synchronize after merge unless the user explicitly requests it.
 - The mod is released and can be added to running saves. Keep saves from the current public version loading: do not rename or remove saved classes, their fields, ids or memory keys listed in [ARCHITECTURE.md](docs/ARCHITECTURE.md#data-identity). Never claim save compatibility without evidence.
@@ -76,7 +76,7 @@ Update documents automatically as part of each relevant change. Before committin
 | `docs/ARCHITECTURE.md` | Technical routing: owners, registrations, data flow, lifecycle, ids and cross-file constraints of `master` | Update the affected route or contract; remove obsolete owners. Exact paths and symbols. No release history or duplicate policy. |
 | `docs/MOD_API.md` | Frozen public symbols and ids, known consumer mods | Add symbols and consumers as found. Never drop a row because the symbol changed; restore the symbol. |
 | `docs/BRANCHES.md` | Repositories, branches, open migration steps, state and API breaks of `dev` | Update when an open step is done, a branch changes, or a `dev` feature is ported or dropped. |
-| `docs/RELEASE.md` | Version numbers, version file, release jar, package | Update when a version location, URL, the jar build or the package changes. |
+| `docs/RELEASE.md` | Version numbers, version file, release jar, package, release workflow | Update when a version location, URL, the jar build, the package or `.github/workflows/release.yml` changes. |
 | `Changelog` and `docs/CHANGELOG.md` | Shipped change notes and how agents write them | Add or amend unreleased entries with each implementation task; preserve published entries and the credits block. |
 | `README.md` | Player and modder facing overview | Update when a drink, setting, requirement or the documented modder call changes. |
 | `.claude/agents/*.md` | Subagent definitions | Update when the dispatch rules below change. |

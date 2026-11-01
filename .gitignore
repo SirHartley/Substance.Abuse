@@ -1,2 +1,4 @@
 # Project exclude paths
 /jars/production
+/out/
+/jars/alcoholism.jar
