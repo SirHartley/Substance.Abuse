@@ -8,8 +8,10 @@ import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MutableCommodityQuantity;
+import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
+import com.fs.starfarer.api.impl.campaign.ids.Commodities;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.util.Misc;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
+
+    private static final String LEGACY_CLEARED_KEY = "$alcoholism_legacy_economy_cleared";
 
     @Override
     public void apply(String id) {
@@ -36,43 +40,52 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     public void unapply(String id) {
         super.unapply(id);
 
-        unapplyPlayer();
-        unapplyNPC();
-    }
+        clearLegacyEntries();
 
-    private void unapplyPlayer() {
-        if (!market.isPlayerOwned()) return;
-
-        Industry ind = market.getIndustry(Industries.POPULATION);
+        BaseIndustry pop = getBaseIndustry(Industries.POPULATION);
+        BaseIndustry lightIndustry = getBaseIndustry(Industries.LIGHTINDUSTRY);
 
         for (Alcohol alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
-            if(ind instanceof BaseIndustry){
-                ((BaseIndustry) ind).demand(getModId(), alcohol.getCommodityId(), 0, "");
+            String commodityId = alcohol.getCommodityId();
+            if (pop != null) pop.demand(getModId(), commodityId, 0, "");
+            if (lightIndustry == null) continue;
+
+            lightIndustry.supply(getModId(), commodityId, 0, "");
+            lightIndustry.supply(getDeficitModId(), commodityId, 0, "");
+            for (String s : alcohol.getDemandsForProduction()) lightIndustry.demand(getModId(), s, 0, "");
+        }
+    }
+
+    // up to 1.1.d drink supply and demand sat under the industry's own index 0 id and deficit id "3"
+    private void clearLegacyEntries() {
+        MemoryAPI memory = market.getMemoryWithoutUpdate();
+        if (memory.getBoolean(LEGACY_CLEARED_KEY)) return;
+        memory.set(LEGACY_CLEARED_KEY, true);
+
+        BaseIndustry pop = getBaseIndustry(Industries.POPULATION);
+        BaseIndustry lightIndustry = getBaseIndustry(Industries.LIGHTINDUSTRY);
+
+        for (Alcohol alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+            String commodityId = alcohol.getCommodityId();
+            if (pop != null) pop.demand(getIndustryModId(pop), commodityId, 0, "");
+            if (lightIndustry == null) continue;
+
+            lightIndustry.supply(getIndustryModId(lightIndustry), commodityId, 0, "");
+            lightIndustry.supply("3", commodityId, 0, "");
+            for (String s : alcohol.getDemandsForProduction()) {
+                // vanilla light industry sets its own organics demand under the same id
+                if (!Commodities.ORGANICS.equals(s)) lightIndustry.demand(getIndustryModId(lightIndustry), s, 0, "");
             }
         }
     }
 
-    private void unapplyNPC() {
-        if (market.isPlayerOwned()) return;
+    private static String getIndustryModId(Industry ind) {
+        return "ind_" + ind.getId() + "_0";
+    }
 
-        Industry popInfra = market.getIndustry(Industries.POPULATION);
-        Industry lightIndustry = market.getIndustry(Industries.LIGHTINDUSTRY);
-
-        if (market.hasIndustry(Industries.POPULATION)) for (Alcohol alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
-            ((BaseIndustry) popInfra).demand(getModId(), alcohol.getCommodityId(), 0, "");
-        }
-
-        if (market.hasIndustry(Industries.LIGHTINDUSTRY)) {
-            lightIndustry.supply(getModId(), AlcoholRepo.convertID(AlcoholRepo.WATER), 0, "");
-
-            for (Alcohol alcohol : getAlcoholForMarket()) {
-                lightIndustry.supply(getModId(), alcohol.getCommodityId(), 0, "");
-
-                for (String s : alcohol.getDemandsForProduction()) {
-                    ((BaseIndustry) lightIndustry).demand(getModId(), s, 0, "");
-                }
-            }
-        }
+    private BaseIndustry getBaseIndustry(String industryId) {
+        Industry ind = market.getIndustry(industryId);
+        return ind instanceof BaseIndustry ? (BaseIndustry) ind : null;
     }
 
     private void applyPlayerAlcohol() {
@@ -124,26 +137,25 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     }
 
     private void applyDemand(String industryID, int marketSizeMod, String... commodityIDs) {
-        if (market.hasIndustry(industryID)) {
-            BaseIndustry ind = (BaseIndustry) market.getIndustry(industryID);
-            int amt = Math.max(0, market.getSize() + marketSizeMod);
+        BaseIndustry ind = getBaseIndustry(industryID);
+        if (ind == null) return;
+        int amt = Math.max(0, market.getSize() + marketSizeMod);
 
-            for (String s : commodityIDs) {
-                //don't demand anyhing that the industry supplies in higher numbers
-                if (ind.getSupply(s).getQuantity().getModifiedInt() >= amt) continue;
-                applyDemand(ind, s, amt);
-            }
+        for (String s : commodityIDs) {
+            //don't demand anyhing that the industry supplies in higher numbers
+            if (ind.getSupply(s).getQuantity().getModifiedInt() >= amt) continue;
+            ind.demand(getModId(), s, amt, BaseIndustry.BASE_VALUE_TEXT);
         }
     }
 
     private void applySupply(String industryID, int marketSizeMod, String... commodityIDs) {
-        if (market.hasIndustry(industryID)) {
-            BaseIndustry ind = (BaseIndustry) market.getIndustry(industryID);
-            int amt = Math.max(0, market.getSize() + marketSizeMod);
+        BaseIndustry ind = getBaseIndustry(industryID);
+        if (ind == null) return;
+        int amt = Math.max(0, market.getSize() + marketSizeMod);
 
-            for (String s : commodityIDs) {
-                applySupply(ind, s, amt);
-            }
+        for (String s : commodityIDs) {
+            ind.supply(getModId(), s, amt, BaseIndustry.BASE_VALUE_TEXT);
+            applyDeficitToProduction(ind, getDeficitModId(), getMaxDeficit(ind), s);
         }
     }
 
@@ -155,7 +167,10 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     public static void applySupply(BaseIndustry ind, String commodityId, int amt) {
         if (amt == 0) return;
         ind.supply(commodityId, amt);
+        applyDeficitToProduction(ind, "3", getMaxDeficit(ind), commodityId);
+    }
 
+    private static Pair<String, Integer> getMaxDeficit(BaseIndustry ind) {
         Pair<String, Integer> result = new Pair<String, Integer>();
         result.two = 0;
 
@@ -172,20 +187,12 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
             }
         }
 
-        applyDeficitToProduction(ind, 3, result,
-                commodityId);
+        return result;
     }
 
-    private static void applyDeficitToProduction(Industry ind, int index, Pair<String, Integer> deficit, String... commodities) {
-        String[] var7 = commodities;
-        int var6 = commodities.length;
-
-        for (int var5 = 0; var5 < var6; ++var5) {
-            String commodity = var7[var5];
-            if (!ind.getSupply(commodity).getQuantity().isUnmodified()) {
-                ind.supply(String.valueOf(index), commodity, -(Integer) deficit.two, BaseIndustry.getDeficitText((String) deficit.one));
-            }
-        }
+    private static void applyDeficitToProduction(Industry ind, String modId, Pair<String, Integer> deficit, String commodity) {
+        if (ind.getSupply(commodity).getQuantity().isUnmodified()) return;
+        ind.supply(modId, commodity, -deficit.two, BaseIndustry.getDeficitText(deficit.one));
     }
 
     private List<Alcohol> getAlcoholForMarket() {
@@ -201,5 +208,9 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     @Override
     public String getModId() {
         return condition.getId();
+    }
+
+    private String getDeficitModId() {
+        return getModId() + "_deficit";
     }
 }
