@@ -24,6 +24,7 @@ Fixed - The fleet left behind after a blackout could rejoin you from another sta
 Fixed - The last blackout message never showed
 Fixed - Reapers Blood never made ships without officers aggressive, or cautious in withdrawal
 Fixed - Prometheus Gift withdrawal tooltip read "Reduces max. burn by -2"
+Fixed - Hangover Cure tooltip rounded its multiplier, showing 2x at the default setting instead of 1.5x
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
