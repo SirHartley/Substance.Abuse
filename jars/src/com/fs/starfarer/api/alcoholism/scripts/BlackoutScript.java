@@ -80,7 +80,7 @@ public class BlackoutScript implements EveryFrameScript {
         movePlayerFleet();
         stopAllConsumption();
 
-        Global.getSector().getCampaignUI().showMessageDialog(QUIP_LIST.get(new Random().nextInt(QUIP_LIST.size()-1))
+        Global.getSector().getCampaignUI().showMessageDialog(QUIP_LIST.get(new Random().nextInt(QUIP_LIST.size()))
                 + "\n\nThis situation appears to be a result of consuming too much alcohol at once. Check your intel entries for more info.");
         Global.getSector().setPaused(true);
 
