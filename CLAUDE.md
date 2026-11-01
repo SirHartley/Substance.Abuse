@@ -169,7 +169,7 @@ Required compile dependencies, all in `lib/` (read-only, copied from Industrial 
 
 - Game jars from `starsector-core`: `starfarer.api.jar`, `starfarer_obf.jar` and `fs.common_obf.jar` (`BlackoutScript` uses `CampaignEngine`), `lwjgl.jar`, `lwjgl_util.jar`, `json.jar`, `log4j-1.2.9.jar`. Never substitute Maven versions.
 - `LunaLib.jar` (LunaLib 2.0.1), for `lunalib.lunaSettings`.
-- `LazyLib.jar` (LazyLib 3.0.0), for `DefenseUtils`; it also carries `org.jetbrains.annotations.NotNull`, used in `SettingsHandler`.
+- `LazyLib.jar` (LazyLib 3.0.0), for `DefenseUtils`.
 
 Replace a jar only when the user supplies a new version, and note the version here. The game loads only the jars `mod_info.json` lists, so `lib/` never reaches the game; keep it out of the release zip ([RELEASE.md](docs/RELEASE.md#package)).
 

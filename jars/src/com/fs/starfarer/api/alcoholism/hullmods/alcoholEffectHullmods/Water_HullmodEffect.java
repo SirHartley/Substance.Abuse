@@ -2,7 +2,7 @@ package com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods;
 
 import com.fs.starfarer.api.alcoholism.hullmods.BaseAlcoholHullmodEffect;
 import com.fs.starfarer.api.alcoholism.memory.AddictionBrain;
-import com.fs.starfarer.api.alcoholism.memory.SettingsHandler;
+import com.fs.starfarer.api.alcoholism.config.Setting;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
@@ -39,8 +39,8 @@ public class Water_HullmodEffect extends BaseAlcoholHullmodEffect {
         tooltip.addPara("Increases withdrawal decay by %s  [Max.: %s]",
                 opad,
                 positive,
-                Math.round(1 + (SettingsHandler.getInstance().waterMult * effectMult)) + "x",
-                Math.round(1 + SettingsHandler.getInstance().waterMult) + "x");
+                Math.round(1 + (Setting.WATER_MULT.value() * effectMult)) + "x",
+                Math.round(1 + Setting.WATER_MULT.value()) + "x");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Water_HullmodEffect extends BaseAlcoholHullmodEffect {
 
         tooltip.addSectionHeading("Negative Effect", Misc.getTextColor(), new Color(150, 100, 50, 255), Alignment.MID, 10f);
 
-        float waterMult = SettingsHandler.getInstance().waterMult;
+        float waterMult = Setting.WATER_MULT.value();
 
         tooltip.addPara("Decreases effect buildup by %s  [Max.: %s]",
                 opad,

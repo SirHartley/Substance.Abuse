@@ -5,7 +5,7 @@ import com.fs.starfarer.api.alcoholism.listeners.AlcoholConsumptionManager;
 import com.fs.starfarer.api.alcoholism.listeners.NewDayListener;
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
-import com.fs.starfarer.api.alcoholism.memory.SettingsHandler;
+import com.fs.starfarer.api.alcoholism.config.Setting;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.PlayerMarketTransaction;
@@ -28,7 +28,7 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
     public static void register(){
         ListenerManagerAPI m = Global.getSector().getListenerManager();
 
-        if(SettingsHandler.getInstance().adjustOP){
+        if(Setting.ADJUST_OP_WHEN_OVER_LIMIT.enabled()){
             if(m.hasListenerOfClass(ExcessOPStripper.class)) return;
             m.addListener( new ExcessOPStripper());
         } else m.removeListenerOfClass(ExcessOPStripper.class);

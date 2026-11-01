@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.TooltipHelper;
 import com.fs.starfarer.api.alcoholism.hullmods.campaignEffects.ExcessOPStripper;
+import com.fs.starfarer.api.alcoholism.config.Setting;
 import com.fs.starfarer.api.alcoholism.memory.*;
 import com.fs.starfarer.api.alcoholism.scripts.BlackoutScript;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
@@ -120,7 +121,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         reapply();
 
         //if all alcohols are consumed at once, this will take less than three days.
-        if(memory.getTotaladdictionGainLastMonth() >= SettingsHandler.getInstance().monthlyAddictionGainLimitBeforeBlackout){
+        if(memory.getTotaladdictionGainLastMonth() >= Setting.MONTHLY_ADDICTION_GAIN_LIMIT_BEFORE_BLACKOUT.value()){
             BlackoutScript.register();
             AddictionMemory.getInstanceOrRegister().resetAddictionMap();
         }
@@ -189,7 +190,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     public float getWaterMult(){
-        return AlcoholRepo.get(AlcoholRepo.WATER).getAddictionStatus().getAddictionValue() * SettingsHandler.getInstance().waterMult;
+        return AlcoholRepo.get(AlcoholRepo.WATER).getAddictionStatus().getAddictionValue() * Setting.WATER_MULT.value();
     }
 
     public boolean isConsumingWater(){

@@ -55,7 +55,7 @@ Each break below makes a consumer from [MOD_API.md](MOD_API.md) fail at run time
 | `AlcoholRepo.isAlcohol(String)` | exists | removed (`isIndustrialAlcohol`) | any caller |
 | `AlcoholAPI.addStatusTooltip(TooltipMakerAPI)` | in the interface | replaced by `(TooltipMakerAPI, boolean)` | any implementer or caller through the interface |
 | `AlcoholAPI` | 4 methods | 16 methods | any other implementation (`AbstractMethodError`) |
-| `memory.SettingsHandler` | exists | removed | any caller |
+| `memory.SettingsHandler` | field-only save shell, no methods | removed | saves made before 1.1.e |
 
 Save data: `AddictionMemory` moved from sector memory to `Global.getSector().getPersistentData()` under the same key `$AddictionMemory`. A 1.1.d save loaded on `dev` starts with a fresh addiction state and keeps the old object in sector memory.
 
