@@ -1,6 +1,6 @@
 # Substance.Abuse, dev branch
 
-This `dev` branch holds the unfinished 2.0.a rework of the Starsector mod `alcoholism`. The workflow, guides and compatibility rules live on `master`, the released line: read `CLAUDE.md` on `master` in full before starting a task and follow it here. The two branches share no history; `pre-legacy-master` tags this branch's last commit before the move.
+This `dev` branch holds the unfinished 2.0.a rework of the Starsector mod `alcoholism`. The workflow, guides and compatibility rules live on `master`, the released line: read `CLAUDE.md` on `master` in full before starting a task and follow it here. The two branches share no history; `1717edd` is this branch's last commit from before the move.
 
 `docs/BRANCHES.md` on `master` describes this line, the API breaks it contains and how its features move to `master`. `docs/MOD_API.md` there lists the symbols other mods use; do not add new breaks here.
 
