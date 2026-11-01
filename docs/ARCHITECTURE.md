@@ -29,7 +29,7 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 | Drink supply and demand on markets | `listeners/ResourceConditionApplicator -> conditions/AlcoholResourceCondition -> FactionAlcoholHandler.getFactionAlcoholTypes` |
 | Which faction makes which drink | `memory/FactionAlcoholHandler.assignFactionAlcohols / setFactionAlcoholTypes` |
 | Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper`; ships are tagged `alcoholism_absynth_fit` on refit save by `AlcoholConsumptionManager.reportFleetMemberVariantSaved` (`RefitScreenListener`) and only tagged ships are stripped |
-| Tariffs, officer XP, sustained burn, terrain effects | `hullmods/campaignEffects/TariffModifier`, `OfficerXPGainModifier`, `SustainedBurnNavigationModifier`, `TerrainEffectModifier`, registered from the owning drink's hullmod |
+| Tariffs, officer XP, sustained burn, terrain effects | `hullmods/campaignEffects/TariffModifier`, `OfficerXPGainModifier`, `SustainedBurnNavigationModifier`, `TerrainEffectModifier`, registered from the owning drink's hullmod in every state that has a campaign effect, withdrawal included, since they are transient |
 | Player settings | `config/Setting`, `config/PlayerSettings` and `data/config/LunaSettings.csv` |
 
 ## Registration and lifecycle

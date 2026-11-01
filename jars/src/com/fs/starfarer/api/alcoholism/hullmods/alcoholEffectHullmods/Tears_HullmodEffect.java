@@ -65,6 +65,7 @@ public class Tears_HullmodEffect extends BaseAlcoholHullmodEffect {
         stats.getEmpDamageTakenMult().modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_EDAMAGE_TAKEN_INCREASE), getDesc());
 
         if(effectMult > 0.7f) stats.getVentRateMult().modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_VENT_RATE_REDUCTION), getDesc());
+        OfficerXPGainModifier.register();
     }
 
     @Override
