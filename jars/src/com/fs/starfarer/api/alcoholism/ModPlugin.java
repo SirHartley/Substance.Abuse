@@ -2,6 +2,7 @@ package com.fs.starfarer.api.alcoholism;
 
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.config.PlayerSettings;
 import com.fs.starfarer.api.alcoholism.hullmods.campaignEffects.ExcessOPStripper;
 import com.fs.starfarer.api.alcoholism.industry.BreweryPlacer;
 import com.fs.starfarer.api.alcoholism.listeners.AlcoholConsumptionManager;
@@ -17,8 +18,16 @@ import com.fs.starfarer.api.impl.codex.CodexDataV2;
 
 public class ModPlugin extends BaseModPlugin {
 
+    public static final String MOD_ID = "alcoholism";
+
     public static void log(String Text) {
         if(Global.getSettings().isDevMode()) Global.getLogger(ModPlugin.class).info(Text);
+    }
+
+    @Override
+    public void onApplicationLoad() throws Exception {
+        super.onApplicationLoad();
+        PlayerSettings.install();
     }
 
     @Override
@@ -33,7 +42,9 @@ public class ModPlugin extends BaseModPlugin {
         RefitUIOpenChecker.register();
 
         //alcohol functionality
-        SettingsHandler.getInstance().settingsChanged("alcoholism");
+        PlayerSettings.install();
+        // settings now live in PlayerSettings, drop the copy older saves carry
+        Global.getSector().getPersistentData().remove(SettingsHandler.KEY);
         AddictionMemory.getInstanceOrRegister().refresh();
         AlcoholStackReplacer.register();
         AlcoholConsumptionManager.getInstanceOrRegister();

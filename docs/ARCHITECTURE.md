@@ -30,12 +30,13 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 | Which faction makes which drink | `memory/FactionAlcoholHandler.assignFactionAlcohols / setFactionAlcoholTypes` |
 | Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper`; ships are tagged `alcoholism_absynth_fit` on refit save by `AlcoholConsumptionManager.reportFleetMemberVariantSaved` (`RefitScreenListener`) and only tagged ships are stripped |
 | Tariffs, officer XP, sustained burn, terrain effects | `hullmods/campaignEffects/TariffModifier`, `OfficerXPGainModifier`, `SustainedBurnNavigationModifier`, `TerrainEffectModifier`, registered from the owning drink's hullmod |
-| Player settings | `memory/SettingsHandler` and `data/config/LunaSettings.csv` |
+| Player settings | `config/Setting`, `config/PlayerSettings` and `data/config/LunaSettings.csv` |
 
 ## Registration and lifecycle
 
 | Registry / hook | Owners |
 |---|---|
+| `ModPlugin.onApplicationLoad()` | `PlayerSettings.install()` |
 | `ModPlugin.onGameLoad()` | Registers every script and listener below; each `register()` checks for an existing instance first. |
 | `ModPlugin.onAboutToLinkCodexEntries()` | Links each drink's commodity, item, recipe and hullmod Codex entries with `CodexDataV2.makeRelated` |
 | `data/campaign/commodities.csv` | Drink commodities `<drink>_c` |
@@ -43,18 +44,20 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 | `data/campaign/industries.csv` | `alcohol_brewery` (`Brewery`) |
 | `data/campaign/market_conditions.csv` | `alcohol_resourceCondition` (`AlcoholResourceCondition`) |
 | `data/hullmods/hull_mods.csv` | Effect hullmods `<drink>` (`<Drink>_HullmodEffect`), tagged `codex_require_related` so the Codex unlocks them with their drink; `alcoholism_bonus_*` (`SelfRepairingBuiltInHullmod`) |
-| `data/config/LunaSettings.csv` | LunaLib settings tab; read by `SettingsHandler` |
+| `data/config/LunaSettings.csv` | LunaLib settings tab; read by `PlayerSettings` |
 | `data/config/settings.json` | Sprite keys under `graphics.alcohol` |
 | `data/strings/descriptions.csv`, `data/strings/tips.json` | Descriptions and loading tips |
 | `data/config/version/version_files.csv` | Version Checker entry, see [RELEASE.md](RELEASE.md) |
 
-Load order in `ModPlugin.onGameLoad`: dev actions (dev mode only) -> `NewDayTracker` -> `CargoUIOpenChecker` -> `RefitUIOpenChecker` -> `SettingsHandler` refresh -> `AddictionMemory.refresh` -> `AlcoholStackReplacer` -> `AlcoholConsumptionManager` -> `ExcessOPStripper` -> `FactionAlcoholHandler.assignFactionAlcohols` -> `ResourceConditionApplicator` -> `BreweryPlacer.placeBreweries` -> recipe and recipe book item effects.
+Load order in `ModPlugin.onGameLoad`: dev actions (dev mode only) -> `NewDayTracker` -> `CargoUIOpenChecker` -> `RefitUIOpenChecker` -> `PlayerSettings.install` -> remove `alcoholism_settings` from persistent data -> `AddictionMemory.refresh` -> `AlcoholStackReplacer` -> `AlcoholConsumptionManager` -> `ExcessOPStripper` -> `FactionAlcoholHandler.assignFactionAlcohols` -> `ResourceConditionApplicator` -> `BreweryPlacer.placeBreweries` -> recipe and recipe book item effects.
 
-There is no `onApplicationLoad`. `AlcoholRepo.ALCOHOL_MAP` is filled in its static initializer; other mods add to it from their own plugins (see [MOD_API.md](MOD_API.md)).
+`onApplicationLoad` only installs the settings. `AlcoholRepo.ALCOHOL_MAP` is filled in its static initializer; other mods add to it from their own plugins (see [MOD_API.md](MOD_API.md)).
 
 ### Settings
 
-`memory/SettingsHandler` is a `LunaSettingsListener` stored in sector persistent data under `alcoholism_settings`. It caches the five values from `LunaSettings.csv` (`alcoholism_*` field ids) and re-reads them on `settingsChanged("alcoholism")`. Runtime code reads the cached fields through `SettingsHandler.getInstance()`. `daysPerMonth` is a fixed `30f`, not a setting.
+`config/Setting` holds each LunaLib field id from `LunaSettings.csv` with its default and bounds; defaults and bounds mirror the CSV. `config/PlayerSettings` caches the values in a static map, nothing of it is saved. Its stateless `LunaSettingsListener` is added once per session in `onApplicationLoad` and reloads the cache on `settingsChanged("alcoholism")`; `onGameLoad` reloads it too. Runtime code reads `Setting.X.value()` or `enabled()`. Days per month is the constant `AddictionBrain.DAYS_PER_MONTH`, not a setting.
+
+`memory/SettingsHandler` is a field-only save shell: saves made before 1.1.e hold one under `alcoholism_settings`, which `onGameLoad` removes. Delete the class on the next main game version update.
 
 ### Build and authoring tools
 
@@ -73,7 +76,7 @@ Ids, keys and class names are bound to saves and to other mods. Display names ma
 | Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (`BlackoutScript`); `$alcoholism_legacy_economy_cleared` (market, `AlcoholResourceCondition`) |
 | Faction memory key | `$alcoholism_faction_alcohol_types` |
 | Variant tag | `alcoholism_absynth_fit` (`ExcessOPStripper.FITTED_ON_ABSYNTH_TAG`) |
-| Persistent data key | `alcoholism_settings` |
+| Persistent data key | `alcoholism_settings` (old saves only, removed on load; `SettingsHandler` stays for them) |
 
 Legacy names that survive: Prometheus Gift is `fuel`, Hangover Cure is `water`, Phaged Darjeeling is `tea`, Absynth keeps its spelling in ids. Several keys lack the mod prefix (`$AddictionMemory`, `alcohol_brewery`); keep them as they are, renaming breaks saves and the consumer mods.
 
@@ -90,7 +93,8 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | `memory/AddictionStatus` | Consuming / addicted / withdrawal state and addiction value for one drink |
 | `memory/AddictionBrain` | The addiction and consumption maths |
 | `memory/FactionAlcoholHandler` | Faction to drink list in faction memory |
-| `memory/SettingsHandler` | LunaLib settings cache |
+| `config/Setting`, `config/PlayerSettings` | LunaLib setting ids, defaults and bounds; static settings cache |
+| `memory/SettingsHandler` | Save shell for old saves, scheduled for removal |
 | `listeners/AlcoholConsumptionManager` | Daily loop, effect hullmod application, run-out warnings, blackout trigger, Absynth refit tag |
 | `listeners/AlcoholStackReplacer` | Commodity and item stack conversion around the cargo tab |
 | `listeners/ResourceConditionApplicator` | Adds `alcohol_resourceCondition` to markets on economy ticks and colonisation |
@@ -115,7 +119,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 
 ### Save data
 
-- The mod is released and can be added to an existing save. Classes stored in saves (`AddictionMemory`, `AddictionStatus`, `SettingsHandler`, the non-transient `ExcessOPStripper` listener, scripts added with `addScript`, intel) keep their package, name and fields. `ExcessOPStripper.taggedExistingFits` is false on older saves and tags their Absynth fleet ships once.
+- The mod is released and can be added to an existing save. Classes stored in saves (`AddictionMemory`, `AddictionStatus`, `SettingsHandler` (old saves), the non-transient `ExcessOPStripper` listener, scripts added with `addScript`, intel) keep their package, name and fields. `ExcessOPStripper.taggedExistingFits` is false on older saves and tags their Absynth fleet ships once.
 - `AddictionMemory.refresh()` adds missing statuses for drinks added since the save, including other mods' drinks.
 
 ### Shared cross-file constraints
@@ -131,3 +135,4 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | Component | State |
 |---|---|
 | `ModPlugin.devActions`, `AlcoholConsumptionManager.devActions` | Dev mode only: adds drinks and supplies, 10 days of addiction per day |
+| `memory/SettingsHandler` | Save shell, no callers; see [Settings](#settings) |

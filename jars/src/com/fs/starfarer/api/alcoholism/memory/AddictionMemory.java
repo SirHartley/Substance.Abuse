@@ -68,7 +68,7 @@ public class AddictionMemory {
     }
 
     private int getNextDayForMap() {
-        if (lastDay > SettingsHandler.getInstance().daysPerMonth) lastDay = 0;
+        if (lastDay > AddictionBrain.DAYS_PER_MONTH) lastDay = 0;
         lastDay++;
 
         return lastDay;

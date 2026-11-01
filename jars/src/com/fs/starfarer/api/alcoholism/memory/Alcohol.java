@@ -99,7 +99,7 @@ public class Alcohol implements AlcoholAPI {
         else amtInCargo = c.getQuantity(CargoAPI.CargoItemType.SPECIAL, new SpecialItemData(id, null));
 
         int amtWillLastDays = TooltipHelper.getAmountWillLastDays(this, amtInCargo);
-        int amtWillLastMonths = Math.round(amtWillLastDays / SettingsHandler.getInstance().daysPerMonth);
+        int amtWillLastMonths = Math.round(amtWillLastDays / AddictionBrain.DAYS_PER_MONTH);
 
         String lastsFor;
         if(amtWillLastMonths > 1) lastsFor = amtWillLastMonths + " " + TooltipHelper.getMonthOrMonths(amtWillLastMonths);
