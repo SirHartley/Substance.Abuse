@@ -29,7 +29,7 @@ Current URLs point at `SirHartley/Substance.Abuse.Legacy` `master` and its relea
 
 ## Package
 
-The contents of the release zip are not documented. Record them here at the next release, from the 1.1.d asset.
+The contents of the release zip are not documented. Record them here at the next release, from the 1.1.d asset. `lib/` is build input only and stays out of the zip.
 
 ## Maintenance
 

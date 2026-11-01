@@ -56,7 +56,7 @@ There is no `onApplicationLoad`. `AlcoholRepo.ALCOHOL_MAP` is filled in its stat
 
 ### Build and authoring tools
 
-None. The IntelliJ artifact `alcoholism:jar` (`.idea/artifacts/alcoholism_jar.xml`) builds `jars/alcoholism.jar`, which is committed and is the release jar. See [CLAUDE.md](../CLAUDE.md#building).
+No tools. The IntelliJ artifact `alcoholism:jar` (`.idea/artifacts/alcoholism_jar.xml`) builds `jars/alcoholism.jar`, which is committed and is the release jar. Compile dependencies are in `lib/`, build input only. See [CLAUDE.md](../CLAUDE.md#building).
 
 ## Data identity
 
