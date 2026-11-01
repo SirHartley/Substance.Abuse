@@ -23,6 +23,7 @@ Fixed - LunaLib setting changes made after loading a second save in the same ses
 Fixed - The fleet left behind after a blackout could rejoin you from another star system
 Fixed - The last blackout message never showed
 Fixed - Reapers Blood never made ships without officers aggressive, or cautious in withdrawal
+Fixed - Prometheus Gift withdrawal tooltip read "Reduces max. burn by -2"
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
