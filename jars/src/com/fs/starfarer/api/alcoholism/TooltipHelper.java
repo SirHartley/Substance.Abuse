@@ -40,11 +40,10 @@ public class TooltipHelper {
 
     public static int getPredictedAmountRequiredForOneMonth(String id){
         Alcohol alcohol = AlcoholRepo.get(id);
-        float addictionInOneMonth = getFutureAddictionAfterDaysPassed(alcohol, SettingsHandler.getInstance().daysPerMonth);
-        float consumptionInOneMonth = AddictionBrain.getConsumptionPerCrewPerDayForAddiction(addictionInOneMonth);
-        float crewAmt = AlcoholConsumptionManager.getPlayerSkeletonCrewAmount();
+        float daysPerMonth = SettingsHandler.getInstance().daysPerMonth;
+        float addictionInOneMonth = getFutureAddictionAfterDaysPassed(alcohol, daysPerMonth);
 
-        return (int) Math.ceil(consumptionInOneMonth * crewAmt * SettingsHandler.getInstance().daysPerMonth);
+        return (int) Math.ceil(AlcoholConsumptionManager.getRequiredUnitsPerDay(addictionInOneMonth) * daysPerMonth);
     }
 
     public static float getFutureAddictionAfterDaysPassed(Alcohol alcohol, float days){
@@ -55,12 +54,9 @@ public class TooltipHelper {
     }
 
     public static int getAmountWillLastDays(Alcohol alcohol, float amt){
-        float crew = AlcoholConsumptionManager.getPlayerSkeletonCrewAmount();
-        float amtPerDay = AddictionBrain.getConsumptionPerCrewPerDayForAddiction(alcohol.getAddictionStatus().getAddictionValue()) * crew;
-        float amtLasts = amt/amtPerDay;
-
+        float amtLasts = amt / AlcoholConsumptionManager.getCurrentRequiredUnitsPerDay(alcohol);
         float addictionAfterAmt = getFutureAddictionAfterDaysPassed(alcohol, amtLasts);
-        return (int)Math.ceil(amt / (AddictionBrain.getConsumptionPerCrewPerDayForAddiction(addictionAfterAmt) * crew));
+        return (int)Math.ceil(amt / AlcoholConsumptionManager.getRequiredUnitsPerDay(addictionAfterAmt));
     }
 
     public static String getDayOrDays(float days) {
