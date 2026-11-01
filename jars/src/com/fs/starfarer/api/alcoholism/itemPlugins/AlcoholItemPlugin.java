@@ -67,6 +67,7 @@ public class AlcoholItemPlugin extends BaseSpecialItemPlugin {
 
         addCostLabel(tooltip, opad, transferHandler, stackSource);
 
+        if(Global.CODEX_TOOLTIP_MODE) return;
         if(alcohol.getAddictionStatus().isConsuming()) tooltip.addPara("Right-click to stop distribution", b, opad);
         else tooltip.addPara("Right-click to distribute", b, opad);
     }

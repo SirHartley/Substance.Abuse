@@ -1,5 +1,6 @@
 package com.fs.starfarer.api.alcoholism.hullmods;
 
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
 import com.fs.starfarer.api.alcoholism.memory.Alcohol;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
@@ -52,8 +53,11 @@ public abstract class BaseAlcoholHullmodEffect extends SelfRepairingBuiltInHullm
     public void addPostDescriptionSection(TooltipMakerAPI tooltip, ShipAPI.HullSize hullSize, ShipAPI ship, float width, boolean isForModSpec) {
         super.addPostDescriptionSection(tooltip, hullSize, ship, width, isForModSpec);
 
-        getAlcohol().addStatusTooltip(tooltip, true);
-        addCurrentEffectSection(tooltip, getAlcohol().getAddictionStatus().getAddictionValue());
+        Alcohol alcohol = getAlcohol();
+        alcohol.addStatusTooltip(tooltip, true);
+
+        if(Global.CODEX_TOOLTIP_MODE) alcohol.addFullHullmodEffectSection(tooltip, 1f);
+        else addCurrentEffectSection(tooltip, alcohol.getAddictionStatus().getAddictionValue());
 
         tooltip.addSectionHeading("", Misc.getGrayColor(), new Color(255,255,255,2), Alignment.MID, 10f);
     }
