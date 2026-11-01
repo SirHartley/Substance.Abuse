@@ -165,16 +165,20 @@ After the final runtime-affecting commit and before merge:
 5. Record the command, branch commit, JDK version and result in the pull request. The final reply links the PR and states the result and any untested behavior.
 6. Stop before merge if the build or a required dependency is unavailable.
 
-Required compile dependencies, from a Starsector 0.98a install and the mods' own folders. The repository does not carry them yet, so a cloud session cannot run the gate until a `lib/` folder with these jars is added:
+Required compile dependencies, all in `lib/` (read-only, copied from Industrial Evolution's `lib/`, game 0.98a). The build fails without any one of them:
 
-- `starfarer.api.jar`, `starfarer_obf.jar` (`BlackoutScript` uses `CampaignEngine`), `lwjgl.jar`, `lwjgl_util.jar`, `json.jar`, `log4j-1.2.9.jar` from `starsector-core`. Use the game's own jars, never Maven versions.
-- `LunaLib.jar` (`lunalib.lunaSettings`) from LunaLib.
-- `LazyLib.jar` (`org.lazywizard.lazylib.combat.DefenseUtils`) from LazyLib, plus a jar providing `org.jetbrains.annotations.NotNull` (used in `SettingsHandler`; LazyLib's Kotlin runtime is the likely source, not verified).
+- Game jars from `starsector-core`: `starfarer.api.jar`, `starfarer_obf.jar` and `fs.common_obf.jar` (`BlackoutScript` uses `CampaignEngine`), `lwjgl.jar`, `lwjgl_util.jar`, `json.jar`, `log4j-1.2.9.jar`. Never substitute Maven versions.
+- `LunaLib.jar` (LunaLib 2.0.1), for `lunalib.lunaSettings`.
+- `LazyLib.jar` (LazyLib 3.0.0), for `DefenseUtils`; it also carries `org.jetbrains.annotations.NotNull`, used in `SettingsHandler`.
 
-Reference command, with `CP` set to the jars above joined by `:`:
+Replace a jar only when the user supplies a new version, and note the version here. The game loads only the jars `mod_info.json` lists, so `lib/` never reaches the game; keep it out of the release zip ([RELEASE.md](docs/RELEASE.md#package)).
+
+Reference command, from the repository root:
 
 ```sh
-javac --release 17 -encoding UTF-8 -cp "$CP" -d /tmp/alcoholism-build $(find jars/src -name '*.java')
+OUT=$(mktemp -d)
+CP=$(ls lib/*.jar | tr '\n' ':')
+javac --release 17 -encoding UTF-8 -cp "$CP" -d "$OUT" $(find jars/src -name '*.java')
 ```
 
 ## Repository navigation
