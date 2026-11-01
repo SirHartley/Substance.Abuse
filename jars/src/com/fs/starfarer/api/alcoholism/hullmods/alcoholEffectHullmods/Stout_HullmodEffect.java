@@ -60,7 +60,7 @@ public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
         super.applyEffectsAfterShipCreation(ship, id);
 
         ship.removeListenerOfClass(AlcoholArmorRegen.class);
-        ship.addListener(new AlcoholArmorRegen(ship, getAlcohol().getAddictionStatus().getAddictionValue()));
+        if(!isWithdrawal()) ship.addListener(new AlcoholArmorRegen(ship, getAlcohol().getAddictionStatus().getAddictionValue()));
     }
 
     @Override
