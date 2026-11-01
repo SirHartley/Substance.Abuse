@@ -82,6 +82,15 @@ public class Alcohol implements AlcoholAPI {
         tt.addSectionHeading("Substance Information", Alignment.MID, opad);
 
         Pair<String, Color> addictivity = TooltipHelper.getResistanceBuildupStringAndColour(id);
+        tt.addPara("Effect buildup speed: %s", opad, addictivity.two, addictivity.one.toUpperCase());
+
+        // the title screen codex has no player fleet
+        if(!Global.CODEX_TOOLTIP_MODE) addFleetStatus(tt, forHullmod, spad);
+
+        if(!forHullmod) tt.addPara("A higher effect level leads to higher resistance, which leads to more consumption per day. Be wary of withdrawal effects when you run out!", Misc.getGrayColor(), opad);
+    }
+
+    private void addFleetStatus(TooltipMakerAPI tt, boolean forHullmod, float spad){
         int amtPrediction = TooltipHelper.getPredictedAmountRequiredForOneMonth(id);
         CargoAPI c = Global.getSector().getPlayerFleet().getCargo();
 
@@ -96,13 +105,10 @@ public class Alcohol implements AlcoholAPI {
         if(amtWillLastMonths > 1) lastsFor = amtWillLastMonths + " " + TooltipHelper.getMonthOrMonths(amtWillLastMonths);
         else lastsFor = amtWillLastDays + " " + TooltipHelper.getDayOrDays(amtWillLastDays);
 
-        tt.addPara("Effect buildup speed: %s", opad, addictivity.two, addictivity.one.toUpperCase());
         if(getAddictionStatus().isAddicted()) tt.addPara("Current effect level: %s", spad, Misc.getHighlightColor(), TooltipHelper.getCurrentEffectPercentString(id));
         else tt.addPara("Consume for effect!", spad);
         if(!forHullmod) tt.addPara("Required amount per Month: %s", spad, Misc.getHighlightColor(), amtPrediction + " Units");
         if(amtInCargo > 0) tt.addPara("Cargo will last for another: %s", spad, Misc.getHighlightColor(), lastsFor);
-
-        if(!forHullmod) tt.addPara("A higher effect level leads to higher resistance, which leads to more consumption per day. Be wary of withdrawal effects when you run out!", Misc.getGrayColor(), opad);
     }
 
     public String getName() {
@@ -136,7 +142,9 @@ public class Alcohol implements AlcoholAPI {
 
         AddictionStatus status = getAddictionStatus();
 
-        if(forHullmod){
+        if(Global.CODEX_TOOLTIP_MODE){
+            addFullHullmodEffectSection(tt, 1f);
+        } else if(forHullmod){
             addCurrentHullmodEffectSection(tt);
         } else {
             if(!status.isAddicted() && !status.isConsuming()){
@@ -159,6 +167,17 @@ public class Alcohol implements AlcoholAPI {
         if(spec.getEffect() instanceof AlcoholHullmodEffectAPI){
             AlcoholHullmodEffectAPI hullmod = (AlcoholHullmodEffectAPI) spec.getEffect();
             hullmod.addCurrentEffectSection(tooltip, getAddictionStatus().getAddictionValue());
+        }
+    }
+
+    public void addFullHullmodEffectSection(TooltipMakerAPI tooltip, float effectMult){
+        HullModSpecAPI spec = Global.getSettings().getHullModSpec(getEffectHullmodId());
+
+        if(spec.getEffect() instanceof AlcoholHullmodEffectAPI){
+            AlcoholHullmodEffectAPI hullmod = (AlcoholHullmodEffectAPI) spec.getEffect();
+            hullmod.addPositiveEffectTooltip(tooltip, effectMult);
+            hullmod.addNegativeEffectTooltip(tooltip, effectMult);
+            hullmod.addWithdrawalEffectTooltip(tooltip, effectMult);
         }
     }
 

@@ -13,6 +13,7 @@ import com.fs.starfarer.api.alcoholism.scripts.NewDayTracker;
 import com.fs.starfarer.api.alcoholism.scripts.RefitUIOpenChecker;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Commodities;
+import com.fs.starfarer.api.impl.codex.CodexDataV2;
 
 public class ModPlugin extends BaseModPlugin {
 
@@ -46,6 +47,17 @@ public class ModPlugin extends BaseModPlugin {
         //industry items
         AlcoholRepo.addBreweryRecipesToItemEffectRepo();
         AlcoholRepo.addRecipeBookToItemEffectRepo();
+    }
+
+    @Override
+    public void onAboutToLinkCodexEntries() {
+        for (Alcohol alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
+            CodexDataV2.makeRelated(
+                    CodexDataV2.getCommodityEntryId(alcohol.getCommodityId()),
+                    CodexDataV2.getItemEntryId(alcohol.getId()),
+                    CodexDataV2.getItemEntryId(alcohol.getIndustryItemId()),
+                    CodexDataV2.getHullmodEntryId(alcohol.getEffectHullmodId()));
+        }
     }
 
     public static void devActions(){
