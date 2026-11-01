@@ -4,6 +4,7 @@ import com.fs.starfarer.api.alcoholism.hullmods.BaseAlcoholHullmodEffect;
 import com.fs.starfarer.api.alcoholism.hullmods.campaignEffects.TariffModifier;
 import com.fs.starfarer.api.alcoholism.hullmods.campaignEffects.TerrainEffectModifier;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
+import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
@@ -34,7 +35,6 @@ public class Freedom_HullmodEffect extends BaseAlcoholHullmodEffect {
         //CARRIER THINGS
         stats.getFighterRefitTimeMult().modifyMult(id, getPercentToCorrectedMult(MAX_FIGHTER_REFIT_DECREASE_PERCENT), getDesc());
         stats.getFighterWingRange().modifyMult(id, getPercentToCorrectedMult(MAX_FIGHTER_RANGE_INCREASE_PERCENT), getDesc());
-        stats.getDamageToFighters().modifyMult(id, getPercentToCorrectedMult(MAX_DAMAGE_TO_FIGHTERS_RED_PERCENT), getDesc());
 
         stats.getSensorProfile().modifyMult(id, getPercentToCorrectedMult(MAX_SENSOR_PROFILE_RED_PERCENT), getDesc());
         TariffModifier.register();
@@ -55,8 +55,29 @@ public class Freedom_HullmodEffect extends BaseAlcoholHullmodEffect {
         //Lower max CR
         //increase tariffs
         stats.getMaxCombatReadiness().modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_MAX_CR_REDUCTION), getDesc());
-        stats.getDamageToFighters().modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_DAMAGE_TO_FIGHTERS_INCREASE_PERCENT), getDesc());
         stats.getDynamic().getMod(Stats.REPLACEMENT_RATE_DECREASE_MULT).modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_REPLACEMENT_RATE_RED_PERCENT), getDesc());
+    }
+
+    @Override
+    public void applyEffectsToFighterSpawnedByShip(ShipAPI fighter, ShipAPI ship, String id) {
+        super.applyEffectsToFighterSpawnedByShip(fighter, ship, id);
+
+        float effectMult = getAlcohol().getAddictionStatus().getAddictionValue();
+        float percent;
+
+        if(isWithdrawal()) {
+            if(effectMult <= 0.6f) return;
+            percent = WITHDRAWAL_DAMAGE_TO_FIGHTERS_INCREASE_PERCENT;
+        } else {
+            if(effectMult <= 0.7f) return;
+            percent = MAX_DAMAGE_TO_FIGHTERS_RED_PERCENT;
+        }
+
+        float mult = getPercentToCorrectedMult(percent);
+        MutableShipStatsAPI stats = fighter.getMutableStats();
+        stats.getHullDamageTakenMult().modifyMult(id, mult, getDesc());
+        stats.getArmorDamageTakenMult().modifyMult(id, mult, getDesc());
+        stats.getShieldDamageTakenMult().modifyMult(id, mult, getDesc());
     }
 
     @Override

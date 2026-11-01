@@ -15,6 +15,7 @@ Fixed - Reapers Blood kept the zero flux speed boost active at any flux level in
 Fixed - On modular ships, drink effects and the Absynth OP adjustment could spread to the same module on every other ship of that type until restart
 Fixed - Drink supply and demand stayed on markets after they changed owner, lost Light Industry or the player stopped exporting drinks, and Light Industry ignored the drink inputs it needed
 Fixed - Small fleets drank more than the tooltip forecast and ran out earlier than the run out warning said
+Fixed - Sweet Freedom lowered the carrier's damage against fighters instead of making its own fighters take less damage, and withdrawal raised it instead of making them take more
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
