@@ -125,6 +125,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 ### Shared cross-file constraints
 
 - `AlcoholResourceCondition` writes drink supply and demand under its own condition id and clears it in `unapply` for every drink, whoever owns the market. The Brewery recipe effects use the industry's index 0 id through the static `applySupply` and `applyDemand`. Up to 1.1.d the condition also wrote under the industry's index 0 id and deficit id `3`; `clearLegacyEntries` removes those once per market.
+- `OfficerXPGainModifier` snapshots officer XP on the first `reportPlayerEngagement` of a battle and applies the Tears of Ludd change in `reportBattleOccurred`, which fires after vanilla grants battle XP (`FleetEncounterContext`). Autoresolved battles do not fire it; their XP counts towards the next battle.
 - The daily drink amount, at least one unit, comes from `AlcoholConsumptionManager.getRequiredUnitsPerDay`. Consumption and the forecasts in `TooltipHelper` both use it.
 - `AlcoholConsumptionManager.onNewDay` iterates `AlcoholRepo.ALCOHOL_MAP.values()` as `Alcohol`; every entry, including other mods', must be an `Alcohol`.
 - `FactionAlcoholHandler.assignFactionAlcohols()` overwrites the vanilla factions' lists on every load. A mod that appends to a vanilla faction's list (Symbiotic Void Creatures appends to `pirates`) depends on running after it; the mod load order is not verified.
