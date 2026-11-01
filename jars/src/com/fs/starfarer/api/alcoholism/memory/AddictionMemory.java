@@ -68,7 +68,11 @@ public class AddictionMemory {
     }
 
     private int getNextDayForMap() {
-        if (lastDay > AddictionBrain.DAYS_PER_MONTH) lastDay = 0;
+        if (lastDay >= AddictionBrain.DAYS_PER_MONTH) {
+            lastDay = 0;
+            // saves before 1.1.e also hold a day 31
+            monthlyAddictionIncreaseMap.keySet().removeIf(day -> day > AddictionBrain.DAYS_PER_MONTH);
+        }
         lastDay++;
 
         return lastDay;
