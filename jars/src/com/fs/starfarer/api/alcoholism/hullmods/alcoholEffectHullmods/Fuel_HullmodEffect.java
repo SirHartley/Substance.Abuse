@@ -167,13 +167,12 @@ public class Fuel_HullmodEffect extends BaseAlcoholHullmodEffect {
         }
 
         if(effectMult > 0.7f){
-            float maxDecrease = effectMult > 0.85 ? WITHDRAWAL_85_BURN_DECREASE : WITHDRAWAL_70_BURN_DECREASE;
-            float decrease = maxDecrease * effectMult;
+            float decrease = effectMult > 0.85 ? WITHDRAWAL_85_BURN_DECREASE : WITHDRAWAL_70_BURN_DECREASE;
 
             tooltip.addPara("Reduces max. burn by %s",
                     spad,
                     bad,
-                    Math.round(decrease) + "");
+                    Math.round(Math.abs(decrease)) + "");
         }
     }
 }
