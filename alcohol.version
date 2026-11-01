@@ -1,17 +1,17 @@
 {
-    "masterVersionFile":"https://raw.githubusercontent.com/SirHartley/Substance.Abuse.Legacy/refs/heads/master/alcohol.version",
+    "masterVersionFile":"https://raw.githubusercontent.com/SirHartley/Substance.Abuse/refs/heads/master/alcohol.version",
     "modName":"Substance.Abuse",
     "modThreadId":24378,
     "modVersion":
     {
         "major":1,
         "minor":1,
-        "patch":"d"
+        "patch":"e"
     },
 
     #Link towards a direct download, fetched from the online version file
-        "directDownloadURL":"https://github.com/SirHartley/Substance.Abuse.Legacy/releases/download/1.1.d/Substance.Abuse1.1.d.zip",
+        "directDownloadURL":"https://github.com/SirHartley/Substance.Abuse/releases/download/1.1.e/Substance.Abuse1.1.e.zip",
 
         #Link towards a directly accessible text file, which can be used to display a changelog ingame, is fetched from the online version file.
-        "changelogURL":"https://raw.githubusercontent.com/SirHartley/Substance.Abuse.Legacy/refs/heads/master/Changelog",
+        "changelogURL":"https://raw.githubusercontent.com/SirHartley/Substance.Abuse/refs/heads/master/Changelog",
 }
