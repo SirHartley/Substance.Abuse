@@ -94,7 +94,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | `listeners/AlcoholConsumptionManager` | Daily loop, effect hullmod application, run-out warnings, blackout trigger, Absynth refit tag |
 | `listeners/AlcoholStackReplacer` | Commodity and item stack conversion around the cargo tab |
 | `listeners/ResourceConditionApplicator` | Adds `alcohol_resourceCondition` to markets on economy ticks and colonisation |
-| `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel |
+| `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel, moves the player to a system with a distress jump point, avoiding pulsar, black hole and cut off systems when any other is left |
 | `industry/Brewery`, `industry/BreweryPlacer` | Brewery industry and the one-time placement |
 | `hullmods/BaseAlcoholHullmodEffect` | Base for every effect hullmod, including other mods' drinks |
 
