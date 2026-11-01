@@ -43,12 +43,12 @@ public class AlcoholRepo {
     }
 
     public static boolean isAlcohol(String id) {
-        String normalizedId = id.contains("_c") ? convertID(id) : id;
+        String normalizedId = id.endsWith("_c") ? convertID(id) : id;
         return ALCOHOL_MAP.containsKey(normalizedId);
     }
 
     public static String convertID(String id) {
-        if (id.contains("_c")) {
+        if (id.endsWith("_c")) {
             String s = id.substring(0, id.length() - 2);
             ModPlugin.log("converting " + id + " to " + s);
             return s;
