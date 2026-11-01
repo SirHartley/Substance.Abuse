@@ -12,6 +12,7 @@ Fixed - Crash when opening a drink or drink hullmod in the Codex from the main m
 Adjusted - The Codex shows drink hullmods with every effect at full strength and links each drink to its hullmod and recipe
 Fixed - Sweet Freedom raised market tariffs while drinking instead of lowering them
 Fixed - Reapers Blood kept the zero flux speed boost active at any flux level instead of up to 30%
+Fixed - On modular ships, drink effects and the Absynth OP adjustment could spread to the same module on every other ship of that type until restart
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
