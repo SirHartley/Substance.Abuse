@@ -9,7 +9,7 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 | [CLAUDE.md](../CLAUDE.md) | Workflow, build gate and document upkeep |
 | [MOD_API.md](MOD_API.md) | Public classes, members and ids other mods use; what must not change |
 | [BRANCHES.md](BRANCHES.md) | Repository and branch model, open migration steps, state of the `dev` line |
-| [RELEASE.md](RELEASE.md) | Version numbers, version file, release jar and package |
+| [RELEASE.md](RELEASE.md) | Version numbers, version file, release jar, package and release workflow |
 | [CHANGELOG.md](CHANGELOG.md) | Change-note format and upkeep for every implementation task |
 
 ## Start here
@@ -56,7 +56,7 @@ There is no `onApplicationLoad`. `AlcoholRepo.ALCOHOL_MAP` is filled in its stat
 
 ### Build and authoring tools
 
-No tools. The IntelliJ artifact `alcoholism:jar` (`.idea/artifacts/alcoholism_jar.xml`) builds `jars/alcoholism.jar`, which is committed and is the release jar. Compile dependencies are in `lib/`, build input only. See [CLAUDE.md](../CLAUDE.md#building).
+`tools/ReleaseBuild` builds the committed release jar `jars/release/alcoholism.jar` and packages the release ZIP; `tools/ReleaseBuildChecks` tests it; `.github/workflows/release.yml` runs both by hand. The `tools` package never ships. The IntelliJ artifact `alcoholism:jar` (`.idea/artifacts/alcoholism_jar.xml`) writes the gitignored `jars/alcoholism.jar`. Compile dependencies are in `lib/`, build input only. See [RELEASE.md](RELEASE.md) and [CLAUDE.md](../CLAUDE.md#building).
 
 ## Data identity
 
