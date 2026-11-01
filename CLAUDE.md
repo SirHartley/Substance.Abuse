@@ -7,6 +7,12 @@ This `dev` branch holds the unfinished 2.0.a rework of the Starsector mod `alcoh
 What differs on this branch:
 
 - Branch from and merge into `dev`, not `master`.
-- The compile gate uses `master`'s dependencies without `LunaLib.jar`, and leaves out `jars/src/com/fs/starfarer/api/alcoholism/ui/reference/` (Industrial Evolution imports, excluded in `.idea/Substance.Abuse.iml`). `memory/CustomAlcohol` imports `org.codehaus.janino.Mod`, so `janino.jar` from `starsector-core` is needed too.
+- The compile gate uses this branch's own `lib/`: `master`'s jars without `LunaLib.jar`, plus `janino.jar` from `starsector-core` (`memory/CustomAlcohol` imports `org.codehaus.janino.Mod`). It leaves out `jars/src/com/fs/starfarer/api/alcoholism/ui/reference/` (Industrial Evolution imports, excluded in `.idea/Substance.Abuse.iml`). Reference command, from the repository root:
+
+  ```sh
+  OUT=$(mktemp -d)
+  CP=$(ls lib/*.jar | tr '\n' ':')
+  javac --release 17 -encoding UTF-8 -cp "$CP" -d "$OUT" $(find jars/src -name '*.java' -not -path '*/ui/reference/*')
+  ```
 - `.idea/misc.xml` targets Java 7 and `mod_info.json` game `0.96a`; both are out of date against `master`.
 - `jars/production/` holds committed IDE output; do not add to it.
