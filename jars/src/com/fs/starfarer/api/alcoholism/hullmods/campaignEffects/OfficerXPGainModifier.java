@@ -2,22 +2,21 @@ package com.fs.starfarer.api.alcoholism.hullmods.campaignEffects;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.hullmods.alcoholEffectHullmods.Tears_HullmodEffect;
-import com.fs.starfarer.api.alcoholism.listeners.NewDayListener;
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.campaign.BaseCampaignEventListener;
+import com.fs.starfarer.api.campaign.BattleAPI;
 import com.fs.starfarer.api.campaign.CampaignEventListener;
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
 import com.fs.starfarer.api.characters.OfficerDataAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
-import com.fs.starfarer.api.plugins.LevelupPlugin;
-import com.fs.starfarer.api.plugins.OfficerLevelupPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class OfficerXPGainModifier extends BaseCampaignEventListener implements NewDayListener {
+public class OfficerXPGainModifier extends BaseCampaignEventListener {
 
     private Map<String, Long> officerXPMemory = new HashMap<>();
 
@@ -34,11 +33,25 @@ public class OfficerXPGainModifier extends BaseCampaignEventListener implements 
         Global.getSector().addTransientListener(script);
     }
 
+    // fires before vanilla grants battle xp, reportBattleOccurred fires after
     @Override
     public void reportPlayerEngagement(EngagementResultAPI result) {
         super.reportPlayerEngagement(result);
+        if(!officerXPMemory.isEmpty() || !AlcoholRepo.get(AlcoholRepo.TEARS).getAddictionStatus().isAddicted()) return;
+
+        for (OfficerDataAPI data : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy()){
+            PersonAPI person = data.getPerson();
+            officerXPMemory.put(person.getId(), person.getStats().getXP());
+        }
+    }
+
+    // autoresolved battles skip this, their xp counts towards the next battle
+    @Override
+    public void reportBattleOccurred(CampaignFleetAPI primaryWinner, BattleAPI battle) {
+        super.reportBattleOccurred(primaryWinner, battle);
+        if(!battle.isPlayerInvolved() || officerXPMemory.isEmpty()) return;
+
         AddictionStatus status = AlcoholRepo.get(AlcoholRepo.TEARS).getAddictionStatus();
-        if(!status.isAddicted()) return;
 
         if(status.isConsuming()){
             float xpMult = 1 + ((status.getAddictionValue() * Tears_HullmodEffect.MAX_OFFICER_XP_INCREASE) / 100);
@@ -61,8 +74,6 @@ public class OfficerXPGainModifier extends BaseCampaignEventListener implements 
                     data.addXP(increase);
                     stats.setBonusXp(bonus);
                 }
-
-                officerXPMemory.put(person.getId(), person.getStats().getXP());
             }
 
         } else if (status.isWithdrawal()){
@@ -80,26 +91,9 @@ public class OfficerXPGainModifier extends BaseCampaignEventListener implements 
                     //adding a negative XP number should work
                     person.getStats().addXP(-decrease, null, false, false);
                 }
-
-                officerXPMemory.put(person.getId(), person.getStats().getXP());
             }
         }
-    }
 
-    @Override
-    public void onNewDay() {
-        AddictionStatus status = AlcoholRepo.get(AlcoholRepo.TEARS).getAddictionStatus();
-        if(!status.isAddicted()) return;
-
-        updateOfficerXPStatus();
-    }
-
-    private void updateOfficerXPStatus(){
         officerXPMemory.clear();
-
-        for (OfficerDataAPI data : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy()){
-            PersonAPI person = data.getPerson();
-            officerXPMemory.put(person.getId(), person.getStats().getXP());
-        }
     }
 }
