@@ -29,7 +29,7 @@ public class Blood_HullmodEffect extends BaseAlcoholHullmodEffect {
     public void applyPositives(MutableShipStatsAPI stats, float effectMult, String id) {
         stats.getProjectileSpeedMult().modifyMult(id, getPercentToCorrectedMult(MAX_PROJ_SPEED_INCREASE), getDesc());
         stats.getMissileMaxSpeedBonus().modifyMult(id, getPercentToCorrectedMult(MAX_MISSILE_SPEED_INCREASE), getDesc());
-        stats.getZeroFluxMinimumFluxLevel().modifyFlat(id, getPercentToCorrectedMult(MAX_FLUX_PERCENT_FOR_BOOST), getDesc());
+        stats.getZeroFluxMinimumFluxLevel().modifyFlat(id, MAX_FLUX_PERCENT_FOR_BOOST * effectMult / 100f, getDesc());
     }
 
     @Override
