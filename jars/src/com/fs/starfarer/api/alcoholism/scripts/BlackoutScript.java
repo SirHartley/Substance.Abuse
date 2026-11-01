@@ -264,7 +264,8 @@ public class BlackoutScript implements EveryFrameScript {
                 if (isInOrbitRange) {
                     float orbitDistance = dist < systemEntity.getRadius() ? systemEntity.getRadius() + 100f : dist;
 
-                    OrbitAPI orbit = Global.getFactory().createCircularOrbit(systemEntity, 0f, orbitDistance, systemEntity.getOrbit().getOrbitalPeriod());
+                    float orbitPeriod = systemEntity.getOrbit() != null ? systemEntity.getOrbit().getOrbitalPeriod() : 31f;
+                    OrbitAPI orbit = Global.getFactory().createCircularOrbit(systemEntity, 0f, orbitDistance, orbitPeriod);
                     orbitFocus.setOrbit(orbit);
                     return orbitFocus;
                 }
@@ -275,7 +276,9 @@ public class BlackoutScript implements EveryFrameScript {
         SectorEntityToken closestEntity = getClosestEntityWithCenteredOrbit(token);
 
         float dist = Misc.getDistance(token, system.getCenter());
-        float orbitDistance = dist < system.getStar().getRadius() ? system.getStar().getRadius() + 700f : dist;
+        // deep space systems have no star
+        float starRadius = system.getStar() != null ? system.getStar().getRadius() : 0f;
+        float orbitDistance = dist < starRadius ? starRadius + 700f : dist;
         float angle = Misc.getAngleInDegrees(system.getCenter().getLocation(), token.getLocation());
         float orbitPeriod = closestEntity != null ? closestEntity.getCircularOrbitPeriod() : 31f;
 
@@ -292,7 +295,7 @@ public class BlackoutScript implements EveryFrameScript {
         for (SectorEntityToken entity : system.getAllEntities()) {
             if (entity.getOrbit() != null && entity.getOrbitFocus() != null) {
                 String id = entity.getOrbitFocus().getId();
-                boolean orbitFocusIsStarOrSystemCenter = id.equals(system.getCenter().getId()) || id.equals(system.getStar().getId());
+                boolean orbitFocusIsStarOrSystemCenter = id.equals(system.getCenter().getId()) || (system.getStar() != null && id.equals(system.getStar().getId()));
 
                 if (!orbitFocusIsStarOrSystemCenter) continue;
 
