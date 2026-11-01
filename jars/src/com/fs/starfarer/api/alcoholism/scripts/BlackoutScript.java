@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Abilities;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import com.fs.starfarer.campaign.CampaignEngine;
@@ -149,14 +150,7 @@ public class BlackoutScript implements EveryFrameScript {
             }
         }
 
-        WeightedRandomPicker<StarSystemAPI> systemPicker = new WeightedRandomPicker<>();
-        systemPicker.addAll(Global.getSector().getStarSystems());
-
-        StarSystemAPI system = systemPicker.pickAndRemove();
-        while (Misc.getDistressJumpPoint(system) == null){
-            system = systemPicker.pickAndRemove();
-        }
-
+        StarSystemAPI system = pickDestinationSystem();
         SectorEntityToken jp = Misc.getDistressJumpPoint(system);
 
         fleet.getContainingLocation().removeEntity(fleet);
@@ -182,6 +176,21 @@ public class BlackoutScript implements EveryFrameScript {
 
         Global.getSector().getCampaignUI().resetViewOffset();
         Misc.clearAreaAroundPlayer(2000f);
+    }
+
+    private static StarSystemAPI pickDestinationSystem() {
+        WeightedRandomPicker<StarSystemAPI> safe = new WeightedRandomPicker<>();
+        WeightedRandomPicker<StarSystemAPI> any = new WeightedRandomPicker<>();
+
+        for (StarSystemAPI system : Global.getSector().getStarSystems()) {
+            if (Misc.getDistressJumpPoint(system) == null) continue;
+            any.add(system);
+
+            if (system.hasTag(Tags.SYSTEM_CUT_OFF_FROM_HYPER) || system.hasPulsar() || system.hasBlackHole()) continue;
+            safe.add(system);
+        }
+
+        return safe.isEmpty() ? any.pick() : safe.pick();
     }
 
     public static CampaignFleetAPI transferPlayerFleetToEmpty() {
