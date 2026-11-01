@@ -8,7 +8,7 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 |---|---|
 | [CLAUDE.md](../CLAUDE.md) | Workflow, build gate and document upkeep |
 | [MOD_API.md](MOD_API.md) | Public classes, members and ids other mods use; what must not change |
-| [BRANCHES.md](BRANCHES.md) | Repository and branch model, migration plan, state of the `dev` line |
+| [BRANCHES.md](BRANCHES.md) | Repository and branch model, open migration steps, state of the `dev` line |
 | [RELEASE.md](RELEASE.md) | Version numbers, version file, release jar and package |
 | [CHANGELOG.md](CHANGELOG.md) | Change-note format and upkeep for every implementation task |
 
