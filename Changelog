@@ -10,6 +10,7 @@ Fixed - Stutter at the start of every day with large fleets, worst alongside mod
 Fixed - Absynth OP adjustment stripped ships that were never refit on Absynth, including fleets that never drank it
 Fixed - Crash when opening a drink or drink hullmod in the Codex from the main menu
 Adjusted - The Codex shows drink hullmods with every effect at full strength and links each drink to its hullmod and recipe
+Fixed - Sweet Freedom raised market tariffs while drinking instead of lowering them
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 

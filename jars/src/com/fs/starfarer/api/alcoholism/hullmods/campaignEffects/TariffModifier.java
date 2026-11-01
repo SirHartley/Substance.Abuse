@@ -37,7 +37,7 @@ public class TariffModifier extends BaseCampaignEventListener {
         AddictionStatus status = AlcoholRepo.get(alcoholId).getAddictionStatus();
 
         if(status.isConsuming()){
-            market.getTariff().modifyMult(alcohol.getId(), 1 - ((Freedom_HullmodEffect.MAX_TARIFF_DECREASE_PERCENT * status.getAddictionValue()) / 100f), alcohol.getName());
+            market.getTariff().modifyMult(alcohol.getId(), 1 + ((Freedom_HullmodEffect.MAX_TARIFF_DECREASE_PERCENT * status.getAddictionValue()) / 100f), alcohol.getName());
         } else if (status.isWithdrawal()){
             market.getTariff().modifyMult(alcohol.getId(), 1 + ((Freedom_HullmodEffect.WITHDRAWAL_TARIFF_INCREASE_PERCENT * status.getAddictionValue()) / 100f), alcohol.getName() + " withdrawal");
         }
