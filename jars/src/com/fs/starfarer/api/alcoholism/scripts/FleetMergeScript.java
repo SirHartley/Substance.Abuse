@@ -32,7 +32,8 @@ public class FleetMergeScript implements EveryFrameScript {
     @Override
     public void advance(float amount) {
         if(isDone) return;
-        if(Misc.getDistance(Global.getSector().getPlayerFleet(), fleet) < 100f) {
+        CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
+        if(playerFleet.getContainingLocation() == fleet.getContainingLocation() && Misc.getDistance(playerFleet, fleet) < 100f) {
             Global.getSector().getMemoryWithoutUpdate().unset(DrunkFleetIntel.MEMORY_KEY_PRE + fleet.getId());
             mergeFleetWithPlayerFleet(fleet);
         }
