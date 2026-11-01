@@ -81,7 +81,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
             float mult = 1f;
 
             if(addictionStatus.isConsuming()){
-                float toConsume = Math.max(1f, getCurrentRequiredUnitsPerDay(alcohol));
+                float toConsume = getCurrentRequiredUnitsPerDay(alcohol);
 
                 unitsConsumed += toConsume;
                 ModPlugin.log(alcohol.getName() + " - consuming " + toConsume + " | total: " + unitsConsumed + " in " + AddictionBrain.getDaysAddicted(alcohol.getMult(), addictionStatus.getAddictionValue()) + " days");
@@ -239,7 +239,12 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     public static float getCurrentRequiredUnitsPerDay(Alcohol alcohol) {
-        return AddictionBrain.getConsumptionPerCrewPerDayForAddiction(alcohol.getAddictionStatus().getAddictionValue()) * getPlayerSkeletonCrewAmount();
+        return getRequiredUnitsPerDay(alcohol.getAddictionStatus().getAddictionValue());
+    }
+
+    // the fleet drinks at least one unit a day
+    public static float getRequiredUnitsPerDay(float addiction) {
+        return Math.max(1f, AddictionBrain.getConsumptionPerCrewPerDayForAddiction(addiction) * getPlayerSkeletonCrewAmount());
     }
 
     public void applyActiveAlcoholHullmods(CampaignFleetAPI fleet){
