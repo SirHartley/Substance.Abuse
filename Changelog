@@ -6,29 +6,42 @@ Special thanks to: Avanitia, SilverLight
 ------------------OoooooO------------------
 
 1.1.e
-Fixed - Stutter at the start of every day with large fleets, worst alongside mods whose skills or hullmods check cargo
-Fixed - Absynth OP adjustment stripped ships that were never refit on Absynth, including fleets that never drank it
-Fixed - Crash when opening a drink or drink hullmod in the Codex from the main menu
-Adjusted - The Codex shows drink hullmods with every effect at full strength and links each drink to its hullmod and recipe
-Fixed - Sweet Freedom raised market tariffs while drinking instead of lowering them
-Fixed - Reapers Blood kept the zero flux speed boost active at any flux level instead of up to 30%
-Fixed - On modular ships, drink effects and the Absynth OP adjustment could spread to the same module on every other ship of that type until restart
-Fixed - Drink supply and demand stayed on markets after they changed owner, lost Light Industry or the player stopped exporting drinks, and Light Industry ignored the drink inputs it needed
-Fixed - Small fleets drank more than the tooltip forecast and ran out earlier than the run out warning said
-Fixed - Sweet Freedom lowered the carrier's damage against fighters instead of making its own fighters take less damage, and withdrawal raised it instead of making them take more
-Fixed - A blackout could leave you in a pulsar or black hole system, or in a system cut off from hyperspace
-Fixed - Crash when blacking out in a starless deep space system or next to a planet or jump point without an orbit
-Fixed - Stout kept regenerating armor during withdrawal
-Fixed - LunaLib setting changes made after loading a second save in the same session only applied after the next load
-Fixed - The fleet left behind after a blackout could rejoin you from another star system
-Fixed - The last blackout message never showed
-Fixed - Reapers Blood never made ships without officers aggressive, or cautious in withdrawal
-Fixed - Prometheus Gift withdrawal tooltip read "Reduces max. burn by -2"
-Fixed - Hangover Cure tooltip rounded its multiplier, showing 2x at the default setting instead of 1.5x
-Fixed - Blackouts counted drinking over the last 31 days instead of 30
-Fixed - Tears of Ludd changed officer XP one battle late, and the first battle after loading a save got no change
-Fixed - After loading a save during Sweet Freedom or Tears of Ludd withdrawal, the withdrawal tariff increase or officer XP loss did not apply until you drank again
-Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
+
+General
+Fixed - Daily stuttering in large fleets, especially when other mods checked cargo through skills or hullmods
+Fixed - Small fleets consumed more alcohol than predicted by tooltips and supply warnings
+Fixed - LunaLib settings failed to apply immediately after loading a second save in the same session
+
+Drink effects
+Fixed - Absynth's OP correction removed equipment from ships that had not been refitted under its effects, even in fleets that had never consumed Absynth
+Fixed - Drink effects and Absynth's OP correction could affect matching modules on other ships of the same type until the game was restarted
+Fixed - Sweet Freedom increased market tariffs instead of reducing them
+Fixed - Sweet Freedom modified carrier damage against fighters instead of damage taken by the carrier's fighters, both while drinking and during withdrawal
+Fixed - Reapers Blood allowed the zero-flux speed boost above its intended 30% flux limit
+Fixed - Reapers Blood failed to make ships without officers aggressive while drinking and cautious during withdrawal
+Fixed - Stout continued to regenerate armor during withdrawal
+Fixed - Tears of Ludd applied its officer XP modifier one battle late and skipped the first battle after loading a save
+Fixed - Loading a save during withdrawal disabled Sweet Freedom's tariff penalty and Tears of Ludd's officer XP penalty until drinking resumed
+
+Blackouts
+Fixed - Blackouts could strand the player in pulsar or black hole systems, or systems with no hyperspace access
+Fixed - Blackouts could crash the game in starless systems or near planets and jump points without orbits
+Fixed - The fleet separated by a blackout could rejoin the player from another star system
+Fixed - The final blackout message did not appear
+Fixed - Blackout calculations included 31 days of drinking history instead of 30
+
+Markets
+Fixed - Drink supply and demand remained after a market changed ownership, lost Light Industry or stopped receiving the player's drink exports
+Fixed - Light Industry ignored the drinks required for production
+
+Codex and tooltips
+Fixed - Opening drink or drink hullmod entries from the main-menu Codex could crash the game
+Adjusted - Codex hullmod entries show drink effects at full strength, with links between drinks, hullmods and recipes
+Fixed - Prometheus Gift's withdrawal tooltip described a burn reduction as a negative number
+Fixed - Hangover Cure's tooltip rounded the default 1.5x multiplier to 2x
+
+Installation
+Adjusted - The downloaded mod folder is now named Substance.Abuse, without a version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
 1.1.d
