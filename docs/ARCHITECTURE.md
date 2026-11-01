@@ -27,7 +27,7 @@ The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-lin
 | Which markets get a brewery | `industry/BreweryPlacer.placeBreweries` |
 | Drink supply and demand on markets | `listeners/ResourceConditionApplicator -> conditions/AlcoholResourceCondition -> FactionAlcoholHandler.getFactionAlcoholTypes` |
 | Which faction makes which drink | `memory/FactionAlcoholHandler.assignFactionAlcohols / setFactionAlcoholTypes` |
-| Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper` |
+| Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper`; ships are tagged `alcoholism_absynth_fit` on refit save by `AlcoholConsumptionManager.reportFleetMemberVariantSaved` (`RefitScreenListener`) and only tagged ships are stripped |
 | Tariffs, officer XP, sustained burn, terrain effects | `hullmods/campaignEffects/TariffModifier`, `OfficerXPGainModifier`, `SustainedBurnNavigationModifier`, `TerrainEffectModifier`, registered from the owning drink's hullmod |
 | Player settings | `memory/SettingsHandler` and `data/config/LunaSettings.csv` |
 
@@ -70,6 +70,7 @@ Ids, keys and class names are bound to saves and to other mods. Display names ma
 | Industry, condition, recipe book | `alcohol_brewery`, `alcohol_resourceCondition`, `alcoholism_recipe_book` |
 | Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (`BlackoutScript`) |
 | Faction memory key | `$alcoholism_faction_alcohol_types` |
+| Variant tag | `alcoholism_absynth_fit` (`ExcessOPStripper.FITTED_ON_ABSYNTH_TAG`) |
 | Persistent data key | `alcoholism_settings` |
 
 Legacy names that survive: Prometheus Gift is `fuel`, Hangover Cure is `water`, Phaged Darjeeling is `tea`, Absynth keeps its spelling in ids. Several keys lack the mod prefix (`$AddictionMemory`, `alcohol_brewery`); keep them as they are, renaming breaks saves and the consumer mods.
@@ -88,7 +89,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | `memory/AddictionBrain` | The addiction and consumption maths |
 | `memory/FactionAlcoholHandler` | Faction to drink list in faction memory |
 | `memory/SettingsHandler` | LunaLib settings cache |
-| `listeners/AlcoholConsumptionManager` | Daily loop, effect hullmod application, run-out warnings, blackout trigger |
+| `listeners/AlcoholConsumptionManager` | Daily loop, effect hullmod application, run-out warnings, blackout trigger, Absynth refit tag |
 | `listeners/AlcoholStackReplacer` | Commodity and item stack conversion around the cargo tab |
 | `listeners/ResourceConditionApplicator` | Adds `alcohol_resourceCondition` to markets on economy ticks and colonisation |
 | `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel |
@@ -110,7 +111,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 
 ### Save data
 
-- The mod is released and can be added to an existing save. Classes stored in saves (`AddictionMemory`, `AddictionStatus`, `SettingsHandler`, scripts added with `addScript`, intel) keep their package, name and fields.
+- The mod is released and can be added to an existing save. Classes stored in saves (`AddictionMemory`, `AddictionStatus`, `SettingsHandler`, the non-transient `ExcessOPStripper` listener, scripts added with `addScript`, intel) keep their package, name and fields. `ExcessOPStripper.taggedExistingFits` is false on older saves and tags their Absynth fleet ships once.
 - `AddictionMemory.refresh()` adds missing statuses for drinks added since the save, including other mods' drinks.
 
 ### Shared cross-file constraints
