@@ -7,6 +7,7 @@ Special thanks to: Avanitia, SilverLight
 
 1.1.e - UNRELEASED
 Fixed - Stutter at the start of every day with large fleets, worst alongside mods whose skills or hullmods check cargo
+Fixed - Absynth OP adjustment stripped ships that were never refit on Absynth, including fleets that never drank it
 
 1.1.d
 Added - Icon

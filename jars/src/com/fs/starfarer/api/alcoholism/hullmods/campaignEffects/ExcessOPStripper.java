@@ -1,15 +1,16 @@
 package com.fs.starfarer.api.alcoholism.hullmods.campaignEffects;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.listeners.AlcoholConsumptionManager;
 import com.fs.starfarer.api.alcoholism.listeners.NewDayListener;
 import com.fs.starfarer.api.alcoholism.memory.AddictionStatus;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.alcoholism.memory.SettingsHandler;
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.PlayerMarketTransaction;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.listeners.ColonyInteractionListener;
-import com.fs.starfarer.api.campaign.listeners.EconomyTickListener;
 import com.fs.starfarer.api.campaign.listeners.ListenerManagerAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
@@ -19,11 +20,10 @@ import com.fs.starfarer.api.loading.WeaponSlotAPI;
 
 import java.util.ArrayList;
 
-public class ExcessOPStripper implements NewDayListener, ColonyInteractionListener, EconomyTickListener {
+// strips only ships tagged on a refit save while they carried the absynth hullmod
+public class ExcessOPStripper implements NewDayListener, ColonyInteractionListener {
     public static final String HAS_SHOWN_WARNING_KEY = "$AlcoholWarningHasBeenShow";
-
-    //Corrects member OP every day when not addicted, or after 7 days if in withdrawal.
-    //Also corrects OP when a ship is sold or bought and the player is not under the influence of Abynth.
+    public static final String FITTED_ON_ABSYNTH_TAG = "alcoholism_absynth_fit";
 
     public static void register(){
         ListenerManagerAPI m = Global.getSector().getListenerManager();
@@ -35,21 +35,31 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
     }
 
     public int countdown = 7;
+    // false on saves from before the tag existed
+    public boolean taggedExistingFits = false;
 
     public ExcessOPStripper(){
+    }
+
+    public static void tagIfFittedOnAbsynth(ShipVariantAPI variant){
+        if(variant.hasHullMod(getAbsynthHullmodId())) variant.addTag(FITTED_ON_ABSYNTH_TAG);
     }
 
     @Override
     public void onNewDay() {
         AddictionStatus status = AlcoholRepo.get(AlcoholRepo.ABSYNTH).getAddictionStatus();
-        if(!status.isAddicted()) return;
+
+        if(!taggedExistingFits){
+            for (FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) tagIfFittedOnAbsynth(m.getVariant());
+            taggedExistingFits = true;
+        }
 
         if(status.isWithdrawal()) {
             showMessageIfNeeded();
             countdown--;
         } else if (status.isConsuming()) countdown = 7;
 
-        if(countdown < 0){
+        if(!status.isAddicted() || countdown < 0){
             correctPlayerFleetOP();
         }
     }
@@ -59,34 +69,54 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
         AddictionStatus status = AlcoholRepo.get(AlcoholRepo.ABSYNTH).getAddictionStatus();
         if(status.isWithdrawal() || !status.isAddicted()){
             MutableCharacterStatsAPI stats = Global.getSector().getPlayerPerson().getStats();
+            boolean toCargo = transaction.getSubmarket().getPlugin().isFreeTransfer();
 
-            if(!transaction.getShipsSold().isEmpty()){
-                for (PlayerMarketTransaction.ShipSaleInfo info : transaction.getShipsSold()){
-                    correctMember(info.getMember(), stats, transaction.getSubmarket().getPlugin().isFreeTransfer());
-                }
+            for (PlayerMarketTransaction.ShipSaleInfo info : transaction.getShipsSold()){
+                if(correctTradedMember(info.getMember(), stats, toCargo, status, false)) info.getMember().updateStats();
             }
 
-            if(!transaction.getShipsBought().isEmpty()){
-                for (PlayerMarketTransaction.ShipSaleInfo info : transaction.getShipsBought()){
-                    correctMember(info.getMember(), stats, transaction.getSubmarket().getPlugin().isFreeTransfer());
-                }
+            boolean corrected = false;
+            for (PlayerMarketTransaction.ShipSaleInfo info : transaction.getShipsBought()){
+                if(correctTradedMember(info.getMember(), stats, toCargo, status, true)) corrected = true;
             }
+
+            if(corrected) AlcoholConsumptionManager.syncFleetStats(Global.getSector().getPlayerFleet());
         }
+    }
+
+    // stored ships keep the absynth hullmod, so on bought ships it marks fits stored before the tag existed
+    private boolean correctTradedMember(FleetMemberAPI m, MutableCharacterStatsAPI stats, boolean toCargo, AddictionStatus status, boolean isBought){
+        ShipVariantAPI var = m.getVariant();
+        if(!isFittedOnAbsynth(var) && !(isBought && hasAbsynthHullmod(var))) return false;
+
+        // removing the mod also clears the variant's cached op cost stats, which can still hold the discount
+        if(!status.isAddicted()) removeAbsynthHullmod(var);
+
+        boolean corrected = correctMember(m, stats, toCargo);
+        if(!status.isAddicted()) untag(var);
+
+        return corrected;
     }
 
     public void correctPlayerFleetOP(){
         MutableCharacterStatsAPI stats = Global.getSector().getPlayerPerson().getStats();
+        CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
+        boolean isAddicted = AlcoholRepo.get(AlcoholRepo.ABSYNTH).getAddictionStatus().isAddicted();
 
         boolean notify = false;
 
-        for (FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()){
-            boolean corrected;
-            corrected = correctMember(m, stats, true);
+        for (FleetMemberAPI m : fleet.getFleetData().getMembersListCopy()){
+            ShipVariantAPI var = m.getVariant();
+            if(!isFittedOnAbsynth(var)) continue;
 
-            if(corrected) notify = true;
+            if(correctMember(m, stats, true)) notify = true;
+            if(!isAddicted) untag(var);
         }
 
-        if (notify) Global.getSector().getCampaignUI().addMessage("Some of your ship loadouts have been changed to account for OP deficits.");
+        if (notify) {
+            AlcoholConsumptionManager.syncFleetStats(fleet);
+            Global.getSector().getCampaignUI().addMessage("Some of your ship loadouts have been changed to account for OP deficits.");
+        }
     }
 
     public boolean correctMember(FleetMemberAPI m, MutableCharacterStatsAPI stats, boolean toCargo){
@@ -101,9 +131,45 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
             if(corr) corrected = corr;
         }
 
-        if(corrected) m.updateStats();
-
         return corrected;
+    }
+
+    private static String getAbsynthHullmodId(){
+        return AlcoholRepo.get(AlcoholRepo.ABSYNTH).getEffectHullmodId();
+    }
+
+    private static boolean isFittedOnAbsynth(ShipVariantAPI var){
+        if(var.hasTag(FITTED_ON_ABSYNTH_TAG)) return true;
+
+        for (String s : var.getModuleSlots()){
+            if(var.getModuleVariant(s).hasTag(FITTED_ON_ABSYNTH_TAG)) return true;
+        }
+
+        return false;
+    }
+
+    private static boolean hasAbsynthHullmod(ShipVariantAPI var){
+        return var.hasHullMod(getAbsynthHullmodId());
+    }
+
+    private static void removeAbsynthHullmod(ShipVariantAPI var){
+        String id = getAbsynthHullmodId();
+
+        for (String s : var.getModuleSlots()){
+            var.getModuleVariant(s).removeMod(id);
+            var.getModuleVariant(s).removePermaMod(id);
+        }
+
+        var.removeMod(id);
+        var.removePermaMod(id);
+    }
+
+    private static void untag(ShipVariantAPI var){
+        var.removeTag(FITTED_ON_ABSYNTH_TAG);
+
+        for (String s : var.getModuleSlots()){
+            var.getModuleVariant(s).removeTag(FITTED_ON_ABSYNTH_TAG);
+        }
     }
 
     public boolean correctVariant(ShipVariantAPI var, MutableCharacterStatsAPI stats, boolean toCargo){
@@ -204,14 +270,4 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
 
     }
 
-    @Override
-    public void reportEconomyTick(int iterIndex) {
-        AddictionStatus status = AlcoholRepo.get(AlcoholRepo.ABSYNTH).getAddictionStatus();
-        if(!status.isAddicted()) correctPlayerFleetOP();
-    }
-
-    @Override
-    public void reportEconomyMonthEnd() {
-
-    }
 }

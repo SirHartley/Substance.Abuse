@@ -3,10 +3,13 @@ package com.fs.starfarer.api.alcoholism.listeners;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.ModPlugin;
 import com.fs.starfarer.api.alcoholism.TooltipHelper;
+import com.fs.starfarer.api.alcoholism.hullmods.campaignEffects.ExcessOPStripper;
 import com.fs.starfarer.api.alcoholism.memory.*;
 import com.fs.starfarer.api.alcoholism.scripts.BlackoutScript;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.CargoAPI;
+import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.campaign.listeners.RefitScreenListener;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -20,7 +23,7 @@ import java.util.Map;
  * Does not drink responsibly
  */
 
-public class AlcoholConsumptionManager implements NewDayListener, RefitTabListener {
+public class AlcoholConsumptionManager implements NewDayListener, RefitTabListener, RefitScreenListener {
 
     public float unitsConsumed = 0f;
 
@@ -156,7 +159,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     // updateStats per member sets the sync flag, any getCargo in a skill or hullmod then resyncs the whole fleet once per member
-    private static void syncFleetStats(CampaignFleetAPI fleet){
+    public static void syncFleetStats(CampaignFleetAPI fleet){
         fleet.getFleetData().setSyncNeeded();
         fleet.getFleetData().syncIfNeeded();
     }
@@ -246,5 +249,11 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     @Override
     public void reportRefitClosed(CampaignFleetAPI fleet) {
 
+    }
+
+    // tags here and not in ExcessOPStripper, which is removed while its setting is off
+    @Override
+    public void reportFleetMemberVariantSaved(FleetMemberAPI member, MarketAPI dockedAt) {
+        ExcessOPStripper.tagIfFittedOnAbsynth(member.getVariant());
     }
 }
