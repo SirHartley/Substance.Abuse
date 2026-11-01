@@ -56,6 +56,7 @@ public class Freedom_HullmodEffect extends BaseAlcoholHullmodEffect {
         //increase tariffs
         stats.getMaxCombatReadiness().modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_MAX_CR_REDUCTION), getDesc());
         stats.getDynamic().getMod(Stats.REPLACEMENT_RATE_DECREASE_MULT).modifyMult(id, getPercentToCorrectedMult(WITHDRAWAL_REPLACEMENT_RATE_RED_PERCENT), getDesc());
+        TariffModifier.register();
     }
 
     @Override

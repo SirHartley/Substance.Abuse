@@ -27,6 +27,7 @@ Fixed - Prometheus Gift withdrawal tooltip read "Reduces max. burn by -2"
 Fixed - Hangover Cure tooltip rounded its multiplier, showing 2x at the default setting instead of 1.5x
 Fixed - Blackouts counted drinking over the last 31 days instead of 30
 Fixed - Tears of Ludd changed officer XP one battle late, and the first battle after loading a save got no change
+Fixed - After loading a save during Sweet Freedom or Tears of Ludd withdrawal, the withdrawal tariff increase or officer XP loss did not apply until you drank again
 Adjusted - The mod folder in the download is now Substance.Abuse, without the version number
 Note - Delete the old Substance.Abuse1.1.d folder before installing
 
