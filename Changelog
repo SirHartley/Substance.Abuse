@@ -5,6 +5,9 @@ Industry Image - Commission, Anton Juntunen, https://www.artstation.com/antonjun
 Special thanks to: Avanitia, SilverLight
 ------------------OoooooO------------------
 
+1.1.e - UNRELEASED
+Fixed - Stutter at the start of every day with large fleets, worst alongside mods whose skills or hullmods check cargo
+
 1.1.d
 Added - Icon
 Adjusted - Moved all settings to LunaLib
