@@ -126,7 +126,7 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
 
         for (String s : var.getModuleSlots()){
             boolean corr;
-            corr = correctVariant(var.getModuleVariant(s), stats, toCargo);
+            corr = correctVariant(AlcoholConsumptionManager.getEditableModuleVariant(var, s), stats, toCargo);
 
             if(corr) corrected = corr;
         }
@@ -156,8 +156,9 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
         String id = getAbsynthHullmodId();
 
         for (String s : var.getModuleSlots()){
-            var.getModuleVariant(s).removeMod(id);
-            var.getModuleVariant(s).removePermaMod(id);
+            ShipVariantAPI module = AlcoholConsumptionManager.getEditableModuleVariant(var, s);
+            module.removeMod(id);
+            module.removePermaMod(id);
         }
 
         var.removeMod(id);

@@ -106,6 +106,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 - `AlcoholItemPlugin.render` uses raw `GL11` blend and colour mask calls; restore the colour mask after drawing.
 - The Codex sets `Global.CODEX_TOOLTIP_MODE` while it builds a page, also on the title screen, where there is no player fleet. Drink tooltips then show every effect section at addiction 1.0 and skip the fleet and cargo status.
 - Refresh player fleet stats after hullmod changes with one `FleetDataAPI.setSyncNeeded()` and `syncIfNeeded()` (`AlcoholConsumptionManager.syncFleetStats`), not `FleetMemberAPI.updateStats()` per member. Each `updateStats()` sets the fleet sync flag, so a `getCargo()` call from another mod's skill or hullmod during the next member's update resyncs the whole fleet once per member.
+- `ShipVariantAPI.getModuleVariant` returns the shared stock variant until the ship has its own module copy. Edit modules only through `AlcoholConsumptionManager.getEditableModuleVariant`, which clones a stock module into the ship first, as vanilla does.
 - `HullVariantSpec` caches the stats used for OP costs until a hullmod is added or removed. The daily remove and re-add in `AlcoholConsumptionManager.reapply` clears that cache, which keeps the Absynth OP discount in step with the addiction value.
 
 ### Polling

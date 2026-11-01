@@ -12,6 +12,7 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.listeners.RefitScreenListener;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.loading.VariantSource;
 import com.fs.starfarer.api.util.Misc;
 
 import java.util.ArrayList;
@@ -140,10 +141,11 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
                     List<String> modules = variant.getModuleSlots();
                     for (String s : modules) {
-                        variant.getModuleVariant(s).removeMod(hullmodID);
-                        variant.getModuleVariant(s).removePermaMod(hullmodID);
+                        ShipVariantAPI module = getEditableModuleVariant(variant, s);
+                        module.removeMod(hullmodID);
+                        module.removePermaMod(hullmodID);
 
-                        if(alcohol.getAddictionStatus().isAddicted() || alcohol.getAddictionStatus().isConsuming()) variant.getModuleVariant(s).addPermaMod(hullmodID);
+                        if(alcohol.getAddictionStatus().isAddicted() || alcohol.getAddictionStatus().isConsuming()) module.addPermaMod(hullmodID);
                     }
 
                     variant.removeMod(hullmodID);
@@ -156,6 +158,18 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         }
 
         if(changed) syncFleetStats(fleet);
+    }
+
+    // getModuleVariant returns the shared stock variant until the ship has its own copy
+    public static ShipVariantAPI getEditableModuleVariant(ShipVariantAPI variant, String slot){
+        ShipVariantAPI module = variant.getModuleVariant(slot);
+        if(module == null || !module.isStockVariant()) return module;
+
+        module = module.clone();
+        module.setOriginalVariant(null);
+        module.setSource(VariantSource.REFIT);
+        variant.setModuleVariant(slot, module);
+        return module;
     }
 
     // updateStats per member sets the sync flag, any getCargo in a skill or hullmod then resyncs the whole fleet once per member
@@ -200,7 +214,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
             List<String> modules = variant.getModuleSlots();
             for (String s : modules) {
-                variant.getModuleVariant(s).addPermaMod(hullmodID);
+                getEditableModuleVariant(variant, s).addPermaMod(hullmodID);
             }
         }
     }
@@ -214,8 +228,9 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
             List<String> modules = variant.getModuleSlots();
             for (String s : modules) {
-                variant.getModuleVariant(s).removeMod(hullmodID);
-                variant.getModuleVariant(s).removePermaMod(hullmodID);
+                ShipVariantAPI module = getEditableModuleVariant(variant, s);
+                module.removeMod(hullmodID);
+                module.removePermaMod(hullmodID);
             }
 
             variant.removeMod(hullmodID);
