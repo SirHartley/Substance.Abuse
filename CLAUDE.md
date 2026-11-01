@@ -75,7 +75,7 @@ Update documents automatically as part of each relevant change. Before committin
 | `CLAUDE.md` | Task scope, workflow, tools, commits, PRs, builds, comments, document maintenance | Replace changed policies here and update links. Keep provider-specific instructions explicitly scoped. |
 | `docs/ARCHITECTURE.md` | Technical routing: owners, registrations, data flow, lifecycle, ids and cross-file constraints of `master` | Update the affected route or contract; remove obsolete owners. Exact paths and symbols. No release history or duplicate policy. |
 | `docs/MOD_API.md` | Frozen public symbols and ids, known consumer mods | Add symbols and consumers as found. Never drop a row because the symbol changed; restore the symbol. |
-| `docs/BRANCHES.md` | Repositories, branches, migration plan, state and API breaks of `dev` | Update when a migration step is done, a branch changes, or a `dev` feature is ported or dropped. |
+| `docs/BRANCHES.md` | Repositories, branches, open migration steps, state and API breaks of `dev` | Update when an open step is done, a branch changes, or a `dev` feature is ported or dropped. |
 | `docs/RELEASE.md` | Version numbers, version file, release jar, package | Update when a version location, URL, the jar build or the package changes. |
 | `Changelog` and `docs/CHANGELOG.md` | Shipped change notes and how agents write them | Add or amend unreleased entries with each implementation task; preserve published entries and the credits block. |
 | `README.md` | Player and modder facing overview | Update when a drink, setting, requirement or the documented modder call changes. |
