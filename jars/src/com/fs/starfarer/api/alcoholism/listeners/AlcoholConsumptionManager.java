@@ -123,8 +123,11 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
     }
 
     public void reapply(){
+        CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
         List<Alcohol> alcoholList = new ArrayList<>(AlcoholRepo.ALCOHOL_MAP.values());
-        for(FleetMemberAPI m : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
+        boolean changed = false;
+
+        for(FleetMemberAPI m : fleet.getFleetData().getMembersListCopy()) {
             ShipVariantAPI variant = m.getVariant();
 
             for (Alcohol alcohol : alcoholList){
@@ -144,11 +147,18 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
                     variant.removePermaMod(hullmodID);
 
                     if(alcohol.getAddictionStatus().isAddicted() || alcohol.getAddictionStatus().isConsuming()) variant.addPermaMod(hullmodID);
+                    changed = true;
                 }
             }
-
-            m.updateStats();
         }
+
+        if(changed) syncFleetStats(fleet);
+    }
+
+    // updateStats per member sets the sync flag, any getCargo in a skill or hullmod then resyncs the whole fleet once per member
+    private static void syncFleetStats(CampaignFleetAPI fleet){
+        fleet.getFleetData().setSyncNeeded();
+        fleet.getFleetData().syncIfNeeded();
     }
 
     public void incrementWarningMapOneDay(){
@@ -222,10 +232,8 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
             String hullmodID = alcohol.getEffectHullmodId();
 
             for (FleetMemberAPI m : fleet.getFleetData().getMembersListCopy()) {
-                if (!m.getVariant().hasHullMod(hullmodID)) {
-                    m.getVariant().addPermaMod(hullmodID);
-                    m.updateStats();
-                }
+                // stats refresh in the reapply that follows in onNewDay
+                if (!m.getVariant().hasHullMod(hullmodID)) m.getVariant().addPermaMod(hullmodID);
             }
         }
     }

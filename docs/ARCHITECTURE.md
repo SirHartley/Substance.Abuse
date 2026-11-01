@@ -101,6 +101,8 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 
 - `BlackoutScript` calls `com.fs.starfarer.campaign.CampaignEngine.getInstance().getCampaignUI().showNoise(...)`, an obfuscated game class. It needs `starfarer_obf.jar` to compile and can break on a game update.
 - `AlcoholItemPlugin.render` uses raw `GL11` blend and colour mask calls; restore the colour mask after drawing.
+- Refresh player fleet stats after hullmod changes with one `FleetDataAPI.setSyncNeeded()` and `syncIfNeeded()` (`AlcoholConsumptionManager.syncFleetStats`), not `FleetMemberAPI.updateStats()` per member. Each `updateStats()` sets the fleet sync flag, so a `getCargo()` call from another mod's skill or hullmod during the next member's update resyncs the whole fleet once per member.
+- `HullVariantSpec` caches the stats used for OP costs until a hullmod is added or removed. The daily remove and re-add in `AlcoholConsumptionManager.reapply` clears that cache, which keeps the Absynth OP discount in step with the addiction value.
 
 ### Polling
 
