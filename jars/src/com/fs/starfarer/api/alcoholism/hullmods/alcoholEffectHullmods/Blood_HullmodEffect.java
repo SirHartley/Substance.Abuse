@@ -54,7 +54,8 @@ public class Blood_HullmodEffect extends BaseAlcoholHullmodEffect {
     public void advanceInCombat(ShipAPI ship, float amount) {
         super.advanceInCombat(ship, amount);
 
-        if(ship.getCaptain() != null
+        // ships without an officer still have a default captain
+        if((ship.getCaptain() != null && !ship.getCaptain().isDefault())
                 || ship.getShipAI() == null
                 || ship.getShipAI().getConfig().personalityOverride != null) return;
 
