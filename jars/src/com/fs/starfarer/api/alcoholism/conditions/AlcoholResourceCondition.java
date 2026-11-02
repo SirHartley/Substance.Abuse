@@ -10,6 +10,7 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MutableCommodityQuantity;
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
+import com.fs.starfarer.api.impl.campaign.ids.Commodities;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.util.Misc;
@@ -96,11 +97,20 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
         String commodityID = alcohol.getCommodityId();
 
         if (!market.hasIndustry(Brewery.INDUSTRY_ID)) {
-            applyDemand(Industries.LIGHTINDUSTRY, alcohol.getLightIndustryMod(), alcohol.getDemandsForProduction());
+            applyDemand(Industries.LIGHTINDUSTRY, alcohol.getLightIndustryMod(), getLightIndustryInputs(alcohol));
             applySupply(Industries.LIGHTINDUSTRY, alcohol.getLightIndustryMod(), commodityID);
         }
 
         applyDemand(Industries.POPULATION, alcohol.getPopulationImportMod(), commodityID);
+    }
+
+    // vanilla light industry demands organics at market size, a second mod id would stack on that level
+    private static String[] getLightIndustryInputs(Alcohol alcohol) {
+        List<String> inputs = new ArrayList<>();
+        for (String s : alcohol.getDemandsForProduction()) {
+            if (!Commodities.ORGANICS.equals(s)) inputs.add(s);
+        }
+        return inputs.toArray(new String[0]);
     }
 
     private void applyDemand(String industryID, int marketSizeMod, String... commodityIDs) {
