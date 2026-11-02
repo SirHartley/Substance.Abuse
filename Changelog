@@ -7,6 +7,7 @@ Special thanks to: Avanitia, SilverLight
 
 1.1.f - UNRELEASED
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
+Fixed - Markets producing drinks in Light Industry demanded far more organics than vanilla, causing organics shortages and lower Light Industry output
 
 1.1.e
 
