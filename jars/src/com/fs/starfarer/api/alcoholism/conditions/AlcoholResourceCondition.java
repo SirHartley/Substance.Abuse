@@ -8,10 +8,8 @@ import com.fs.starfarer.api.campaign.econ.CommodityOnMarketAPI;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MutableCommodityQuantity;
-import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
-import com.fs.starfarer.api.impl.campaign.ids.Commodities;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Industries;
 import com.fs.starfarer.api.util.Misc;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
-
-    private static final String LEGACY_CLEARED_KEY = "$alcoholism_legacy_economy_cleared";
 
     @Override
     public void apply(String id) {
@@ -40,8 +36,6 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     public void unapply(String id) {
         super.unapply(id);
 
-        clearLegacyEntries();
-
         BaseIndustry pop = getBaseIndustry(Industries.POPULATION);
         BaseIndustry lightIndustry = getBaseIndustry(Industries.LIGHTINDUSTRY);
 
@@ -54,33 +48,6 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
             lightIndustry.supply(getDeficitModId(), commodityId, 0, "");
             for (String s : alcohol.getDemandsForProduction()) lightIndustry.demand(getModId(), s, 0, "");
         }
-    }
-
-    // up to 1.1.d drink supply and demand sat under the industry's own index 0 id and deficit id "3"
-    private void clearLegacyEntries() {
-        MemoryAPI memory = market.getMemoryWithoutUpdate();
-        if (memory.getBoolean(LEGACY_CLEARED_KEY)) return;
-        memory.set(LEGACY_CLEARED_KEY, true);
-
-        BaseIndustry pop = getBaseIndustry(Industries.POPULATION);
-        BaseIndustry lightIndustry = getBaseIndustry(Industries.LIGHTINDUSTRY);
-
-        for (Alcohol alcohol : AlcoholRepo.ALCOHOL_MAP.values()) {
-            String commodityId = alcohol.getCommodityId();
-            if (pop != null) pop.demand(getIndustryModId(pop), commodityId, 0, "");
-            if (lightIndustry == null) continue;
-
-            lightIndustry.supply(getIndustryModId(lightIndustry), commodityId, 0, "");
-            lightIndustry.supply("3", commodityId, 0, "");
-            for (String s : alcohol.getDemandsForProduction()) {
-                // vanilla light industry sets its own organics demand under the same id
-                if (!Commodities.ORGANICS.equals(s)) lightIndustry.demand(getIndustryModId(lightIndustry), s, 0, "");
-            }
-        }
-    }
-
-    private static String getIndustryModId(Industry ind) {
-        return "ind_" + ind.getId() + "_0";
     }
 
     private BaseIndustry getBaseIndustry(String industryId) {

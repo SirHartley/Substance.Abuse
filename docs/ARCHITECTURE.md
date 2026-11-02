@@ -73,7 +73,7 @@ Ids, keys and class names are bound to saves and to other mods. Display names ma
 | Drink ids (`AlcoholRepo` constants) | `alcoholism_stout`, `alcoholism_absynth`, `alcoholism_tears`, `alcoholism_fuel`, `alcoholism_blood`, `alcoholism_sunshine`, `alcoholism_king`, `alcoholism_freedom`, `alcoholism_water`, `alcoholism_tea` |
 | Commodity / item / recipe ids | `<drink>_c` / `<drink>` / `<drink>_item` |
 | Industry, condition, recipe book | `alcohol_brewery`, `alcohol_resourceCondition`, `alcoholism_recipe_book` |
-| Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (`BlackoutScript`); `$alcoholism_legacy_economy_cleared` (market, `AlcoholResourceCondition`) |
+| Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (`BlackoutScript`) |
 | Faction memory key | `$alcoholism_faction_alcohol_types` |
 | Variant tag | `alcoholism_absynth_fit` (`ExcessOPStripper.FITTED_ON_ABSYNTH_TAG`) |
 | Persistent data key | `alcoholism_settings` (old saves only, removed on load; `SettingsHandler` stays for them) |
@@ -124,7 +124,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 
 ### Shared cross-file constraints
 
-- `AlcoholResourceCondition` writes drink supply and demand under its own condition id and clears it in `unapply` for every drink, whoever owns the market. The Brewery recipe effects use the industry's index 0 id through the static `applySupply` and `applyDemand`. Up to 1.1.d the condition also wrote under the industry's index 0 id and deficit id `3`; `clearLegacyEntries` removes those once per market.
+- `AlcoholResourceCondition` writes drink supply and demand under its own condition id and clears it in `unapply` for every drink, whoever owns the market. The Brewery recipe effects use the industry's index 0 id through the static `applySupply` and `applyDemand`. Industry supply and demand are not saved (`CoreLifecyclePluginImpl.econPreSaveCleanup`) and are rebuilt by `reapplyConditions` then `reapplyIndustries` on load, so changing these ids needs no save migration.
 - `OfficerXPGainModifier` snapshots officer XP on the first `reportPlayerEngagement` of a battle and applies the Tears of Ludd change in `reportBattleOccurred`, which fires after vanilla grants battle XP (`FleetEncounterContext`). Autoresolved battles do not fire it; their XP counts towards the next battle.
 - The daily drink amount, at least one unit, comes from `AlcoholConsumptionManager.getRequiredUnitsPerDay`. Consumption and the forecasts in `TooltipHelper` both use it.
 - `AlcoholConsumptionManager.onNewDay` iterates `AlcoholRepo.ALCOHOL_MAP.values()` as `Alcohol`; every entry, including other mods', must be an `Alcohol`.
