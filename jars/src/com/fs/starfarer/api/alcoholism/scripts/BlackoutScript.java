@@ -187,6 +187,7 @@ public class BlackoutScript implements EveryFrameScript {
             any.add(system);
 
             if (system.hasTag(Tags.SYSTEM_CUT_OFF_FROM_HYPER) || system.hasPulsar() || system.hasBlackHole()) continue;
+            if (system.hasTag(Tags.THEME_HIDDEN) || system.hasTag(Tags.TEMPORARY_LOCATION)) continue;
             safe.add(system);
         }
 
