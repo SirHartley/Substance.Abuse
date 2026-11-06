@@ -23,7 +23,7 @@ After reading this file, use the task to choose the next document. Read the rele
 |---|---|
 | Locate code or data, trace a feature, change an owner or lifecycle | [ARCHITECTURE.md](docs/ARCHITECTURE.md) before tracing code; follow its owner links. |
 | Change any public class, member, constructor, return type or id; add a drink; touch `AlcoholRepo`, `Alcohol`, `FactionAlcoholHandler`, `AddictionMemory`, `BaseAlcoholHullmodEffect` or the item plugins | [MOD_API.md](docs/MOD_API.md) before editing, then [ARCHITECTURE.md](docs/ARCHITECTURE.md). |
-| Any work on the `dev` branch, porting a `dev` feature, repository or default branch changes | [BRANCHES.md](docs/BRANCHES.md), then [MOD_API.md](docs/MOD_API.md). |
+| Any work on the `mixology-update` branch, porting a `mixology-update` feature, repository or default branch changes | [BRANCHES.md](docs/BRANCHES.md), then [MOD_API.md](docs/MOD_API.md). |
 | Write or revise player-facing text: `descriptions.csv`, `tips.json`, tooltips, messages, intel, `LunaSettings.csv` help | The existing text in the same file for tone; the `starsector-knowledge` skill for vanilla wording. There is no text guide yet. |
 | Change the build, a version number or a version file URL, or prepare a release | [RELEASE.md](docs/RELEASE.md) |
 | Any implementation task | [CHANGELOG.md](docs/CHANGELOG.md): add or amend the task's entries in the newest unreleased section before merge. |
@@ -56,14 +56,14 @@ After reading this file, use the task to choose the next document. Read the rele
 - No CI runs on pushes or pull requests. Do not add workflows or triggers unless the user asks.
 - Open a pull request and merge it when the work is complete. Do not leave finished work on an unmerged branch.
 - Use the connected GitHub app to create, inspect, and merge pull requests. Use `gh` only if the app is unavailable.
-- Fetch current remote `master` before branching and again before merging. Integrate intervening changes, push the exact final commit, and verify the merged remote revision.
-- Work for the `dev` line branches from and merges into `dev`, not `master`; see [BRANCHES.md](docs/BRANCHES.md).
+- Fetch current remote `dev` before branching and again before merging. Integrate intervening changes, push the exact final commit, and verify the merged remote revision.
+- New work branches from and is merged into `dev` by pull request. Work for the `mixology-update` line branches from and merges into `mixology-update`; see [BRANCHES.md](docs/BRANCHES.md).
 
 ### Branch cleanup
 
 GitHub normally deletes a pull request's head branch after merge. Verify that the branch is gone. Remove it manually when it was pushed without a pull request, its pull request was closed without merging, or it predates the repository setting. If deletion returns HTTP 403, report the branch name and leave it in place.
 
-After merge, fast-forward the local task branch to the new `master`.
+After merge, fast-forward the local task branch to the new `dev`.
 
 ## Documentation upkeep
 
@@ -75,7 +75,7 @@ Update documents automatically as part of each relevant change. Before committin
 | `CLAUDE.md` | Task scope, workflow, tools, commits, PRs, builds, comments, document maintenance | Replace changed policies here and update links. Keep provider-specific instructions explicitly scoped. |
 | `docs/ARCHITECTURE.md` | Technical routing: owners, registrations, data flow, lifecycle, ids and cross-file constraints of `master` | Update the affected route or contract; remove obsolete owners. Exact paths and symbols. No release history or duplicate policy. |
 | `docs/MOD_API.md` | Frozen public symbols and ids, known consumer mods | Add symbols and consumers as found. Never drop a row because the symbol changed; restore the symbol. |
-| `docs/BRANCHES.md` | Repositories, branches, open migration steps, state and API breaks of `dev` | Update when an open step is done, a branch changes, or a `dev` feature is ported or dropped. |
+| `docs/BRANCHES.md` | Repositories, branches, open migration steps, state and API breaks of `mixology-update` | Update when an open step is done, a branch changes, or a `dev` feature is ported or dropped. |
 | `docs/RELEASE.md` | Version numbers, version file, release jar, package, release workflow | Update when a version location, URL, the jar build, the package or `.github/workflows/release.yml` changes. |
 | `Changelog` and `docs/CHANGELOG.md` | Shipped change notes and how agents write them | Add or amend unreleased entries with each implementation task; preserve published entries and the credits block. |
 | `README.md` | Player and modder facing overview | Update when a drink, setting, requirement or the documented modder call changes. |
@@ -126,7 +126,7 @@ Return: <desired detail, format and output path, if needed>
    this task. Starting points are navigation help, not the full reading list.
 2. Use searches to locate material. Open the surrounding section before using
    a match as evidence; do not answer from filenames or snippets alone.
-3. Preserve what each passage applies to: game version, master or dev line,
+3. Preserve what each passage applies to: game version, dev, master or mixology-update line,
    vanilla or mod code, consumer mod code. Keep qualifiers such as "normally",
    "only", "never" and "not" when summarizing.
 4. For behavioral claims, follow the code to its callers, registration and data.

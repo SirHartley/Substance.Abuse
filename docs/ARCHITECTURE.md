@@ -2,13 +2,13 @@
 
 Technical routing for the current implementation on `master` (1.1.e line). Code paths below are relative to `jars/src/com/fs/starfarer/api/alcoholism/`; data paths are repository-relative. Search the named owner before adding another implementation.
 
-The `dev` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-dev-line). This file does not describe it.
+The `mixology-update` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md#the-mixology-update-line). This file does not describe it.
 
 | Reference | Scope |
 |---|---|
 | [CLAUDE.md](../CLAUDE.md) | Workflow, build gate and document upkeep |
 | [MOD_API.md](MOD_API.md) | Public classes, members and ids other mods use; what must not change |
-| [BRANCHES.md](BRANCHES.md) | Repository and branch model, open migration steps, state of the `dev` line |
+| [BRANCHES.md](BRANCHES.md) | Repository and branch model, open migration steps, state of the `mixology-update` line |
 | [RELEASE.md](RELEASE.md) | Version numbers, version file, release jar, package and release workflow |
 | [CHANGELOG.md](CHANGELOG.md) | Change-note format and upkeep for every implementation task |
 
