@@ -21,6 +21,7 @@ public class Custom_HullmodEffect extends BaseAlcoholHullmodEffect {
         if (getAlcohol() == null) {
             spec.setDisplayName("");
             spec.setSpriteName("graphics/conditions/placeholder.png");
+            return;
         }
 
         spec.setDisplayName(getAlcohol().getName());

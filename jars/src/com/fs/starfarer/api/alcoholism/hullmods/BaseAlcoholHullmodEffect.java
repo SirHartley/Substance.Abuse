@@ -50,6 +50,9 @@ public abstract class BaseAlcoholHullmodEffect extends SelfRepairingBuiltInHullm
         super.applyEffectsBeforeShipCreation(hullSize, stats, id);
 
         AlcoholAPI alcohol = getAlcohol();
+        // custom alcohol can not be found while a save loads
+        if (alcohol == null) return;
+
         String alcoholID = alcohol.getId();
 
         AddictionStatus status = alcohol.getAddictionStatus();
