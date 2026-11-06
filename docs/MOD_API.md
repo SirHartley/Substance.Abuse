@@ -1,6 +1,6 @@
 # Mod integration API
 
-The classes, members and ids other mods compile against or reference from their data. Read this before changing any public class, method, field, constructor, return type or id, on any branch. Where these symbols live and what they do is in [ARCHITECTURE.md](ARCHITECTURE.md); how the `dev` line breaks them is in [BRANCHES.md](BRANCHES.md#api-breaks-on-dev).
+The classes, members and ids other mods compile against or reference from their data. Read this before changing any public class, method, field, constructor, return type or id, on any branch. Where these symbols live and what they do is in [ARCHITECTURE.md](ARCHITECTURE.md); how the `mixology-update` line breaks them is in [BRANCHES.md](BRANCHES.md#api-breaks-on-dev).
 
 Other mods ship jars compiled against a released `alcoholism.jar` and are not rebuilt when this mod changes. A change that compiles here can still throw `NoSuchMethodError`, `NoSuchFieldError` or `AbstractMethodError` in their code at run time.
 
