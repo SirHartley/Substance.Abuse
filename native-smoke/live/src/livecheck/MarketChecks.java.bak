@@ -1,0 +1,105 @@
+package livecheck;
+
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.industry.Brewery;
+import com.fs.starfarer.api.alcoholism.memory.Alcohol;
+import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
+import com.fs.starfarer.api.campaign.PlanetAPI;
+import com.fs.starfarer.api.campaign.SpecialItemData;
+import com.fs.starfarer.api.campaign.econ.Industry;
+import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.combat.MutableStat;
+import com.fs.starfarer.api.impl.campaign.ids.Commodities;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
+import com.fs.starfarer.api.impl.campaign.ids.Industries;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// changelog rows 18 and 19
+public final class MarketChecks {
+    private static final String COND = "alcohol_resourceCondition";
+    private static final int SIZE = 5;
+
+    private MarketChecks() {
+    }
+
+    private static MarketAPI npc(PlanetAPI planet, String faction) {
+        MarketAPI market = Colony.make(planet, SIZE);
+        market.setPlayerOwned(false);
+        market.setFactionId(faction);
+        planet.setFaction(faction);
+        market.addIndustry(Industries.LIGHTINDUSTRY);
+        market.reapplyIndustries();
+        return market;
+    }
+
+    private static void refresh(Ctx c, String... keys) {
+        for (String key : keys) {
+            MarketAPI market = c.market(key);
+            market.reapplyConditions();
+            market.reapplyIndustries();
+        }
+    }
+
+    // by quantity, not by mod id: 1.1.d keeps its entries under other ids
+    private static int stale(MarketAPI market, boolean supplyOnly) {
+        int found = 0;
+        for (Industry ind : market.getIndustries()) {
+            for (Alcohol a : AlcoholRepo.ALCOHOL_MAP.values()) {
+                String id = a.getCommodityId();
+                if (ind.getSupply(id).getQuantity().getModifiedInt() > 0) found++;
+                if (!supplyOnly && ind.getDemand(id).getQuantity().getModifiedInt() > 0) found++;
+            }
+        }
+        return found;
+    }
+
+    public static List<Step> steps() {
+        List<Step> steps = new ArrayList<>();
+        steps.add(c -> {
+            c.put("r18a", npc(Colony.planets(1).get(0), Factions.PIRATES).getId());
+            c.put("r19", npc(Colony.planets(1).get(0), Factions.HEGEMONY).getId());
+            c.put("r18b", npc(Colony.planets(1).get(0), Factions.PIRATES).getId());
+            List<PlanetAPI> pair = Colony.planets(2);
+            MarketAPI a = Colony.make(pair.get(0), SIZE);
+            MarketAPI b = Colony.make(pair.get(1), SIZE);
+            c.put("r18c", a.getId());
+            c.put("r18d", b.getId());
+            a.addIndustry(Brewery.INDUSTRY_ID);
+            a.getIndustry(Brewery.INDUSTRY_ID).setSpecialItem(new SpecialItemData(Kit.drink(AlcoholRepo.STOUT).getIndustryItemId(), null));
+            a.reapplyIndustries();
+            c.until(() -> c.market("r18a").hasCondition(COND) && c.market("r18b").hasCondition(COND) && c.market("r19").hasCondition(COND)
+                    && c.market("r18c").hasCondition(COND) && c.market("r18d").hasCondition(COND), 20f, "row18 condition on every colony");
+        });
+        steps.add(c -> {
+            refresh(c, "r18a", "r18b", "r18c", "r18d");
+            refresh(c, "r18d");
+            refresh(c, "r19");
+            // food, light industry supplies the drugs of pirate drinks itself and the condition then skips them
+            Industry light = c.market("r19").getIndustry(Industries.LIGHTINDUSTRY);
+            MutableStat.StatMod mod = light.getDemand(Commodities.FOOD).getQuantity().getFlatStatMod(COND);
+            c.expect(mod != null, "row19 light industry demands food under the condition");
+            if (mod != null) c.near(mod.getValue(), SIZE - 3, 0.01f, "row19 food demand at size minus 3");
+            MarketAPI market = c.market("r18a");
+            c.expect(stale(market, true) > 0, "row18 setup: pirate colony supplies drinks");
+            MarketAPI b = c.market("r18d");
+            String stout = Kit.drink(AlcoholRepo.STOUT).getCommodityId();
+            c.expect(b.getIndustry(Industries.POPULATION).getDemand(stout).getQuantity().getModifiedInt() > 0, "row18 setup: colony B demands the brewery export");
+
+            market.setFactionId(com.fs.starfarer.api.impl.campaign.ids.Factions.PLAYER);
+            market.setPlayerOwned(true);
+            c.market("r18b").removeIndustry(Industries.LIGHTINDUSTRY, null, false);
+            c.market("r18c").removeIndustry(Brewery.INDUSTRY_ID, null, false);
+            c.days(2f);
+        });
+        steps.add(c -> {
+            refresh(c, "r18a", "r18b", "r18c", "r18d");
+            refresh(c, "r18d");
+            c.expect(stale(c.market("r18a"), false) == 0, "row18 no drink entries after owner change, got " + stale(c.market("r18a"), false));
+            c.expect(stale(c.market("r18b"), true) == 0, "row18 no drink supply after light industry loss, got " + stale(c.market("r18b"), true));
+            c.expect(stale(c.market("r18d"), false) == 0, "row18 no drink entries after exports end, got " + stale(c.market("r18d"), false));
+        });
+        return steps;
+    }
+}

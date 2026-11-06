@@ -27,6 +27,7 @@ After reading this file, use the task to choose the next document. Read the rele
 | Write or revise player-facing text: `descriptions.csv`, `tips.json`, tooltips, messages, intel, `LunaSettings.csv` help | The existing text in the same file for tone; the `starsector-knowledge` skill for vanilla wording. There is no text guide yet. |
 | Change the build, a version number or a version file URL, or prepare a release | [RELEASE.md](docs/RELEASE.md) |
 | Any implementation task | [CHANGELOG.md](docs/CHANGELOG.md): add or amend the task's entries in the newest unreleased section before merge. |
+| Run or extend smoke checks | [SMOKE_TESTS.md](docs/SMOKE_TESTS.md) |
 | Edit a guide or add documentation | [Documentation upkeep](#documentation-upkeep), the owning guide and its inbound links. |
 
 ### Technical references and conflicts
@@ -77,6 +78,7 @@ Update documents automatically as part of each relevant change. Before committin
 | `docs/MOD_API.md` | Frozen public symbols and ids, known consumer mods | Add symbols and consumers as found. Never drop a row because the symbol changed; restore the symbol. |
 | `docs/BRANCHES.md` | Repositories, branches, open migration steps, state and API breaks of `dev` | Update when an open step is done, a branch changes, or a `dev` feature is ported or dropped. |
 | `docs/RELEASE.md` | Version numbers, version file, release jar, package, release workflow | Update when a version location, URL, the jar build, the package or `.github/workflows/release.yml` changes. |
+| `docs/SMOKE_TESTS.md` | Smoke check groups, builds and how to run them | Update when a group, a build or the run command changes. |
 | `Changelog` and `docs/CHANGELOG.md` | Shipped change notes and how agents write them | Add or amend unreleased entries with each implementation task; preserve published entries and the credits block. |
 | `README.md` | Player and modder facing overview | Update when a drink, setting, requirement or the documented modder call changes. |
 | `.claude/agents/*.md` | Subagent definitions | Update when the dispatch rules below change. |

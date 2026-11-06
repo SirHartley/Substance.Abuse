@@ -1,0 +1,173 @@
+package livecheck;
+
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.alcoholism.intel.DrunkFleetIntel;
+import com.fs.starfarer.api.alcoholism.memory.AddictionMemory;
+import com.fs.starfarer.api.alcoholism.memory.Alcohol;
+import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
+import com.fs.starfarer.api.alcoholism.scripts.BlackoutScript;
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
+import com.fs.starfarer.api.campaign.JumpPointAPI;
+import com.fs.starfarer.api.campaign.LocationAPI;
+import com.fs.starfarer.api.campaign.PlanetAPI;
+import com.fs.starfarer.api.campaign.SectorEntityToken;
+import com.fs.starfarer.api.campaign.StarSystemAPI;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
+import com.fs.starfarer.api.util.Misc;
+
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+// changelog rows 13 to 17. keep this group last, it moves the player and splits the fleet
+public final class BlackoutChecks {
+    private static CampaignFleetAPI drunk = null;
+    private static LocationAPI origin = null;
+
+    private BlackoutChecks() {
+    }
+
+    private static final class Mover extends BlackoutScript {
+        void move() {
+            movePlayerFleet();
+        }
+    }
+
+    private static boolean anyConsuming() {
+        for (Alcohol a : AlcoholRepo.ALCOHOL_MAP.values()) if (a.getAddictionStatus().isConsuming()) return true;
+        return false;
+    }
+
+    private static void row17(Ctx c) throws Exception {
+        AddictionMemory memory = new AddictionMemory();
+        for (int i = 0; i < 31; i++) memory.addTotalDailyAddictionGainToMemory(1f);
+        c.near(memory.getTotaladdictionGainLastMonth(), 30f, 0.001f, "row17 31 days hold 30 entries");
+
+        VarHandle map = MethodHandles.privateLookupIn(AddictionMemory.class, MethodHandles.lookup())
+                .findVarHandle(AddictionMemory.class, "monthlyAddictionIncreaseMap", Map.class);
+        memory = new AddictionMemory();
+        @SuppressWarnings("unchecked")
+        Map<Integer, Float> days = (Map<Integer, Float>) map.get(memory);
+        days.put(31, 1f);
+        for (int i = 0; i < 31; i++) memory.addTotalDailyAddictionGainToMemory(1f);
+        c.near(memory.getTotaladdictionGainLastMonth(), 30f, 0.001f, "row17 old save day 31 entry goes away");
+    }
+
+    private static void row13(Ctx c) {
+        Mover mover = new Mover();
+        int noJump = 0, pulsar = 0, blackHole = 0, cutOff = 0, hidden = 0;
+        for (int i = 0; i < 300; i++) {
+            mover.move();
+            StarSystemAPI system = Kit.fleet().getStarSystem();
+            if (Misc.getDistressJumpPoint(system) == null) noJump++;
+            if (system.hasPulsar()) pulsar++;
+            if (system.hasBlackHole()) blackHole++;
+            if (system.hasTag(Tags.SYSTEM_CUT_OFF_FROM_HYPER)) cutOff++;
+            if (system.hasTag(Tags.THEME_HIDDEN)) hidden++;
+        }
+        c.note("row 13 destinations of 300: hidden " + hidden);
+        c.expect(noJump == 0, "row13 every destination has a distress jump point, " + noJump + " had none");
+        c.expect(pulsar == 0, "row13 no pulsar, got " + pulsar);
+        c.expect(blackHole == 0, "row13 no black hole, got " + blackHole);
+        c.expect(cutOff == 0, "row13 not cut off from hyperspace, got " + cutOff);
+    }
+
+    private static void row14(Ctx c) {
+        StarSystemAPI system = Global.getSector().createStarSystem("live_check_starless");
+        system.initNonStarCenter();
+        PlanetAPI planet = system.addPlanet("live_check_planet", system.getCenter(), "Live Check", "barren", 0f, 100f, 3000f, 100f);
+        planet.setFixedLocation(3000f, 0f);
+        JumpPointAPI jump = Global.getFactory().createJumpPoint("live_check_jump", "Live Check Jump");
+        jump.setFixedLocation(-3000f, 0f);
+        system.addEntity(jump);
+
+        float[][] spots = {{3050f, 0f}, {-3050f, 0f}, {0f, 6000f}};
+        String[] names = {"planet", "jump point", "open space"};
+        for (int i = 0; i < spots.length; i++) {
+            SectorEntityToken token = system.createToken(spots[i][0], spots[i][1]);
+            system.addEntity(token);
+            SectorEntityToken focus = BlackoutScript.getOrbitFocusAtTokenPosition(token);
+            c.expect(focus != null, "row14 focus near " + names[i] + " in a starless system");
+            system.removeEntity(token);
+        }
+        Global.getSector().removeStarSystem(system);
+    }
+
+    private static void row16(Ctx c) throws Exception {
+        VarHandle quips = MethodHandles.privateLookupIn(BlackoutScript.class, MethodHandles.lookup())
+                .findStaticVarHandle(BlackoutScript.class, "QUIP_LIST", List.class);
+        Object old = quips.get();
+        List<String> one = new ArrayList<>();
+        one.add("Live check quip, the only line.");
+        quips.set(one);
+        try {
+            BlackoutScript script = new BlackoutScript();
+            script.advance(1f);
+            c.expect(script.isDone(), "row16 script done with a one line list");
+        } finally {
+            quips.set(old);
+        }
+        c.shot("blackout");
+    }
+
+    public static List<Step> steps() {
+        List<Step> steps = new ArrayList<>();
+        steps.add(c -> {
+            row17(c);
+            Kit.reset();
+        });
+        steps.add(c -> row14(c));
+        steps.add(c -> {
+            for (FleetMemberAPI m : Kit.fleet().getFleetData().getMembersListCopy()) {
+                if (Kit.fleet().getFleetData().getNumMembers() > 1 && !m.isFlagship()) Kit.fleet().getFleetData().removeFleetMember(m);
+            }
+            row13(c);
+        });
+        steps.add(c -> row16(c));
+        steps.add(c -> {
+            Kit.ship("wolf_CS");
+            Kit.ship("wolf_CS");
+            c.expect(Kit.fleet().getFleetData().getNumMembers() == 3, "row15 three ship fleet, got " + Kit.fleet().getFleetData().getNumMembers());
+            for (Alcohol a : AlcoholRepo.ALCOHOL_MAP.values()) Kit.consume(a.getId(), 0f, 500f);
+            origin = Kit.fleet().getContainingLocation();
+            c.until(() -> !anyConsuming(), 30f, "row15 blackout stops all consumption");
+        });
+        steps.add(c -> {
+            for (CampaignFleetAPI f : origin.getFleets()) if ("Hungover Fleet".equals(f.getName())) drunk = f;
+            c.expect(drunk != null, "row15 drunk fleet stays behind");
+            c.expect(!Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).isEmpty(), "row15 drunk fleet intel added");
+            if (drunk == null) return;
+            c.put("r15id", drunk.getId());
+            if (Kit.fleet().getContainingLocation() == origin) {
+                for (StarSystemAPI s : Global.getSector().getStarSystems()) {
+                    if (s != origin) {
+                        Colony.jump(s, drunk.getLocation().x, drunk.getLocation().y);
+                        break;
+                    }
+                }
+            } else {
+                Kit.fleet().setLocation(drunk.getLocation().x, drunk.getLocation().y);
+            }
+            long start = Global.getSector().getClock().getTimestamp();
+            c.until(() -> Global.getSector().getClock().getElapsedDaysSince(start) >= 1f || drunk.getFleetData().getNumMembers() == 0, 2f, "row15 a day at the same coordinates in another system",
+                    () -> Kit.fleet().setLocation(drunk.getLocation().x, drunk.getLocation().y));
+        });
+        steps.add(c -> {
+            if (drunk == null) return;
+            c.expect(drunk.getFleetData().getNumMembers() > 0, "row15 fleet stays split in another system");
+            Colony.jump(origin, drunk.getLocation().x + 20f, drunk.getLocation().y);
+            c.until(() -> drunk.getFleetData().getNumMembers() == 0, 3f, "row15 fleet merges next to it");
+        });
+        steps.add(c -> {
+            if (drunk == null) return;
+            c.expect(!Global.getSector().getMemoryWithoutUpdate().contains(DrunkFleetIntel.MEMORY_KEY_PRE + c.get("r15id")), "row15 drunk fleet marker removed");
+            c.until(() -> Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).isEmpty()
+                    || Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).get(0).isEnding()
+                    || Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).get(0).isEnded(), 3f, "row15 drunk fleet intel removed");
+        });
+        return steps;
+    }
+}

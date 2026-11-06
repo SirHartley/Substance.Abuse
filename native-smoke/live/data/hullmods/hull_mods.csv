@@ -1,0 +1,2 @@
+name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sprite
+Live check probe,live_check_cargo_probe,,,,,,,,TRUE,,0,0,0,0,livecheck.CargoProbe,Test only.,,graphics/hullmods/integrated_targeting_unit.png
