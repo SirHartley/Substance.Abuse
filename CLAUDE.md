@@ -56,6 +56,7 @@ After reading this file, use the task to choose the next document. Read the rele
 - A CSV edit must round-trip byte-identical before the change, keep LF line endings and the column count, and use straight ASCII quotes only.
 - No CI runs on pushes or pull requests. Do not add workflows or triggers unless the user asks.
 - Open a pull request and merge it when the work is complete. Do not leave finished work on an unmerged branch.
+- PR title follows the commit message rules. PR body has `## Changes` (what changed, docs touched, then a `Changelog:` line with the entry or why there is none) and `## Validation` (build command, commit, JDK, result, what is not tested). Number several requested changes under `## Changes`. No attribution marker, "Requested by" line, Claude footer or session link.
 - Use the connected GitHub app to create, inspect, and merge pull requests. Use `gh` only if the app is unavailable.
 - Fetch current remote `dev` before branching and again before merging. Integrate intervening changes, push the exact final commit, and verify the merged remote revision.
 - New work branches from and is merged into `dev` by pull request. Work for the `mixology-update` line branches from and merges into `mixology-update`; see [BRANCHES.md](docs/BRANCHES.md).
