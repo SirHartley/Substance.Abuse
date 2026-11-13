@@ -42,7 +42,7 @@ java jars/src/com/fs/starfarer/api/alcoholism/tools/ReleaseBuild.java package   
 java jars/src/com/fs/starfarer/api/alcoholism/tools/ReleaseBuild.java package 1.1.e    # release
 ```
 
-Output in `out/release/`: `Substance.Abuse<version>.zip`, `release-notes.md` (the newest changelog section in a `text` block), the stamped `alcohol.version` and `version.txt`.
+Output in `out/release/`: `Substance.Abuse<version>.zip` (no dash, matching the 1.1.e asset and its `directDownloadURL`; keep it), `release-notes.md` (the newest changelog section in a `text` block), the stamped `alcohol.version` and `version.txt`.
 
 - A preview packages the newest section even if `UNRELEASED` and accepts a stale jar with a warning.
 - A release needs the version to equal the newest section, that section without `UNRELEASED`, and a fresh jar.
