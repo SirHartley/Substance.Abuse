@@ -8,6 +8,7 @@ Special thanks to: Avanitia, SilverLight
 1.1.f - UNRELEASED
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
 Fixed - Drink production no longer makes Light Industry demand extra organics
+Fixed - Crash after saving when other mods read markets of former colonies (reported by DeCEll-1)
 
 1.1.e
 

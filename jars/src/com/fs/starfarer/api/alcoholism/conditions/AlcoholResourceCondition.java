@@ -25,6 +25,9 @@ public class AlcoholResourceCondition extends BaseMarketConditionPlugin {
     public void apply(String id) {
         super.apply(id);
 
+        // convertToRegular reapplies conditions on dead planets before the faction is set
+        if (!market.isInEconomy()) return;
+
         if (market.isPlayerOwned()) {
             applyPlayerAlcohol();
             return;
