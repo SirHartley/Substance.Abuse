@@ -45,13 +45,14 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 
 * Drinks are scarcer: markets stock 35% of the normal amount, your own colonies 65%
 * Withdrawal wears off three times as fast
+* Sweet Freedom also changes Survival mode tariffs and black market bribes
 
 ## Installation
 
-1. Install [LunaLib](https://fractalsoftworks.com/forum/index.php?topic=25658) (required).
+1. Install [LunaLib](https://fractalsoftworks.com/forum/index.php?topic=25658) and [PatchLib](https://github.com/Lukas22041/PatchLib/releases) (both required).
 2. Download the latest release from the [Releases page](https://github.com/SirHartley/Substance.Abuse/releases).
 3. Extract the zip into your `Starsector/mods` folder.
-4. Enable **Substance.Abuse** and **LunaLib** in the launcher.
+4. Enable **Substance.Abuse**, **LunaLib** and **PatchLib** in the launcher.
 
 Can be added to an existing save. Supports Nexerelin random sector mode (breweries are placed on the largest market of each faction). Version Checker is supported.
 
