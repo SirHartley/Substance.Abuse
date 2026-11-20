@@ -2,36 +2,22 @@
 # scripted live checks: run.sh GROUP[,GROUP...] from git bash, groups in src/livecheck/Groups.java
 # BUILD picks the mod: 1.1.e the release zip (default), 1.1.d the baseline commit 1f15cd6 with its committed jar,
 # any other git ref is compiled with lib/. every build has its own work folder and base save
-# needs a copy of the starsector-native-smoke skill with gamectl.exe built in SMOKE_SKILL
-# SMOKE_WORK scratch folder, SMOKE_LOCK machine wide lock, LOCKWAIT seconds to wait for it (default 1800)
+# needs a copy of the starsector-native-smoke skill 2.1.0 with gamectl.exe built in SMOKE_SKILL. its runner takes the
+# machine slot and C:\Modding\.smoke-lock itself, a second lock here would deadlock with it
+# SMOKE_WORK scratch folder. LunaLib ships sources newer than its jar, so SMOKE_STALE_OK defaults to 1
 # PREPARE=1 stages and builds, runs no game. LIMIT, FAST, JFR, KEEP, PROFILE_BASE: see the skill's run-live-checks.sh
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
 REPO=$(cd -- "$HERE/../.." && pwd)
 GAME=${SMOKE_GAME:-"/e/Games/Starsector 0.98.5/0.98.5a-RC7 - Modding"}
 BUILD=${BUILD:-1.1.e}
-LIVE=${SMOKE_WORK:-/c/Modding/.smoke-work/Substance.Abuse.$BUILD}
-SKILL=$(cygpath -u "${SMOKE_SKILL:-/c/Modding/.smoke-work/Substance.Abuse/skill}")
-LOCK=${SMOKE_LOCK:-/c/Modding/.smoke-lock}
+LIVE=${SMOKE_WORK:-/c/Modding/smoke/smoke-work/Substance.Abuse.$BUILD}
+SKILL=$(cygpath -u "${SMOKE_SKILL:-/c/Modding/smoke/smoke-work/Substance.Abuse/skill-2.1.0}")
 GROUP=${1:?group}
 export SMOKE_JAVAC_DIR=${SMOKE_JAVAC_DIR:-"$USERPROFILE\\.jdks\\corretto-17.0.12\\bin"}
 export PATH="$(cygpath -u "$SMOKE_JAVAC_DIR"):$PATH"
+export SMOKE_STALE_OK=${SMOKE_STALE_OK:-1}
 LAZYLIB="$GAME/mods/LazyLib"
 LUNALIB="$GAME/mods/LunaLib"
-
-w() { ping -n $(( $1 + 1 )) 127.0.0.1 >/dev/null; }
-anygame() { powershell -NoProfile -Command "if (Get-Process java -ErrorAction SilentlyContinue | Where-Object { \$_.Path -like '*Starsector*' }) { exit 0 } else { exit 1 }" >/dev/null 2>&1; }
-leave() { [[ -n ${HELD:-} ]] && { rm -f "$LOCK/owner.txt"; rmdir "$LOCK"; }; }
-trap leave EXIT
-
-# one game per machine: gamectl finds the first game window, so two runs would click each other's game
-take_lock() {
-    for _ in $(seq 1 $(( ${LOCKWAIT:-1800} / 5 ))); do
-        mkdir "$LOCK" 2>/dev/null && { echo "Substance.Abuse $BUILD $GROUP $(date '+%F %T')" > "$LOCK/owner.txt"; HELD=1; return; }
-        [[ -z ${said:-} ]] && { said=1; echo "Waiting for $(cat "$LOCK/owner.txt" 2>/dev/null)"; }
-        w 5
-    done
-    echo "$LOCK still held by $(cat "$LOCK/owner.txt" 2>/dev/null)"; exit 1
-}
 
 # the stage is a plain copy, it holds no junctions and is safe to delete
 stage="$LIVE/stage/Substance.Abuse"
@@ -67,9 +53,6 @@ if [[ -n ${PREPARE:-} ]]; then
         "$LAZYLIB/jars/LazyLib.jar" "$LAZYLIB/jars/internal/Kotlin-Runtime.jar" "$GAME/starsector-core/starfarer_obf.jar" "$GAME/starsector-core/fs.common_obf.jar"
     exit $?
 fi
-
-take_lock
-anygame && { echo "A game is running. Close it or wait for its run to end."; exit 1; }
 
 PROFILE_PKG=${PROFILE_PKG:-com.fs.starfarer.api.alcoholism} \
     bash "$SKILL/scripts/live/run-live-checks.sh" "$GAME" "$LIVE" "$mod" "$GROUP" lw_lazylib lunalib patchlib "$stage"
