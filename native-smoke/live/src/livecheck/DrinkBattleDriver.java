@@ -16,6 +16,8 @@ import com.fs.starfarer.combat.CombatEngine;
 import org.apache.log4j.Logger;
 import org.lwjgl.util.vector.Vector2f;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +27,8 @@ public class DrinkBattleDriver extends BaseEveryFrameCombatPlugin {
     static final float ARMOR_AT = 5f;
     static final float ARMOR_READ_AT = 15f;
     static final float FIGHTERS_BY = 40f;
+    static final float POOL_READ_AT = 22f;
+    static final float POOL_LEFT = 40f;
     public static String officerMember = null;
 
     private CombatEngineAPI engine;
@@ -37,6 +41,9 @@ public class DrinkBattleDriver extends BaseEveryFrameCombatPlugin {
     private boolean armorDone = false;
     private ShipAPI armorShip = null;
     private float armorSum = 0f;
+    private boolean poolDone = false;
+    private VarHandle pool = null;
+    private Object regen = null;
 
     private static void expect(boolean ok, String id) {
         log.info("LIVE_CHECK " + (ok ? "ok" : "FAIL") + ": " + id);
@@ -131,6 +138,26 @@ public class DrinkBattleDriver extends BaseEveryFrameCombatPlugin {
         armorSum = armor(armorShip);
     }
 
+    // 1.1.f caps regen per deployment: shrink the pool, damage the ship again and see regen stop there
+    private void startPool() {
+        if (withdrawal) {
+            poolDone = true;
+            return;
+        }
+        try {
+            pool = MethodHandles.privateLookupIn(Stout_HullmodEffect.AlcoholArmorRegen.class, MethodHandles.lookup())
+                    .findVarHandle(Stout_HullmodEffect.AlcoholArmorRegen.class, "pool", float.class);
+        } catch (ReflectiveOperationException e) {
+            expect(false, "stout regen has a pool, " + e);
+            poolDone = true;
+            return;
+        }
+        regen = armorShip.getListeners(Stout_HullmodEffect.AlcoholArmorRegen.class).get(0);
+        pool.set(regen, POOL_LEFT);
+        halveArmor(armorShip);
+        armorSum = armor(armorShip);
+    }
+
     @Override
     public void advance(float amount, List<InputEventAPI> events) {
         if (!active) return;
@@ -157,6 +184,14 @@ public class DrinkBattleDriver extends BaseEveryFrameCombatPlugin {
             if (withdrawal) expect(now <= armorSum + 0.01f, "row10 armor flat in withdrawal, " + armorSum + " to " + now);
             else expect(now > armorSum, "row10 armor regen while drinking, " + armorSum + " to " + now);
         }
+        if (armorDone && !poolDone && pool == null) startPool();
+        if (pool != null && !poolDone && time >= POOL_READ_AT) {
+            poolDone = true;
+            float gain = armor(armorShip) - armorSum;
+            float left = (float) pool.get(regen);
+            expect(gain <= POOL_LEFT + 0.5f, "stout regen stops at the pool, " + gain + " regenerated from " + POOL_LEFT);
+            expect(left == 0f, "stout pool used up, " + left + " left");
+        }
         if (!fightersChecked) {
             boolean any = false;
             for (ShipAPI s : engine.getShips()) any |= s.getOwner() == 0 && s.isFighter();
@@ -165,7 +200,7 @@ public class DrinkBattleDriver extends BaseEveryFrameCombatPlugin {
                 checkFighters();
             }
         }
-        if (aiChecked && armorDone && fightersChecked) {
+        if (aiChecked && armorDone && poolDone && fightersChecked) {
             log.info("LIVE_CHECK shot battle");
             log.info("LIVE_CHECK COMPLETE");
             System.exit(0);

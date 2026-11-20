@@ -7,7 +7,7 @@
 # PREPARE=1 stages and builds, runs no game. LIMIT, FAST, JFR, KEEP, PROFILE_BASE: see the skill's run-live-checks.sh
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
 REPO=$(cd -- "$HERE/../.." && pwd)
-GAME=${SMOKE_GAME:-"/e/Games/Starsector 0.98/Starsector 098a-RC8 - Modding"}
+GAME=${SMOKE_GAME:-"/e/Games/Starsector 0.98.5/0.98.5a-RC7 - Modding"}
 BUILD=${BUILD:-1.1.e}
 LIVE=${SMOKE_WORK:-/c/Modding/.smoke-work/Substance.Abuse.$BUILD}
 SKILL=$(cygpath -u "${SMOKE_SKILL:-/c/Modding/.smoke-work/Substance.Abuse/skill}")
@@ -72,4 +72,4 @@ take_lock
 anygame && { echo "A game is running. Close it or wait for its run to end."; exit 1; }
 
 PROFILE_PKG=${PROFILE_PKG:-com.fs.starfarer.api.alcoholism} \
-    bash "$SKILL/scripts/live/run-live-checks.sh" "$GAME" "$LIVE" "$mod" "$GROUP" lw_lazylib lunalib "$stage"
+    bash "$SKILL/scripts/live/run-live-checks.sh" "$GAME" "$LIVE" "$mod" "$GROUP" lw_lazylib lunalib patchlib "$stage"

@@ -28,6 +28,9 @@ public final class Groups {
                 case "codex":
                     all.addAll(CodexChecks.steps());
                     break;
+                case "survival":
+                    all.addAll(SurvivalChecks.steps());
+                    break;
                 case "blackout":
                     all.addAll(BlackoutChecks.steps());
                     break;

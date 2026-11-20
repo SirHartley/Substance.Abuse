@@ -7,11 +7,12 @@ Scripted checks in the real game, driven by the `starsector-native-smoke` skill.
 From Git Bash in a checkout:
 
 ```sh
-bash native-smoke/live/run.sh fleet,drinks,market,codex,blackout
+bash native-smoke/live/run.sh fleet,drinks,market,codex,survival,blackout
 bash native-smoke/live/run.sh battle_drinking
 bash native-smoke/live/run.sh battle_withdrawal
 ```
 
+- The game is the 0.98.5a-RC7 install named in `run.sh` (`SMOKE_GAME` overrides it). Every run enables LunaLib, LazyLib and PatchLib.
 - `BUILD` picks the mod: `1.1.e` is the release zip (default), `1.1.d` is the baseline commit `1f15cd6` with its committed jar, and any other git ref is compiled with `lib/`.
 - Each build has its own work folder, `C:\Modding\.smoke-work\Substance.Abuse.<build>`, with its base save and `runs/`.
 - `run.sh` takes `C:\Modding\.smoke-lock` around the game and waits for it. Only one game runs on the machine at a time.
@@ -27,12 +28,14 @@ bash native-smoke/live/run.sh battle_withdrawal
 | `drinks` | `DrinkChecks` | Absynth OP correction, module variants, tariffs, zero flux boost, Tears of Ludd XP, withdrawal after a load |
 | `market` | `MarketChecks` | Drink supply and demand after an owner change, Light Industry inputs |
 | `codex` | `CodexChecks` | Codex links and tooltips, tooltip wording |
-| `blackout` | `BlackoutChecks` | Destinations, starless systems, drunk fleet, quips, drinking history. Run it last, it moves the player and splits the fleet |
-| `battle_drinking`, `battle_withdrawal` | `DrinkBattle`, `DrinkBattleDriver` | Fighter damage, Reapers Blood AI, Stout armor regen, each in a real battle |
+| `survival` | `SurvivalChecks` | Drink floor and opened units, Survival stock, withdrawal, Sweet Freedom tariffs, Askonia Sunshine and Kings Favour values, recipe prices, Absynth stripping on bought ships, Qaras without a spool. Each step turns Survival mode on with `SectorAPI.setExtMode` and off again |
+| `blackout` | `BlackoutChecks` | Destinations, starless systems, drunk fleet, quips, drinking history, no recipe gift, the Survival blackout. Run it last, it moves the player and splits the fleet |
+| `battle_drinking`, `battle_withdrawal` | `DrinkBattle`, `DrinkBattleDriver` | Fighter damage, Reapers Blood AI, Stout armor regen and its pool, each in a real battle |
 
 ## Rules
 
 - A check for a fix has to fail on the build before the fix. A check that passes there proves nothing.
+- Checks reach members added after the last release through `MethodHandles`, so the check mod still compiles against an older build and those checks fail there.
 - Read the `PROFILE` lines of every run and report any `PROFILE WARN`.
 - LunaLib declares LazyLib as a dependency, so every run loads both.
 
