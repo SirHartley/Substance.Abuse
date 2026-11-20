@@ -1,5 +1,6 @@
 package com.fs.starfarer.api.alcoholism.itemPlugins;
 
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.alcoholism.memory.Alcohol;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.campaign.CargoAPI;
@@ -7,6 +8,8 @@ import com.fs.starfarer.api.campaign.CargoStackAPI;
 import com.fs.starfarer.api.campaign.CargoTransferHandlerAPI;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.campaign.econ.InstallableIndustryItemPlugin;
+import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.campaign.econ.SubmarketAPI;
 import com.fs.starfarer.api.campaign.impl.items.GenericSpecialItemPlugin;
 import com.fs.starfarer.api.impl.campaign.econ.impl.InstallableItemEffect;
 import com.fs.starfarer.api.impl.campaign.econ.impl.ItemEffectsRepo;
@@ -101,5 +104,15 @@ public class RecipeItemPlugin extends GenericSpecialItemPlugin {
 
     }
 
+    @Override
+    public int getPrice(MarketAPI market, SubmarketAPI submarket) {
+        return Math.round(super.getPrice(market, submarket) * getSurvivalPriceMult(submarket));
+    }
 
+    // survival prices recipes like vanilla blueprints, the trade screen only applies that to blueprint tags
+    public static float getSurvivalPriceMult(SubmarketAPI submarket) {
+        if (!Misc.isExtended() || submarket == null || submarket.getPlugin() == null) return 1f;
+        if (submarket.getPlugin().isBlackMarket()) return Global.getSettings().getFloat("ext_blueprintSellPriceMultBlackMarket");
+        return Global.getSettings().getFloat("ext_blueprintSellPriceMult");
+    }
 }
