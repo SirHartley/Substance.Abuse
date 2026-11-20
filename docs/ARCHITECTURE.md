@@ -16,7 +16,7 @@ The `mixology-update` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md
 
 | Change / symptom | Route |
 |---|---|
-| Daily consumption, addiction gain, withdrawal, run-out messages | `NewDayTracker -> NewDayListener -> listeners/AlcoholConsumptionManager.onNewDay -> memory/AddictionStatus -> memory/AddictionBrain`; Survival mode speeds up withdrawal by `AddictionBrain.EXT_WITHDRAWAL_RECOVERY_MULT` |
+| Daily consumption, addiction gain, withdrawal, run-out messages | `NewDayTracker -> NewDayListener -> listeners/AlcoholConsumptionManager.onNewDay -> memory/AddictionStatus -> memory/AddictionBrain` |
 | Effect hullmod missing, stuck or wrong on ships and modules | `AlcoholConsumptionManager.reapply / applyActiveAlcoholHullmods / applHullmodToFleet / unapplyHullmodFromFleet` (perma mods on variants); refit tab via `RefitUIOpenChecker -> RefitTabListener` |
 | Effect strength, effect and withdrawal numbers | `hullmods/alcoholEffectHullmods/<Drink>_HullmodEffect` on `hullmods/BaseAlcoholHullmodEffect`; scaling from `AddictionStatus.getAddictionValue()`; Survival values are `EXT_` constants in the same class, picked behind `Misc.isExtended()` for both the stat and the tooltip |
 | Drink tooltip, cargo prediction, "will last for" text | `memory/Alcohol.addEffectTooltip / addStatusTooltip`, `TooltipHelper` |

@@ -12,7 +12,6 @@ Adjusted - Updated for Starsector 0.98.5a
 Adjusted - Now requires PatchLib
 Adjusted - Minimum consumption per drink 1 -> 0.1 units per day
 Adjusted - Fleets now open one unit at a time, so partly drunk units no longer stay in cargo
-Adjusted - Survival: Withdrawal wears off three times as fast
 Fixed - Crash after saving when other mods read markets of former colonies (reported by DeCEll-1)
 
 Drink effects
