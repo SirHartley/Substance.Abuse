@@ -36,7 +36,7 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 ## How It Works
 
 1. Buy a drink and keep it in your cargo. Your fleet starts drinking automatically.
-2. Only the crew needed to keep your ships running (skeleton crew) drinks. Roughly 1 unit feeds 25 crew per month.
+2. Only the crew needed to keep your ships running (skeleton crew) drinks. Roughly 1 unit feeds 25 crew per month, and each drink takes at least 3 units a month.
 3. The effect grows stronger the longer you drink, and so does consumption (up to twice the base amount).
 4. Run out and your fleet goes into withdrawal. Use Hangover Cure to recover faster.
 5. Raise your intake too quickly and you black out. Your fleet stays behind, marked in your intel as a "Drunk Fleet". Fly back and rejoin it.
