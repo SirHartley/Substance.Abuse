@@ -45,7 +45,7 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 
 * Drinks are scarcer: markets stock 35% of the normal amount, your own colonies 65%
 * Sweet Freedom also changes Survival mode tariffs and black market bribes
-* Blackouts leave you at the nearest market in the same system. Instead of free supplies, they cost a bar tab, a few deserters and some standing with the locals
+* Blackouts leave you in a system your flagship has the fuel to fly back from (at the nearest market when none is in range). Instead of free supplies, they cost a bar tab and a few deserters
 * Recipes and Recipe Books trade like blueprints: 30% of their value on open markets, full value on black markets
 * Askonia Sunshine lowers fuel use by up to 15% (25% in normal mode), Kings Favour crew losses by up to 10% (20%)
 

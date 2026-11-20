@@ -22,8 +22,8 @@ Fixed - Survival: Sweet Freedom now changes tariffs and black market bribes
 Fixed - Absynth's OP correction now puts weapons and wings stripped from bought ships into your cargo
 
 Blackouts
-Adjusted - Survival: Blackouts leave you at the nearest market in the same system
-Adjusted - Survival: Blackouts cost a bar tab, some crew and local reputation instead of giving supplies
+Adjusted - Survival: Blackouts leave you in a system your flagship has the fuel to fly back from
+Adjusted - Survival: Blackouts cost a bar tab and some crew instead of giving supplies
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
 Removed - Free recipe after the first blackout (too valuable)
 Removed - Blackouts wiping what nearby fleets knew about your transponder
