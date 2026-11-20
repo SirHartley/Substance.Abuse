@@ -8,6 +8,7 @@ Special thanks to: Avanitia, SilverLight
 1.1.f - UNRELEASED
 
 General
+Adjusted - Updated for Starsector 0.98.5a
 Adjusted - Minimum consumption per drink 1 -> 0.1 units per day
 Adjusted - Fleets now open one unit at a time, so partly drunk units no longer stay in cargo
 Fixed - Crash after saving when other mods read markets of former colonies (reported by DeCEll-1)

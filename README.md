@@ -4,7 +4,7 @@
 
 A [Starsector](https://fractalsoftworks.com/) mod that adds 10 alcoholic beverages to the sector. Keep your crew supplied and your whole fleet gets bonuses. Let the supply run dry and they go into withdrawal. Drink too much at once and you black out.
 
-**Game version:** 0.98a | **Mod version:** 1.1.e | **Forum thread:** [fractalsoftworks.com/forum/index.php?topic=24378](https://fractalsoftworks.com/forum/index.php?topic=24378)
+**Game version:** 0.98.5a | **Mod version:** 1.1.e | **Forum thread:** [fractalsoftworks.com/forum/index.php?topic=24378](https://fractalsoftworks.com/forum/index.php?topic=24378)
 
 ## Features
 

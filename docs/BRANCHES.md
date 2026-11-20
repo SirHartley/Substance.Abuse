@@ -6,7 +6,7 @@ Where the code lives, which line is released, what is left of the move into one 
 
 | Repository / branch | Content |
 |---|---|
-| `SirHartley/Substance.Abuse` `dev` | Next release of the released line. Branched from `master` at `aa5da44`. New work goes here by pull request. |
+| `SirHartley/Substance.Abuse` `dev` | Next release of the released line, game `0.98.5a`. Branched from `master` at `aa5da44`. New work goes here by pull request. |
 | `SirHartley/Substance.Abuse` `master` | Released line: 1.1.e, game `0.98a`, LunaLib, Java 17. Default branch; releases are cut from here. |
 | `SirHartley/Substance.Abuse` `mixology-update` | Unfinished 2.0.a rework (custom alcohol, ingredients, brewery UI): game `0.96a`, no LunaLib. The old `master` (`1717edd`) plus a pointer `CLAUDE.md`. |
 | `SirHartley/Substance.Abuse.Legacy` | Former home of the released line. Hosts the 1.1.d release and the version file 1.1.d installs poll. Kept until the hand-over below, then archived. |

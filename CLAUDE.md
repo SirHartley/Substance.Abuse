@@ -1,6 +1,6 @@
 # Substance.Abuse
 
-Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.e for game 0.98a, LunaLib required.
+Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.e for game 0.98a; `dev` targets 0.98.5a. LunaLib required.
 
 ## Required workflow
 
@@ -168,10 +168,10 @@ After the final runtime-affecting commit and before merge:
 5. Record the command, branch commit, JDK version and result in the pull request. The final reply links the PR and states the result and any untested behavior.
 6. Stop before merge if the build or a required dependency is unavailable.
 
-Required compile dependencies, all in `lib/` (read-only, copied from Industrial Evolution's `lib/`, game 0.98a). The build fails without any one of them:
+Required compile dependencies, all in `lib/` (read-only, copied from a game 0.98.5a-RC7 install and its mods folder). The build fails without any one of them:
 
 - Game jars from `starsector-core`: `starfarer.api.jar`, `starfarer_obf.jar` and `fs.common_obf.jar` (`BlackoutScript` uses `CampaignEngine`), `lwjgl.jar`, `lwjgl_util.jar`, `json.jar`, `log4j-1.2.9.jar`. Never substitute Maven versions.
-- `LunaLib.jar` (LunaLib 2.0.1), for `lunalib.lunaSettings`.
+- `LunaLib.jar` (LunaLib 2.1.0), for `lunalib.lunaSettings`.
 - `LazyLib.jar` (LazyLib 3.0.0), for `DefenseUtils`.
 
 Replace a jar only when the user supplies a new version, and note the version here. The game loads only the jars `mod_info.json` lists, so `lib/` never reaches the game; keep it out of the release zip ([RELEASE.md](docs/RELEASE.md#package)).
