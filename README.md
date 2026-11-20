@@ -46,6 +46,7 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 * Drinks are scarcer: markets stock 35% of the normal amount, your own colonies 65%
 * Withdrawal wears off three times as fast
 * Sweet Freedom also changes Survival mode tariffs and black market bribes
+* Askonia Sunshine lowers fuel use by up to 10% (25% in normal mode), Kings Favour crew losses by up to 10% (20%)
 
 ## Installation
 

@@ -12,6 +12,7 @@ public class Sunshine_HullmodEffect extends BaseAlcoholHullmodEffect {
 
     private static final float MAX_HARD_FLUX_DISSIPATION_PERCENT = 15f;
     private static final float MAX_FUEL_COST_PER_LY_RED_PERCENT = -25f;
+    private static final float EXT_MAX_FUEL_COST_PER_LY_RED_PERCENT = -10f;
     private static final float MAX_FLUX_DURING_PHASE_RED_PERCENT = -25f;
 
     private static final float NEG_OVERLOAD_DURATION_PERCENT = 10f;
@@ -28,8 +29,12 @@ public class Sunshine_HullmodEffect extends BaseAlcoholHullmodEffect {
         //decreases phase flux buildup
 
         stats.getHardFluxDissipationFraction().modifyFlat(id, (float)(MAX_HARD_FLUX_DISSIPATION_PERCENT * effectMult) /100, getDesc());
-        stats.getFuelUseMod().modifyMult(id, getPercentToCorrectedMult(MAX_FUEL_COST_PER_LY_RED_PERCENT), getDesc());
+        stats.getFuelUseMod().modifyMult(id, getPercentToCorrectedMult(getFuelUseReductionPercent()), getDesc());
         stats.getPhaseCloakUpkeepCostBonus().modifyMult(id, getPercentToCorrectedMult(MAX_FLUX_DURING_PHASE_RED_PERCENT), getDesc());
+    }
+
+    private static float getFuelUseReductionPercent() {
+        return Misc.isExtended() ? EXT_MAX_FUEL_COST_PER_LY_RED_PERCENT : MAX_FUEL_COST_PER_LY_RED_PERCENT;
     }
 
     @Override
@@ -65,8 +70,8 @@ public class Sunshine_HullmodEffect extends BaseAlcoholHullmodEffect {
         tooltip.addPara("Lowers fuel use per LY by %s  [Max.: %s]",
                 opad,
                 positive,
-                getAbsPercentStringForTooltip(MAX_FUEL_COST_PER_LY_RED_PERCENT, effectMult),
-                getAbsPercentStringForTooltip(MAX_FUEL_COST_PER_LY_RED_PERCENT));
+                getAbsPercentStringForTooltip(getFuelUseReductionPercent(), effectMult),
+                getAbsPercentStringForTooltip(getFuelUseReductionPercent()));
 
         tooltip.addPara("Enables shielded hardflux dissipation: %s  [Max.: %s]",
                 spad,
