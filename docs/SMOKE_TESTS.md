@@ -29,7 +29,7 @@ bash native-smoke/live/run.sh battle_withdrawal
 | `market` | `MarketChecks` | Drink supply and demand after an owner change, Light Industry inputs |
 | `codex` | `CodexChecks` | Codex links and tooltips, tooltip wording |
 | `survival` | `SurvivalChecks` | Drink floor and opened units, Survival stock, withdrawal, Sweet Freedom tariffs, Askonia Sunshine and Kings Favour values, recipe prices, Absynth stripping on bought ships, Qaras without a spool. Each step turns Survival mode on with `SectorAPI.setExtMode` and off again |
-| `blackout` | `BlackoutChecks` | Destinations, starless systems, drunk fleet, quips, drinking history, no recipe gift, the Survival blackout. Run it last, it moves the player and splits the fleet |
+| `blackout` | `BlackoutChecks` | Destinations, starless systems, drunk fleet, quips, drinking history, the first blackout recipe, the Survival blackout. Run it last, it moves the player and splits the fleet |
 | `battle_drinking`, `battle_withdrawal` | `DrinkBattle`, `DrinkBattleDriver` | Fighter damage, Reapers Blood AI, Stout armor regen and its pool, each in a real battle |
 
 ## Rules

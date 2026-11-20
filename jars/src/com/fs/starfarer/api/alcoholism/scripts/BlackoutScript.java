@@ -28,6 +28,7 @@ import java.util.Random;
 public class BlackoutScript implements EveryFrameScript {
 
     public static final float MAXIMUM_DISTANCE_TO_NON_CENTERED_ENTITY = 400f;
+    public static final String ITEM_DROP_KEY = "$Alcohol_hasDroppedItem";
     public static final float EXT_BAR_TAB_MIN = 1000f;
     public static final float EXT_BAR_TAB_MAX = 5000f;
     public static final float EXT_CREW_DESERTION_FRACTION = 0.05f;
@@ -97,6 +98,7 @@ public class BlackoutScript implements EveryFrameScript {
             if(!charged.isEmpty()) costs = "\n\n" + charged;
         } else movePlayerFleet();
 
+        giveFirstBlackoutRecipe();
         stopAllConsumption();
 
         Global.getSector().getCampaignUI().showMessageDialog(QUIP_LIST.get(new Random().nextInt(QUIP_LIST.size()))
@@ -105,6 +107,17 @@ public class BlackoutScript implements EveryFrameScript {
         Global.getSector().setPaused(true);
 
         done = true;
+    }
+
+    // any fleet size and both modes, after the move so it lands in the flagship's cargo
+    private void giveFirstBlackoutRecipe(){
+        MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
+        if(mem.getBoolean(ITEM_DROP_KEY)) return;
+
+        WeightedRandomPicker<Alcohol> picker = new WeightedRandomPicker<>();
+        picker.addAll(new ArrayList<>(AlcoholRepo.ALCOHOL_MAP.values()));
+        Global.getSector().getPlayerFleet().getCargo().addSpecial(new SpecialItemData(picker.pick().getIndustryItemId(), null), 1);
+        mem.set(ITEM_DROP_KEY, true);
     }
 
     private void stopAllConsumption(){
