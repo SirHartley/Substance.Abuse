@@ -76,8 +76,9 @@ public class ExcessOPStripper implements NewDayListener, ColonyInteractionListen
             }
 
             boolean corrected = false;
+            // bought ships are the player's now, so their stripped weapons and wings are too
             for (PlayerMarketTransaction.ShipSaleInfo info : transaction.getShipsBought()){
-                if(correctTradedMember(info.getMember(), stats, toCargo, status, true)) corrected = true;
+                if(correctTradedMember(info.getMember(), stats, true, status, true)) corrected = true;
             }
 
             if(corrected) AlcoholConsumptionManager.syncFleetStats(Global.getSector().getPlayerFleet());
