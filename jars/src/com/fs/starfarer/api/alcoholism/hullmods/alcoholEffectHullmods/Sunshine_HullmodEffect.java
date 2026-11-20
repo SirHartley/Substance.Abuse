@@ -12,7 +12,7 @@ public class Sunshine_HullmodEffect extends BaseAlcoholHullmodEffect {
 
     private static final float MAX_HARD_FLUX_DISSIPATION_PERCENT = 15f;
     private static final float MAX_FUEL_COST_PER_LY_RED_PERCENT = -25f;
-    private static final float EXT_MAX_FUEL_COST_PER_LY_RED_PERCENT = -10f;
+    private static final float EXT_MAX_FUEL_COST_PER_LY_RED_PERCENT = -15f;
     private static final float MAX_FLUX_DURING_PHASE_RED_PERCENT = -25f;
 
     private static final float NEG_OVERLOAD_DURATION_PERCENT = 10f;
