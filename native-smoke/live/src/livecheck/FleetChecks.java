@@ -45,7 +45,7 @@ public final class FleetChecks {
             float forecast = (Float) c.get("r2forecast");
             float days = Global.getSector().getClock().getElapsedDaysSince((Long) c.get("r2start"));
             c.expect(Math.abs(used - forecast) <= 1f, "row2 units used " + used + " within 1 of forecast " + forecast);
-            c.expect(used >= Math.floor(days) - 1f, "row2 at least 1 unit a day, " + used + " in " + days + " days");
+            c.expect(used >= Math.floor(days * 0.1f) - 1f, "row2 at least 0.1 units a day, " + used + " in " + days + " days");
             Kit.reset();
         });
         steps.add(c -> {

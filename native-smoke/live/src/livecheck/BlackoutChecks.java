@@ -7,14 +7,18 @@ import com.fs.starfarer.api.alcoholism.memory.Alcohol;
 import com.fs.starfarer.api.alcoholism.memory.AlcoholRepo;
 import com.fs.starfarer.api.alcoholism.scripts.BlackoutScript;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
+import com.fs.starfarer.api.campaign.CargoAPI;
 import com.fs.starfarer.api.campaign.JumpPointAPI;
 import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
+import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.util.Misc;
+import org.lwjgl.util.vector.Vector2f;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
@@ -22,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// changelog rows 13 to 17. keep this group last, it moves the player and splits the fleet
+// changelog rows 13 to 17 and the 1.1.f blackout changes. keep this group last, it moves the player and splits the fleet
 public final class BlackoutChecks {
     private static CampaignFleetAPI drunk = null;
     private static LocationAPI origin = null;
@@ -113,6 +117,75 @@ public final class BlackoutChecks {
         c.shot("blackout");
     }
 
+    // same pick as BlackoutScript in survival: closest visible market of the location
+    private static MarketAPI closestMarket(CampaignFleetAPI fleet) {
+        MarketAPI closest = null;
+        float min = Float.MAX_VALUE;
+        for (MarketAPI m : Misc.getMarketsInLocation(fleet.getContainingLocation())) {
+            if (m.isHidden() || m.getPrimaryEntity() == null) continue;
+            float dist = Misc.getDistance(fleet, m.getPrimaryEntity());
+            if (dist < min) {
+                closest = m;
+                min = dist;
+            }
+        }
+        return closest;
+    }
+
+    private static CampaignFleetAPI hungover(LocationAPI where) {
+        for (CampaignFleetAPI f : where.getFleets()) if ("Hungover Fleet".equals(f.getName()) && f.getFleetData().getNumMembers() > 0) return f;
+        return null;
+    }
+
+    private static void survival(Ctx c) {
+        CampaignFleetAPI player = Kit.fleet();
+        while (player.getFleetData().getNumMembers() < 3) Kit.ship("wolf_CS");
+        player.getCargo().getCredits().add(20000f);
+        player.getCargo().addCrew(200);
+        LocationAPI where = player.getContainingLocation();
+        Vector2f from = new Vector2f(player.getLocation());
+        MarketAPI market = closestMarket(player);
+        String faction = market == null ? null : market.getFactionId();
+        float rel = faction == null ? 0f : Global.getSector().getPlayerFaction().getRelationship(faction);
+        float credits = player.getCargo().getCredits().get();
+        int crew = player.getCargo().getCrew();
+        float supplies = player.getCargo().getSupplies();
+        float fuel = player.getCargo().getFuel();
+        int recipes = Kit.recipes(player.getCargo());
+
+        Kit.ext(true);
+        try {
+            new BlackoutScript().advance(1f);
+        } finally {
+            Kit.ext(false);
+        }
+
+        CampaignFleetAPI hung = hungover(where);
+        c.expect(hung != null, "survival blackout fleet stays behind");
+        c.expect(player.getContainingLocation() == where, "survival blackout wakes up in the same location");
+        if (market != null) {
+            float dist = Misc.getDistance(player.getLocation(), market.getPrimaryEntity().getLocation());
+            c.expect(dist <= market.getPrimaryEntity().getRadius() + 200f, "survival blackout wakes up next to " + market.getName() + ", " + dist + " away");
+            if (!Factions.PLAYER.equals(faction) && !market.isPlayerOwned()) {
+                c.near(Global.getSector().getPlayerFaction().getRelationship(faction) - rel, -0.03f, 0.005f, "survival blackout costs standing with " + faction);
+            }
+        } else {
+            c.near(Misc.getDistance(player.getLocation(), from), 600f, 5f, "survival blackout wakes up a short way off");
+        }
+
+        CargoAPI other = hung == null ? Global.getFactory().createCargo(true) : hung.getCargo();
+        float paid = credits - player.getCargo().getCredits().get();
+        int lost = crew - player.getCargo().getCrew() - other.getCrew();
+        c.note("survival blackout paid " + paid + ", lost " + lost + " of " + crew + " crew");
+        c.expect(paid >= 1000f && paid <= 5000f && Math.abs(paid - Math.round(paid / 100f) * 100f) < 0.5f, "survival blackout bar tab " + paid);
+        c.expect(lost > 0 && lost <= Math.ceil(crew * 0.05f) + 1, "survival blackout deserters " + lost);
+        c.near(player.getCargo().getSupplies() + other.getSupplies(), supplies, 0.5f, "survival blackout adds no supplies");
+        c.near(player.getCargo().getFuel() + other.getFuel(), fuel, 0.5f, "survival blackout adds no fuel");
+        c.expect(player.getCargo().getCrew() > 0, "survival blackout flagship keeps crew");
+        c.expect(Kit.recipes(player.getCargo()) + Kit.recipes(other) == recipes, "survival blackout gives no recipe");
+        c.shot("blackout_survival");
+    }
+
     public static List<Step> steps() {
         List<Step> steps = new ArrayList<>();
         steps.add(c -> {
@@ -133,12 +206,15 @@ public final class BlackoutChecks {
             c.expect(Kit.fleet().getFleetData().getNumMembers() == 3, "row15 three ship fleet, got " + Kit.fleet().getFleetData().getNumMembers());
             for (Alcohol a : AlcoholRepo.ALCOHOL_MAP.values()) Kit.consume(a.getId(), 0f, 500f);
             origin = Kit.fleet().getContainingLocation();
+            c.put("r15recipes", Kit.recipes(Kit.fleet().getCargo()));
             c.until(() -> !anyConsuming(), 30f, "row15 blackout stops all consumption");
         });
         steps.add(c -> {
             for (CampaignFleetAPI f : origin.getFleets()) if ("Hungover Fleet".equals(f.getName())) drunk = f;
             c.expect(drunk != null, "row15 drunk fleet stays behind");
             c.expect(!Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).isEmpty(), "row15 drunk fleet intel added");
+            int recipes = Kit.recipes(Kit.fleet().getCargo()) + (drunk == null ? 0 : Kit.recipes(drunk.getCargo()));
+            c.expect(recipes == (Integer) c.get("r15recipes"), "row15 blackout gives no recipe, " + recipes + " after " + c.get("r15recipes"));
             if (drunk == null) return;
             c.put("r15id", drunk.getId());
             if (Kit.fleet().getContainingLocation() == origin) {
@@ -167,6 +243,10 @@ public final class BlackoutChecks {
             c.until(() -> Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).isEmpty()
                     || Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).get(0).isEnding()
                     || Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).get(0).isEnded(), 3f, "row15 drunk fleet intel removed");
+        });
+        steps.add(c -> {
+            Kit.reset();
+            survival(c);
         });
         return steps;
     }
