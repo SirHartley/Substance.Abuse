@@ -119,6 +119,7 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
             } else if (addictionStatus.isWithdrawal()){
                 if(!isWater && isConsumingWater()) mult += getWaterMult();
+                if(Misc.isExtended()) mult *= AddictionBrain.EXT_WITHDRAWAL_RECOVERY_MULT;
                 alcohol.incrementAddiction(-days * mult);
 
                 if(!addictionStatus.isAddicted()) Global.getSector().getCampaignUI().addMessage("You are no longer addicted to %s.", Misc.getTextColor(), alcohol.getName(), null, alcohol.getFaction().getColor(), null);

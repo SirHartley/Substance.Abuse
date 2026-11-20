@@ -44,6 +44,7 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 ## Survival Mode
 
 * Drinks are scarcer: markets stock 35% of the normal amount, your own colonies 65%
+* Withdrawal wears off three times as fast
 
 ## Installation
 
