@@ -22,7 +22,11 @@ Adjusted - Survival: Kings Favour crew loss reduction 20% -> 10%
 Fixed - Survival: Sweet Freedom now changes tariffs and black market bribes
 
 Blackouts
+Adjusted - Survival: Blackouts leave you at the nearest market in the same system
+Adjusted - Survival: Blackouts cost a bar tab, some crew and local reputation instead of giving supplies
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
+Removed - Free recipe after the first blackout (too valuable)
+Removed - Blackouts wiping what nearby fleets knew about your transponder
 
 Markets
 Adjusted - Survival: Reduced drink stock on markets to 35% (65% at own colonies)
