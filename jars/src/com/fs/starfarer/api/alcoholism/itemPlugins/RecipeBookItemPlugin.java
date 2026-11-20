@@ -81,6 +81,6 @@ public class RecipeBookItemPlugin extends GenericSpecialItemPlugin {
         int amt = 0;
         RecipeBookSpecialItemData data = getSpecialItemData();
         if(data != null) for (Alcohol alcohol : data.getAlcoholList()) amt += Global.getSettings().getSpecialItemSpec(alcohol.getIndustryItemId()).getBasePrice();
-        return amt;
+        return Math.round(amt * RecipeItemPlugin.getSurvivalPriceMult(submarket));
     }
 }

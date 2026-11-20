@@ -26,6 +26,7 @@ The `mixology-update` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md
 | Blackout, drunk fleet, rejoining | `AlcoholConsumptionManager.onNewDay -> scripts/BlackoutScript.register -> scripts/FleetMergeScript`; `intel/DrunkFleetIntel` |
 | Brewery output and recipe install | `industry/Brewery`; `itemPlugins/RecipeInstallableItemEffect`, `RecipeBookInstallableItemEffect` in `ItemEffectsRepo.ITEM_EFFECTS` |
 | Which markets get a brewery | `industry/BreweryPlacer.placeBreweries` |
+| Recipe and Recipe Book prices in Survival mode | `itemPlugins/RecipeItemPlugin.getPrice / getSurvivalPriceMult`, also used by `RecipeBookItemPlugin.getPrice`; vanilla's trade screen applies `ext_blueprintSellPriceMult` only to items tagged `single_bp` or `package_bp`, tags that also change drop groups and Codex categories |
 | Drink supply and demand on markets | `listeners/ResourceConditionApplicator -> conditions/AlcoholResourceCondition -> FactionAlcoholHandler.getFactionAlcoholTypes` |
 | Which faction makes which drink | `memory/FactionAlcoholHandler.assignFactionAlcohols / setFactionAlcoholTypes` |
 | Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper`; ships are tagged `alcoholism_absynth_fit` on refit save by `AlcoholConsumptionManager.reportFleetMemberVariantSaved` (`RefitScreenListener`) and only tagged ships are stripped |
