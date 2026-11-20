@@ -17,6 +17,7 @@ Blackouts
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
 
 Markets
+Adjusted - Survival: Reduced drink stock on markets to 35% (65% at own colonies)
 Fixed - Drink production no longer makes Light Industry demand extra organics
 
 1.1.e

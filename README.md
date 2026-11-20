@@ -41,6 +41,10 @@ Hover over a drink in your cargo to see the exact numbers for your current addic
 4. Run out and your fleet goes into withdrawal. Use Hangover Cure to recover faster.
 5. Raise your intake too quickly and you black out. Your fleet stays behind, marked in your intel as a "Drunk Fleet". Fly back and rejoin it.
 
+## Survival Mode
+
+* Drinks are scarcer: markets stock 35% of the normal amount, your own colonies 65%
+
 ## Installation
 
 1. Install [LunaLib](https://fractalsoftworks.com/forum/index.php?topic=25658) (required).
