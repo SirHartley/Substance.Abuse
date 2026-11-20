@@ -144,6 +144,7 @@ public final class BlackoutChecks {
         player.getCargo().addCrew(200);
         LocationAPI where = player.getContainingLocation();
         Vector2f from = new Vector2f(player.getLocation());
+        Vector2f fromHyper = new Vector2f(player.getLocationInHyperspace());
         MarketAPI market = closestMarket(player);
         String faction = market == null ? null : market.getFactionId();
         float rel = faction == null ? 0f : Global.getSector().getPlayerFaction().getRelationship(faction);
@@ -162,8 +163,15 @@ public final class BlackoutChecks {
 
         CampaignFleetAPI hung = hungover(where);
         c.expect(hung != null, "survival blackout fleet stays behind");
-        c.expect(player.getContainingLocation() == where, "survival blackout wakes up in the same location");
-        if (market != null) {
+        float perLY = player.getLogistics().getFuelCostPerLightYear();
+        float range = perLY > 0f ? player.getCargo().getFuel() / perLY : Float.MAX_VALUE;
+        c.note("survival blackout fuel range " + range + " ly");
+        c.expect(player.getContainingLocation() != where, "survival blackout moves you to another system");
+        if (player.getContainingLocation() != where) {
+            float ly = Misc.getDistanceLY(fromHyper, player.getLocationInHyperspace());
+            c.expect(ly <= range + 0.1f, "survival blackout destination " + ly + " ly within fuel range " + range);
+            c.expect(player.getStarSystem() != null && Misc.getDistressJumpPoint(player.getStarSystem()) != null, "survival blackout destination has a jump point");
+        } else if (market != null) {
             float dist = Misc.getDistance(player.getLocation(), market.getPrimaryEntity().getLocation());
             c.expect(dist <= market.getPrimaryEntity().getRadius() + 200f, "survival blackout wakes up next to " + market.getName() + ", " + dist + " away");
             if (!Factions.PLAYER.equals(faction) && !market.isPlayerOwned()) {

@@ -92,7 +92,7 @@ public class BlackoutScript implements EveryFrameScript {
 
         String costs = "";
         if(survival) {
-            MarketAPI market = movePlayerFleetNearby();
+            MarketAPI market = movePlayerFleetInRange() ? null : movePlayerFleetNearby();
             String charged = chargeSurvivalCosts(drunkFleet, market);
             if(!charged.isEmpty()) costs = "\n\n" + charged;
         } else movePlayerFleet();
@@ -169,7 +169,20 @@ public class BlackoutScript implements EveryFrameScript {
         fleet.forceSync();
     }
 
-    // survival: wake up at the closest market of the same location, or a short way off when there is none
+    // survival: a system the flagship can fly back from on the fuel it carries, false when none is in range
+    private boolean movePlayerFleetInRange() {
+        CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
+        float perLY = fleet.getLogistics().getFuelCostPerLightYear();
+        float range = perLY > 0f ? fleet.getCargo().getFuel() / perLY : Float.MAX_VALUE;
+
+        StarSystemAPI system = pickDestinationSystem(range, fleet.getContainingLocation());
+        if (system == null) return false;
+
+        placePlayerFleet(system, false);
+        return true;
+    }
+
+    // survival fallback: wake up at the closest market of the same location, or a short way off when there is none
     private MarketAPI movePlayerFleetNearby() {
         CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
 
@@ -222,9 +235,11 @@ public class BlackoutScript implements EveryFrameScript {
     }
 
     protected void movePlayerFleet() {
-        CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
+        placePlayerFleet(pickDestinationSystem(Float.MAX_VALUE, null), true);
+    }
 
-        StarSystemAPI system = pickDestinationSystem();
+    private void placePlayerFleet(StarSystemAPI system, boolean restoreCR) {
+        CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
         SectorEntityToken jp = Misc.getDistressJumpPoint(system);
 
         fleet.getContainingLocation().removeEntity(fleet);
@@ -239,9 +254,11 @@ public class BlackoutScript implements EveryFrameScript {
         fleet.getFleetData().setSyncNeeded();
         fleet.getFleetData().syncIfNeeded();
 
-        for (FleetMemberAPI member : fleet.getFleetData().getMembersListCopy()) {
-            float max = member.getRepairTracker().getMaxCR();
-            member.getRepairTracker().setCR(max);
+        if (restoreCR) {
+            for (FleetMemberAPI member : fleet.getFleetData().getMembersListCopy()) {
+                float max = member.getRepairTracker().getMaxCR();
+                member.getRepairTracker().setCR(max);
+            }
         }
 
         if (fleet.getAbility(Abilities.TRANSPONDER) != null) {
@@ -252,12 +269,14 @@ public class BlackoutScript implements EveryFrameScript {
         Misc.clearAreaAroundPlayer(2000f);
     }
 
-    private static StarSystemAPI pickDestinationSystem() {
+    private static StarSystemAPI pickDestinationSystem(float maxLY, LocationAPI exclude) {
+        Vector2f from = Global.getSector().getPlayerFleet().getLocationInHyperspace();
         WeightedRandomPicker<StarSystemAPI> safe = new WeightedRandomPicker<>();
         WeightedRandomPicker<StarSystemAPI> any = new WeightedRandomPicker<>();
 
         for (StarSystemAPI system : Global.getSector().getStarSystems()) {
-            if (Misc.getDistressJumpPoint(system) == null) continue;
+            if (system == exclude || Misc.getDistressJumpPoint(system) == null) continue;
+            if (Misc.getDistanceLY(from, system.getLocation()) > maxLY) continue;
             any.add(system);
 
             if (system.hasTag(Tags.SYSTEM_CUT_OFF_FROM_HYPER) || system.hasPulsar() || system.hasBlackHole()) continue;
