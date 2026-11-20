@@ -1,4 +1,25 @@
 {
+  # survival mode stock, read by BaseSubmarketPlugin.getCommodityAvailabilityMult
+  "ext_alcoholism_stout_cForSaleFraction":0.35,
+  "ext_alcoholism_absynth_cForSaleFraction":0.35,
+  "ext_alcoholism_tears_cForSaleFraction":0.35,
+  "ext_alcoholism_fuel_cForSaleFraction":0.35,
+  "ext_alcoholism_blood_cForSaleFraction":0.35,
+  "ext_alcoholism_sunshine_cForSaleFraction":0.35,
+  "ext_alcoholism_king_cForSaleFraction":0.35,
+  "ext_alcoholism_freedom_cForSaleFraction":0.35,
+  "ext_alcoholism_water_cForSaleFraction":0.35,
+  "ext_alcoholism_tea_cForSaleFraction":0.35,
+  "ext_alcoholism_stout_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_absynth_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_tears_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_fuel_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_blood_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_sunshine_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_king_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_freedom_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_water_cForSaleFractionPlayerColony":0.65,
+  "ext_alcoholism_tea_cForSaleFractionPlayerColony":0.65,
   "graphics": {
     "alcohol":{
       "bg":"graphics/effects/alcohol_BG_mask.png",

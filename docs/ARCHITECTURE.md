@@ -45,7 +45,7 @@ The `mixology-update` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md
 | `data/campaign/market_conditions.csv` | `alcohol_resourceCondition` (`AlcoholResourceCondition`) |
 | `data/hullmods/hull_mods.csv` | Effect hullmods `<drink>` (`<Drink>_HullmodEffect`), tagged `codex_require_related` so the Codex unlocks them with their drink; `alcoholism_bonus_*` (`SelfRepairingBuiltInHullmod`) |
 | `data/config/LunaSettings.csv` | LunaLib settings tab; read by `PlayerSettings` |
-| `data/config/settings.json` | Sprite keys under `graphics.alcohol` |
+| `data/config/settings.json` | Sprite keys under `graphics.alcohol`; Survival mode stock `ext_<drink>_cForSaleFraction` and `...PlayerColony` per drink commodity, read by vanilla `BaseSubmarketPlugin.getCommodityAvailabilityMult` |
 | `data/strings/descriptions.csv`, `data/strings/tips.json` | Descriptions and loading tips |
 | `data/config/version/version_files.csv` | Version Checker entry, see [RELEASE.md](RELEASE.md) |
 
