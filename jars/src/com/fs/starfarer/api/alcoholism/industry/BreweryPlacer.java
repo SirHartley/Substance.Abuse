@@ -10,8 +10,6 @@ import com.fs.starfarer.api.campaign.econ.EconomyAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
-import com.fs.starfarer.api.impl.campaign.ids.Industries;
-import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.util.Misc;
 
 import java.util.HashMap;
@@ -94,8 +92,5 @@ public class BreweryPlacer {
                 if (skill.getSkill().isAdminSkill()) skill.setLevel(0);
             }
         }
-
-        //for good measure
-        m.getIndustry(Industries.SPACEPORT).setSpecialItem(new SpecialItemData(Items.FULLERENE_SPOOL, null));
     }
 }
