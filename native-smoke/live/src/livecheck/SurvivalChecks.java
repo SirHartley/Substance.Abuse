@@ -155,7 +155,7 @@ public final class SurvivalChecks {
             float ext = decay(true);
             c.note("withdrawal one day: normal " + normal + ", survival " + ext);
             c.expect(normal > 0f, "withdrawal wears off in normal mode");
-            if (normal > 0f) c.near(ext / normal, 3f, 0.05f, "withdrawal wears off three times as fast in survival");
+            c.near(ext, normal, 0.00001f, "withdrawal wears off at the same speed in survival");
             Kit.reset();
         });
     }

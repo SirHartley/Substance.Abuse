@@ -9,7 +9,6 @@ import com.fs.starfarer.api.alcoholism.config.Setting;
 
 public class AddictionBrain {
     public static final float DAYS_PER_MONTH = 30f;
-    public static final float EXT_WITHDRAWAL_RECOVERY_MULT = 3f;
 
     public static float getBaseConsumptionPerCrewPerDay() {
         return (1 / DAYS_PER_MONTH) / Setting.CREW_PER_UNIT_PER_MONTH.value();
