@@ -24,8 +24,8 @@ Fixed - Absynth's OP correction now puts weapons and wings stripped from bought 
 Blackouts
 Adjusted - Survival: Blackouts leave you in a system your flagship has the fuel to fly back from
 Adjusted - Survival: Blackouts cost a bar tab and some crew instead of giving supplies
+Adjusted - The first blackout now always gives a free recipe, also in Survival and with a single ship
 Fixed - Blackouts could leave the player in hidden systems deep in the abyss
-Removed - Free recipe after the first blackout (too valuable)
 Removed - Blackouts wiping what nearby fleets knew about your transponder
 
 Markets

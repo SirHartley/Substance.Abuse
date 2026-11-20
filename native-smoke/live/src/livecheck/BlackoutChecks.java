@@ -108,9 +108,11 @@ public final class BlackoutChecks {
         one.add("Live check quip, the only line.");
         quips.set(one);
         try {
+            int recipes = Kit.recipes(Kit.fleet().getCargo());
             BlackoutScript script = new BlackoutScript();
             script.advance(1f);
             c.expect(script.isDone(), "row16 script done with a one line list");
+            c.expect(Kit.recipes(Kit.fleet().getCargo()) == recipes + 1, "first blackout gives a recipe with a single ship, " + recipes + " to " + Kit.recipes(Kit.fleet().getCargo()));
         } finally {
             quips.set(old);
         }
@@ -190,7 +192,7 @@ public final class BlackoutChecks {
         c.near(player.getCargo().getSupplies() + other.getSupplies(), supplies, 0.5f, "survival blackout adds no supplies");
         c.near(player.getCargo().getFuel() + other.getFuel(), fuel, 0.5f, "survival blackout adds no fuel");
         c.expect(player.getCargo().getCrew() > 0, "survival blackout flagship keeps crew");
-        c.expect(Kit.recipes(player.getCargo()) + Kit.recipes(other) == recipes, "survival blackout gives no recipe");
+        c.expect(Kit.recipes(player.getCargo()) + Kit.recipes(other) == recipes, "survival later blackout gives no recipe");
         c.shot("blackout_survival");
     }
 
@@ -222,7 +224,7 @@ public final class BlackoutChecks {
             c.expect(drunk != null, "row15 drunk fleet stays behind");
             c.expect(!Global.getSector().getIntelManager().getIntel(DrunkFleetIntel.class).isEmpty(), "row15 drunk fleet intel added");
             int recipes = Kit.recipes(Kit.fleet().getCargo()) + (drunk == null ? 0 : Kit.recipes(drunk.getCargo()));
-            c.expect(recipes == (Integer) c.get("r15recipes"), "row15 blackout gives no recipe, " + recipes + " after " + c.get("r15recipes"));
+            c.expect(recipes == (Integer) c.get("r15recipes"), "row15 later blackout gives no recipe, " + recipes + " after " + c.get("r15recipes"));
             if (drunk == null) return;
             c.put("r15id", drunk.getId());
             if (Kit.fleet().getContainingLocation() == origin) {
