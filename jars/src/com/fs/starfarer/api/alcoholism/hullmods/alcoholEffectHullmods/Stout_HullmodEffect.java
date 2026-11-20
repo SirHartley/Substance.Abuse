@@ -15,6 +15,7 @@ import java.awt.*;
 public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
 
     public static final float MAX_REGENERATION_PER_SEC_PERCENT = 1f;
+    public static final float MAX_REGENERATION_POOL_PERCENT = 200f;
     public static final float MAX_WEAPON_RANGE_BONUS_PERCENT = 20f;
 
     public static final float NEG_WEAP_TURN_RATE_DECREASE_PERCENT = -10f;
@@ -79,6 +80,12 @@ public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
                 Misc.getRoundedValueMaxOneAfterDecimal(Math.max(MAX_REGENERATION_PER_SEC_PERCENT * effectMult, 0.01f)) + "%",
                 getAbsPercentStringForTooltip(MAX_REGENERATION_PER_SEC_PERCENT));
 
+        tooltip.addPara("Regenerates up to %s of max armor per deployment  [Max.: %s]",
+                spad,
+                positive,
+                getAbsPercentStringForTooltip(MAX_REGENERATION_POOL_PERCENT, effectMult),
+                getAbsPercentStringForTooltip(MAX_REGENERATION_POOL_PERCENT));
+
         tooltip.addPara("Increases weapon range by %s  [Max.: %s]",
                 spad,
                 positive,
@@ -141,6 +148,8 @@ public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
     public static class AlcoholArmorRegen implements AdvanceableListener {
         protected ShipAPI ship;
         protected float fraction;
+        // armor left to regenerate this deployment, set on the first damage since max armor is final by then
+        protected float pool = -1f;
 
         public AlcoholArmorRegen(ShipAPI ship, float fraction) {
             this.ship = ship;
@@ -148,6 +157,7 @@ public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
         }
 
         public void advance(float amount) {
+            if (pool == 0f) return;
             if (!DefenseUtils.hasArmorDamage(ship)) return;
             if (ship.isHulk()) return;
 
@@ -155,14 +165,21 @@ public class Stout_HullmodEffect extends BaseAlcoholHullmodEffect {
             final float[][] grid = armorGrid.getGrid();
             final float max = armorGrid.getMaxArmorInCell();
 
+            if (pool < 0f) pool = max * grid.length * grid[0].length * (MAX_REGENERATION_POOL_PERCENT / 100f) * fraction;
             float repairAmount = max * (MAX_REGENERATION_PER_SEC_PERCENT / 100) * fraction * amount;
 
             // Iterate through all armor cells and find any that aren't at max
             for (int x = 0; x < grid.length; x++) {
                 for (int y = 0; y < grid[0].length; y++) {
                     if (grid[x][y] < max) {
-                        float regen = grid[x][y] + repairAmount;
-                        armorGrid.setArmorValue(x, y, regen);
+                        float regen = Math.min(Math.min(repairAmount, max - grid[x][y]), pool);
+                        armorGrid.setArmorValue(x, y, grid[x][y] + regen);
+                        pool -= regen;
+
+                        if (pool <= 0f) {
+                            pool = 0f;
+                            return;
+                        }
                     }
                 }
             }

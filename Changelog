@@ -16,6 +16,7 @@ Adjusted - Survival: Withdrawal wears off three times as fast
 Fixed - Crash after saving when other mods read markets of former colonies (reported by DeCEll-1)
 
 Drink effects
+Adjusted - Phoenix Stout: Armor regeneration is limited to 200% of max armor per deployment (this is a nerf)
 Adjusted - Survival: Askonia Sunshine fuel use reduction 25% -> 10%
 Adjusted - Survival: Kings Favour crew loss reduction 20% -> 10%
 Fixed - Survival: Sweet Freedom now changes tariffs and black market bribes
