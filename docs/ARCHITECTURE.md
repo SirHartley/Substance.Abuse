@@ -30,6 +30,7 @@ The `mixology-update` line (2.0.a rework) differs; see [BRANCHES.md](BRANCHES.md
 | Which faction makes which drink | `memory/FactionAlcoholHandler.assignFactionAlcohols / setFactionAlcoholTypes` |
 | Absynth withdrawal pushes ships over OP | `hullmods/campaignEffects/ExcessOPStripper`; ships are tagged `alcoholism_absynth_fit` on refit save by `AlcoholConsumptionManager.reportFleetMemberVariantSaved` (`RefitScreenListener`) and only tagged ships are stripped |
 | Tariffs, officer XP, sustained burn, terrain effects | `hullmods/campaignEffects/TariffModifier`, `OfficerXPGainModifier`, `SustainedBurnNavigationModifier`, `TerrainEffectModifier`, registered from the owning drink's hullmod in every state that has a campaign effect, withdrawal included, since they are transient |
+| Sweet Freedom tariffs in Survival mode | PatchLib `@After` hooks on `getTariff` in `patches/OpenMarketTariffPatch`, `MilitaryMarketTariffPatch`, `BlackMarketTariffPatch` -> `patches/SurvivalTariff` -> `TariffModifier.getTariffMult` |
 | Player settings | `config/Setting`, `config/PlayerSettings` and `data/config/LunaSettings.csv` |
 
 ## Registration and lifecycle
@@ -101,12 +102,14 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel, moves the player to a system with a distress jump point, avoiding pulsar, black hole, cut off, hidden (`THEME_HIDDEN`) and temporary systems when any other is left |
 | `industry/Brewery`, `industry/BreweryPlacer` | Brewery industry and the one-time placement |
 | `hullmods/BaseAlcoholHullmodEffect` | Base for every effect hullmod, including other mods' drinks |
+| `patches/*` | PatchLib patches, found by PatchLib in `jars/alcoholism.jar` without registration; `PatchLibAPI.jar` is a compile dependency, PatchLib a mod dependency |
 
 ## Contracts
 
 ### Engine
 
 - `BlackoutScript` calls `com.fs.starfarer.campaign.CampaignEngine.getInstance().getCampaignUI().showNoise(...)`, an obfuscated game class. It needs `starfarer_obf.jar` to compile and can break on a game update.
+- In Survival mode vanilla `OpenMarketPlugin`, `MilitarySubmarketPlugin` and `BlackMarketPlugin.getTariff` return flat `ext_` tariffs and never read `market.getTariff()`, which `TariffModifier` edits. The `patches` hooks multiply their result by `TariffModifier.getTariffMult()` behind `Misc.isExtended()`, skip player markets and use `isMostDerivedCall()`, since `subtype` also weaves subclass overrides that call `super`.
 - `AlcoholItemPlugin.render` uses raw `GL11` blend and colour mask calls; restore the colour mask after drawing.
 - The Codex sets `Global.CODEX_TOOLTIP_MODE` while it builds a page, also on the title screen, where there is no player fleet. Drink tooltips then show every effect section at addiction 1.0 and skip the fleet and cargo status.
 - Refresh player fleet stats after hullmod changes with one `FleetDataAPI.setSyncNeeded()` and `syncIfNeeded()` (`AlcoholConsumptionManager.syncFleetStats`), not `FleetMemberAPI.updateStats()` per member. Each `updateStats()` sets the fleet sync flag, so a `getCargo()` call from another mod's skill or hullmod during the next member's update resyncs the whole fleet once per member.

@@ -1,6 +1,6 @@
 # Substance.Abuse
 
-Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.e for game 0.98a; `dev` targets 0.98.5a. LunaLib required.
+Starsector mod (id `alcoholism`): ten drinks with fleet wide effects, addiction, withdrawal, blackouts and a Brewery industry. Released line 1.1.e for game 0.98a; `dev` targets 0.98.5a. LunaLib required; `dev` also requires PatchLib.
 
 ## Required workflow
 
@@ -173,6 +173,7 @@ Required compile dependencies, all in `lib/` (read-only, copied from a game 0.98
 - Game jars from `starsector-core`: `starfarer.api.jar`, `starfarer_obf.jar` and `fs.common_obf.jar` (`BlackoutScript` uses `CampaignEngine`), `lwjgl.jar`, `lwjgl_util.jar`, `json.jar`, `log4j-1.2.9.jar`. Never substitute Maven versions.
 - `LunaLib.jar` (LunaLib 2.1.0), for `lunalib.lunaSettings`.
 - `LazyLib.jar` (LazyLib 3.0.0), for `DefenseUtils`.
+- `PatchLibAPI.jar` (PatchLib 1.1.2), for the `patches` package. Only the API jar, never `PatchLib.jar` or `PatchLibAgent.jar`; it also registers PatchLib's annotation processor, which checks the patch handlers at compile time.
 
 Replace a jar only when the user supplies a new version, and note the version here. The game loads only the jars `mod_info.json` lists, so `lib/` never reaches the game; keep it out of the release zip ([RELEASE.md](docs/RELEASE.md#package)).
 

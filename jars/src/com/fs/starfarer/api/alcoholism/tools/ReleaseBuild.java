@@ -51,7 +51,7 @@ public final class ReleaseBuild {
 
     static final String LIBS = "lib";
     static final List<String> LIB_JARS = List.of("starfarer.api.jar", "starfarer_obf.jar", "fs.common_obf.jar",
-            "lwjgl.jar", "lwjgl_util.jar", "json.jar", "log4j-1.2.9.jar", "LunaLib.jar", "LazyLib.jar");
+            "lwjgl.jar", "lwjgl_util.jar", "json.jar", "log4j-1.2.9.jar", "LunaLib.jar", "LazyLib.jar", "PatchLibAPI.jar");
 
     static final Set<String> ROOT_FILES = Set.of("mod_info.json", VERSION_FILE, "Changelog",
             "CC-license.png", "_substanceAbuse.png");

@@ -34,13 +34,18 @@ public class TariffModifier extends BaseCampaignEventListener {
         if(market.isPlayerOwned()) return;
 
         Alcohol alcohol = AlcoholRepo.get(alcoholId);
-        AddictionStatus status = AlcoholRepo.get(alcoholId).getAddictionStatus();
+        AddictionStatus status = alcohol.getAddictionStatus();
 
-        if(status.isConsuming()){
-            market.getTariff().modifyMult(alcohol.getId(), 1 + ((Freedom_HullmodEffect.MAX_TARIFF_DECREASE_PERCENT * status.getAddictionValue()) / 100f), alcohol.getName());
-        } else if (status.isWithdrawal()){
-            market.getTariff().modifyMult(alcohol.getId(), 1 + ((Freedom_HullmodEffect.WITHDRAWAL_TARIFF_INCREASE_PERCENT * status.getAddictionValue()) / 100f), alcohol.getName() + " withdrawal");
-        }
+        if(status.isConsuming()) market.getTariff().modifyMult(alcohol.getId(), getTariffMult(), alcohol.getName());
+        else if (status.isWithdrawal()) market.getTariff().modifyMult(alcohol.getId(), getTariffMult(), alcohol.getName() + " withdrawal");
+    }
+
+    public static float getTariffMult(){
+        AddictionStatus status = AlcoholRepo.get(AlcoholRepo.FREEDOM).getAddictionStatus();
+
+        if(status.isConsuming()) return 1 + ((Freedom_HullmodEffect.MAX_TARIFF_DECREASE_PERCENT * status.getAddictionValue()) / 100f);
+        if(status.isWithdrawal()) return 1 + ((Freedom_HullmodEffect.WITHDRAWAL_TARIFF_INCREASE_PERCENT * status.getAddictionValue()) / 100f);
+        return 1f;
     }
 
     @Override
