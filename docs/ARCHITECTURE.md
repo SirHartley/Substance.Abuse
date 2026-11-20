@@ -74,7 +74,7 @@ Ids, keys and class names are bound to saves and to other mods. Display names ma
 | Drink ids (`AlcoholRepo` constants) | `alcoholism_stout`, `alcoholism_absynth`, `alcoholism_tears`, `alcoholism_fuel`, `alcoholism_blood`, `alcoholism_sunshine`, `alcoholism_king`, `alcoholism_freedom`, `alcoholism_water`, `alcoholism_tea` |
 | Commodity / item / recipe ids | `<drink>_c` / `<drink>` / `<drink>_item` |
 | Industry, condition, recipe book | `alcohol_brewery`, `alcohol_resourceCondition`, `alcoholism_recipe_book` |
-| Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (`BlackoutScript`) |
+| Memory keys | `$AddictionMemory` and `DrunkFleetIntel.MEMORY_KEY_PRE + fleet id` (sector); `$BreweriesHaveBeenPlaced` (sector and market); `$AlcoholWarningHasBeenShow` (`ExcessOPStripper`); `$Alcohol_hasDroppedItem` (set by `BlackoutScript` before 1.1.f, no longer read) |
 | Faction memory key | `$alcoholism_faction_alcohol_types` |
 | Variant tag | `alcoholism_absynth_fit` (`ExcessOPStripper.FITTED_ON_ABSYNTH_TAG`) |
 | Persistent data key | `alcoholism_settings` (old saves only, removed on load; `SettingsHandler` stays for them) |
@@ -99,7 +99,7 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 | `listeners/AlcoholConsumptionManager` | Daily loop, effect hullmod application, run-out warnings, blackout trigger, Absynth refit tag |
 | `listeners/AlcoholStackReplacer` | Commodity and item stack conversion around the cargo tab |
 | `listeners/ResourceConditionApplicator` | Adds `alcohol_resourceCondition` to markets on economy ticks and colonisation |
-| `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel, moves the player to a system with a distress jump point, avoiding pulsar, black hole, cut off, hidden (`THEME_HIDDEN`) and temporary systems when any other is left |
+| `scripts/BlackoutScript` | Blackout sequence: detaches the fleet, spawns the drunk fleet, intel. Normal mode moves the player to a system with a distress jump point, avoiding pulsar, black hole, cut off, hidden (`THEME_HIDDEN`) and temporary systems when any other is left, and fills the flagship's cargo. Survival mode (`Misc.isExtended()`) moves the player next to the closest market of the same location, or `EXT_WAKE_UP_DISTANCE` away when there is none, hands the flagship its crew, fuel and a month of supplies from the fleet's own cargo, and charges a bar tab, crew and reputation with that market's faction (`EXT_` constants) |
 | `industry/Brewery`, `industry/BreweryPlacer` | Brewery industry and the one-time placement |
 | `hullmods/BaseAlcoholHullmodEffect` | Base for every effect hullmod, including other mods' drinks |
 | `patches/*` | PatchLib patches, found by PatchLib in `jars/alcoholism.jar` without registration; `PatchLibAPI.jar` is a compile dependency, PatchLib a mod dependency |
