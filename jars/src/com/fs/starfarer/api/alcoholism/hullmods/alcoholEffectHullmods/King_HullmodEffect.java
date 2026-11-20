@@ -14,6 +14,7 @@ public class King_HullmodEffect extends BaseAlcoholHullmodEffect {
     private static final float MAX_CR_READINESS_BONUS_PERCENT = 25f;
     private static final float MAX_CR_RECOVERY_BONUS_PERCENT = 40f;
     private static final float MAX_CREW_LOSS_REDUCTION_PERCENT = -20f;
+    private static final float EXT_MAX_CREW_LOSS_REDUCTION_PERCENT = -10f;
     private static final float MAX_RECOVERY_CHANCE_PERCENT = 50f;
     private static final float MAX_PPT_TIME_INCREASE = 30f;
 
@@ -36,10 +37,14 @@ public class King_HullmodEffect extends BaseAlcoholHullmodEffect {
         stats.getMaxCombatReadiness().modifyMult(id, getPercentToCorrectedMult(MAX_CR_READINESS_BONUS_PERCENT), getDesc());
         stats.getPeakCRDuration().modifyFlat(id, MAX_PPT_TIME_INCREASE * effectMult, getDesc());
         stats.getBaseCRRecoveryRatePercentPerDay().modifyMult(id, getPercentToCorrectedMult(MAX_CR_RECOVERY_BONUS_PERCENT), getDesc());
-        stats.getCrewLossMult().modifyMult(id, getPercentToCorrectedMult(MAX_CREW_LOSS_REDUCTION_PERCENT), getDesc());
+        stats.getCrewLossMult().modifyMult(id, getPercentToCorrectedMult(getCrewLossReductionPercent()), getDesc());
 
         stats.getDynamic().getMod(Stats.INDIVIDUAL_SHIP_RECOVERY_MOD).modifyMult(id, getPercentToCorrectedMult(MAX_RECOVERY_CHANCE_PERCENT), getDesc());
         stats.getBreakProb().modifyMult(id, getPercentToCorrectedMult(-MAX_RECOVERY_CHANCE_PERCENT), getDesc());
+    }
+
+    private static float getCrewLossReductionPercent() {
+        return Misc.isExtended() ? EXT_MAX_CREW_LOSS_REDUCTION_PERCENT : MAX_CREW_LOSS_REDUCTION_PERCENT;
     }
 
     @Override
@@ -103,8 +108,8 @@ public class King_HullmodEffect extends BaseAlcoholHullmodEffect {
         tooltip.addPara("Decreases crew losses by %s  [Max.: %s]",
                 spad,
                 positive,
-                getAbsPercentStringForTooltip(MAX_CREW_LOSS_REDUCTION_PERCENT, effectMult),
-                getAbsPercentStringForTooltip(MAX_CREW_LOSS_REDUCTION_PERCENT));
+                getAbsPercentStringForTooltip(getCrewLossReductionPercent(), effectMult),
+                getAbsPercentStringForTooltip(getCrewLossReductionPercent()));
 
     }
 
