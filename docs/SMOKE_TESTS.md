@@ -14,9 +14,9 @@ bash native-smoke/live/run.sh battle_withdrawal
 
 - The game is the 0.98.5a-RC7 install named in `run.sh` (`SMOKE_GAME` overrides it). Every run enables LunaLib, LazyLib and PatchLib.
 - `BUILD` picks the mod: `1.1.e` is the release zip (default), `1.1.d` is the baseline commit `1f15cd6` with its committed jar, and any other git ref is compiled with `lib/`.
-- Each build has its own work folder, `C:\Modding\.smoke-work\Substance.Abuse.<build>`, with its base save and `runs/`.
-- `run.sh` takes `C:\Modding\.smoke-lock` around the game and waits for it. Only one game runs on the machine at a time.
-- It needs a copy of the skill's `scripts` and `templates` with `gamectl.exe` built, in `SMOKE_SKILL`. The header of `run.sh` lists the other variables.
+- Each build has its own work folder in the smoke folder, `C:\Modding\smoke\smoke-work\Substance.Abuse.<build>`, with its base save and `runs/`.
+- It needs a copy of the skill 2.1.0 `scripts` and `templates` with `gamectl.exe` built, in `SMOKE_SKILL` (default `C:\Modding\smoke\smoke-work\Substance.Abuse\skill-2.1.0`). The skill's runner takes the machine slot and `C:\Modding\.smoke-lock`; `run.sh` takes no lock of its own. The header of `run.sh` lists the other variables.
+- To test a branch without touching a working checkout, add a `git worktree` of it under `C:\Modding\smoke\worktrees` and run its `run.sh`.
 
 `native-smoke/CodexTitleProbe.java` is a startup probe for `run-native-smoke.ps1`.
 
