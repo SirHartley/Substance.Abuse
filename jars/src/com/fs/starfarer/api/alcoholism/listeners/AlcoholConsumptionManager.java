@@ -27,6 +27,8 @@ import java.util.Map;
 
 public class AlcoholConsumptionManager implements NewDayListener, RefitTabListener, RefitScreenListener {
 
+    public static final float MIN_UNITS_PER_DAY = 0.1f;
+
     public float unitsConsumed = 0f;
 
     public Map<String, Integer> warningMap = new HashMap<>();
@@ -83,21 +85,27 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
 
             if(addictionStatus.isConsuming()){
                 float toConsume = getCurrentRequiredUnitsPerDay(alcohol);
+                float opened = addictionStatus.getOpenedUnits();
+                float inCargo = cargo.getCommodityQuantity(commodityID);
 
                 unitsConsumed += toConsume;
                 ModPlugin.log(alcohol.getName() + " - consuming " + toConsume + " | total: " + unitsConsumed + " in " + AddictionBrain.getDaysAddicted(alcohol.getMult(), addictionStatus.getAddictionValue()) + " days");
 
-                if(cargo.getCommodityQuantity(commodityID) >= toConsume){
+                if(opened + inCargo >= toConsume){
                     if(!isWater && isConsumingWater()) mult -= getWaterMult();
 
-                    cargo.removeCommodity(commodityID, toConsume);
+                    // whole units leave cargo, so a partly drunk unit can not be sold
+                    float toOpen = Math.min(inCargo, (float) Math.ceil(Math.max(0f, toConsume - opened)));
+                    cargo.removeCommodity(commodityID, toOpen);
+                    addictionStatus.setOpenedUnits(opened + toOpen - toConsume);
                     totalAddictionGain += alcohol.incrementAddiction(days * mult); //this increments the addiction
 
-                    if(!warningMap.containsKey(id) && cargo.getCommodityQuantity(commodityID) < TooltipHelper.getPredictedAmountRequiredForOneMonth(id)){
+                    float unitsLeft = cargo.getCommodityQuantity(commodityID) + addictionStatus.getOpenedUnits();
+                    if(!warningMap.containsKey(id) && unitsLeft < TooltipHelper.getPredictedAmountRequiredForOneMonth(id)){
                         Global.getSector().getCampaignUI().addMessage("You will run out of %s within the next %s",
                                 Misc.getTextColor(),
                                 alcohol.getName(),
-                                TooltipHelper.getAmountWillLastDays(alcohol, cargo.getCommodityQuantity(commodityID)) + " days.",
+                                TooltipHelper.getAmountWillLastDays(alcohol, unitsLeft) + " days.",
                                 alcohol.getFaction().getColor(),
                                 Misc.getNegativeHighlightColor());
 
@@ -243,9 +251,8 @@ public class AlcoholConsumptionManager implements NewDayListener, RefitTabListen
         return getRequiredUnitsPerDay(alcohol.getAddictionStatus().getAddictionValue());
     }
 
-    // the fleet drinks at least one unit a day
     public static float getRequiredUnitsPerDay(float addiction) {
-        return Math.max(1f, AddictionBrain.getConsumptionPerCrewPerDayForAddiction(addiction) * getPlayerSkeletonCrewAmount());
+        return Math.max(MIN_UNITS_PER_DAY, AddictionBrain.getConsumptionPerCrewPerDayForAddiction(addiction) * getPlayerSkeletonCrewAmount());
     }
 
     public void applyActiveAlcoholHullmods(CampaignFleetAPI fleet){

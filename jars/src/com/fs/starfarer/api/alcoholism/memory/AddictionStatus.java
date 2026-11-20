@@ -3,6 +3,8 @@ package com.fs.starfarer.api.alcoholism.memory;
 public class AddictionStatus {
     private float addictionValue;
     private boolean isConsuming = false;
+    // opened part of a unit the fleet drinks from, older saves load 0
+    private float openedUnits;
 
     public AddictionStatus(){
         this.addictionValue = 0f;
@@ -25,6 +27,14 @@ public class AddictionStatus {
 
     public void setConsuming(boolean consuming) {
         this.isConsuming = consuming;
+    }
+
+    public float getOpenedUnits() {
+        return openedUnits;
+    }
+
+    public void setOpenedUnits(float openedUnits) {
+        this.openedUnits = Math.max(0f, openedUnits);
     }
 
     public boolean isWithdrawal(){

@@ -97,6 +97,7 @@ public class Alcohol implements AlcoholAPI {
         float amtInCargo;
         if(c.getCommodityQuantity(getCommodityId()) > 0f) amtInCargo = c.getCommodityQuantity(getCommodityId());
         else amtInCargo = c.getQuantity(CargoAPI.CargoItemType.SPECIAL, new SpecialItemData(id, null));
+        amtInCargo += getAddictionStatus().getOpenedUnits();
 
         int amtWillLastDays = TooltipHelper.getAmountWillLastDays(this, amtInCargo);
         int amtWillLastMonths = Math.round(amtWillLastDays / AddictionBrain.DAYS_PER_MONTH);

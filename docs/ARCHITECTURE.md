@@ -120,13 +120,14 @@ Use `rg --files jars/src` for the full inventory. The entries below are state an
 ### Save data
 
 - The mod is released and can be added to an existing save. Classes stored in saves (`AddictionMemory`, `AddictionStatus`, `SettingsHandler` (old saves), the non-transient `ExcessOPStripper` listener, scripts added with `addScript`, intel) keep their package, name and fields. `ExcessOPStripper.taggedExistingFits` is false on older saves and tags their Absynth fleet ships once.
+- `AddictionStatus.openedUnits` loads as 0 on saves made before it existed.
 - `AddictionMemory.refresh()` adds missing statuses for drinks added since the save, including other mods' drinks.
 
 ### Shared cross-file constraints
 
 - `AlcoholResourceCondition` writes drink supply and demand under its own condition id and clears it in `unapply` for every drink, whoever owns the market. Supply and demand are levels: a market takes the max over its industries, but two mod ids on one industry's commodity add up (`modifyFlat`), so drink inputs that vanilla Light Industry already demands (organics) are left out. The Brewery recipe effects use the industry's index 0 id through the static `applySupply` and `applyDemand`. Industry supply and demand are not saved (`CoreLifecyclePluginImpl.econPreSaveCleanup`) and are rebuilt by `reapplyConditions` then `reapplyIndustries` on load, so changing these ids needs no save migration. `apply` returns early on markets outside the economy: the condition stays on planets that leave the economy without decivilization, and `PlanetConditionMarket.convertToRegular` reapplies it before the faction is set.
 - `OfficerXPGainModifier` snapshots officer XP on the first `reportPlayerEngagement` of a battle and applies the Tears of Ludd change in `reportBattleOccurred`, which fires after vanilla grants battle XP (`FleetEncounterContext`). Autoresolved battles do not fire it; their XP counts towards the next battle.
-- The daily drink amount, at least one unit, comes from `AlcoholConsumptionManager.getRequiredUnitsPerDay`. Consumption and the forecasts in `TooltipHelper` both use it.
+- The daily drink amount, at least `AlcoholConsumptionManager.MIN_UNITS_PER_DAY` (0.1), comes from `AlcoholConsumptionManager.getRequiredUnitsPerDay`. Consumption and the forecasts in `TooltipHelper` both use it. `onNewDay` takes whole units out of cargo into `AddictionStatus.openedUnits` and drinks from there, so cargo keeps whole units; the run-out warning and the "will last" text count cargo plus opened units.
 - `AlcoholConsumptionManager.onNewDay` iterates `AlcoholRepo.ALCOHOL_MAP.values()` as `Alcohol`; every entry, including other mods', must be an `Alcohol`.
 - `FactionAlcoholHandler.assignFactionAlcohols()` overwrites the vanilla factions' lists on every load. A mod that appends to a vanilla faction's list (Symbiotic Void Creatures appends to `pirates`) depends on running after it; the mod load order is not verified.
 - Recipe item effects are registered from `ALCOHOL_MAP` at the end of this mod's `onGameLoad`, so a drink added to the map before that gets its recipe effect without registering it itself.
